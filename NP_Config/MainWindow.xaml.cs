@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,122 +21,151 @@ namespace NP_Config
     /// </summary>
     public partial class MainWindow : Window
     {
+        struct Menu_Struct
+        {
+            public Button Menu_Button;
+        }
+        struct Pages_Struct
+        {
+            public WorkPage WP;
+        }
+
+        Menu_Struct[] menu_struct = new Menu_Struct[16];
+        Pages_Struct[] page_struct = new Pages_Struct[16];
+
+        private int Menu_Button_Count = 1;
+
         public MainWindow()
         {
             InitializeComponent();
-            
-        }
-        WorkPage WP1 = new WorkPage();
-        WorkPage WP2 = new WorkPage();
-        WorkPage WP3 = new WorkPage();
-        WorkPage WP4 = new WorkPage();
-        WorkPage WP5 = new WorkPage();
-        WorkPage WP6 = new WorkPage();
-        WorkPage WP7 = new WorkPage();
-        WorkPage WP8 = new WorkPage();
-        WorkPage WP9 = new WorkPage();
-        WorkPage WP10 = new WorkPage();
-        WorkPage WP11 = new WorkPage();
-        WorkPage WP12 = new WorkPage();
-        WorkPage WP13 = new WorkPage();
-        WorkPage WP14 = new WorkPage();
-        WorkPage WP15 = new WorkPage();
-        WorkPage WP16 = new WorkPage();
 
-        private void NP1_Click(object sender, RoutedEventArgs e)
+            InitializeButtonMenu(); //инициализируем кнопки меню
+        }
+        private void InitializeButtonMenu ()    //инициализируем кнопки меню
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP1);
+            //Создаем динамически кнопки
+            for (int index = 0; index < menu_struct.Length; index++)
+            {
+                menu_struct[index].Menu_Button = new Button();
+                menu_struct[index].Menu_Button.Name = "MenuButtonIndex_" + index.ToString();
+                menu_struct[index].Menu_Button.Click += new RoutedEventHandler(NP_Click);
+                menu_struct[index].Menu_Button.Content = "NP" + (index + 1).ToString();
+                menu_struct[index].Menu_Button.Style = (Style)menu_struct[index].Menu_Button.FindResource("ButtonStyle_Menu1");
+            }
+
+            //убираем кнопки "добавить" и "удалить"
+            StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
+            //добавляем первую кнопку при запуске
+            StackPanelMenu.Children.Add(menu_struct[0].Menu_Button);
+            //добавляем кнопки "добавить" и "удалить"
+            StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
+
+            //инициализируем страницу для первой кнопки
+            page_struct[0].WP = new WorkPage();
+
+            Menu_Visibility();
+        }
+        private void NP_Click(object sender, RoutedEventArgs e)
+        {
+            int ButtonIndex = 0; //индекс нажатой кнопки меню
+
+            //определяем индекс нажатой кнопки (написано через жопу, ну что поделать)
+            try
+            {
+                string ButtonName = ((System.Windows.FrameworkElement)sender).Name;
+                string[] spl = ButtonName.Split('_');
+                ButtonIndex = Convert.ToInt32(spl[1]);
+            }
+            catch { }
+
+            //настройка стилей кнопок меню
+            for (int index = 0; index < menu_struct.Length; index++)
+            {
+                menu_struct[index].Menu_Button.Style = (Style)menu_struct[index].Menu_Button.FindResource("ButtonStyle_Menu1");
+            }
+            menu_struct[ButtonIndex].Menu_Button.Style = (Style)menu_struct[ButtonIndex].Menu_Button.FindResource("ButtonStyle_Menu2");
+
+            //отображение станицы
+            WorkMainPage_Frame.NavigationService.Navigate(page_struct[ButtonIndex].WP);
             WorkMainPage_Frame.NavigationService.RemoveBackEntry();
         }
 
-        private void NP2_Click(object sender, RoutedEventArgs e)
+        private void Window_Minimizate_Click(object sender, RoutedEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP2);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            this.WindowState = WindowState.Minimized;
         }
 
-        private void NP3_Click(object sender, RoutedEventArgs e)
+        private void Window_All_Size_Click(object sender, RoutedEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP3);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
 
-        private void NP4_Click(object sender, RoutedEventArgs e)
+        private void Window_Close_Click(object sender, RoutedEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP4);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            //закрываем основное окно
+            this.Close();
         }
 
-        private void NP5_Click(object sender, RoutedEventArgs e)
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP5);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
 
-        private void NP6_Click(object sender, RoutedEventArgs e)
+        private void Menu_Up_Click(object sender, RoutedEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP6);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            if (Menu_Button_Count > 1)
+            {
+                //убираем кнопки "добавить" и "удалить"
+                StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
+                //добавляем следующую кнопку при запуске
+                StackPanelMenu.Children.Remove(menu_struct[Menu_Button_Count - 1].Menu_Button);
+                //добавляем кнопки "добавить" и "удалить"
+                StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
+
+                page_struct[Menu_Button_Count - 1].WP = null;
+
+                Menu_Button_Count--;
+            }
+            Menu_Visibility();
         }
 
-        private void NP7_Click(object sender, RoutedEventArgs e)
+        private void Menu_Down_Click(object sender, RoutedEventArgs e)
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP7);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            if (Menu_Button_Count < menu_struct.Length)
+            {
+                //убираем кнопки "добавить" и "удалить"
+                StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
+                //добавляем следующую кнопку при запуске
+                StackPanelMenu.Children.Add(menu_struct[Menu_Button_Count].Menu_Button);
+                //добавляем кнопки "добавить" и "удалить"
+                StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
+
+                //инициализируем страницу для добавленной кнопки
+                page_struct[Menu_Button_Count].WP = new WorkPage();
+
+                Menu_Button_Count++;
+            }
+            Menu_Visibility();
         }
 
-        private void NP8_Click(object sender, RoutedEventArgs e)
+        private void Menu_Visibility()
         {
-            WorkMainPage_Frame.NavigationService.Navigate(WP8);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+            if (Menu_Button_Count == 1) Menu_Up.Visibility = Visibility.Hidden;
+            else Menu_Up.Visibility = Visibility.Visible;
+
+            if (Menu_Button_Count == 16) Menu_Down.Visibility = Visibility.Hidden;
+            else Menu_Down.Visibility = Visibility.Visible;
         }
 
-        private void NP9_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP9);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP10_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP10);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP11_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP11);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP12_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP12);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP13_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP13);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP14_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP14);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP15_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP15);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
-
-        private void NP16_Click(object sender, RoutedEventArgs e)
-        {
-            WorkMainPage_Frame.NavigationService.Navigate(WP16);
-            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
-        }
     }
 }

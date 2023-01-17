@@ -8,8 +8,8 @@
       d:DesignHeight="550" d:DesignWidth="900"
       Title="WorkPage">
 
-    <Grid Background="Green">
-        <TextBox HorizontalAlignment="Left" Height="45" Margin="236,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="299"/>
+    <Grid Style="{DynamicResource GridStyle_Type2}">
+        <TextBox x:Name="sxx" HorizontalAlignment="Left" Height="45" Margin="236,144,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="299"/>
 
     </Grid>
 </Page>

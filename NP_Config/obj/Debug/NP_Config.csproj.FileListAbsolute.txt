@@ -16,3 +16,5 @@ D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.exe
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.pdb
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\WorkPage.g.cs
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\WorkPage.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Dictionary_DarkStyle.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\App.baml

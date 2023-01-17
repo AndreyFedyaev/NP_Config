@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\
+D:\С#\GitHub\NP_Config\NP_Config\obj\Release\
 NP_Config
 none
 false
-DEBUG;TRACE
+TRACE
 D:\С#\GitHub\NP_Config\NP_Config\App.xaml
 3-1128624903
 
-7-1745852189
+6336236429
 13-1310406943
 Dictionary_DarkStyle.xaml;MainWindow.xaml;WorkPage.xaml;
 
