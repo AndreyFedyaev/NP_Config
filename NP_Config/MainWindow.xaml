@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NP_Config"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Background="#FF5B635E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="#FF494941">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="NP1" x:Name="NP1" Click="NP1_Click" />
+                <Button Grid.Row="1" Content="NP2" x:Name="NP2" Click="NP2_Click" />
+                <Button Grid.Row="2" Content="NP3" x:Name="NP3" Click="NP3_Click" />
+                <Button Grid.Row="3" Content="NP4" x:Name="NP4" Click="NP4_Click" />
+                <Button Grid.Row="4" Content="NP5" x:Name="NP5" Click="NP5_Click" />
+                <Button Grid.Row="5" Content="NP6" x:Name="NP6" Click="NP6_Click" />
+                <Button Grid.Row="6" Content="NP7" x:Name="NP7" Click="NP7_Click" />
+                <Button Grid.Row="7" Content="NP8" x:Name="NP8" Click="NP8_Click" />
+                <Button Grid.Row="8" Content="NP9" x:Name="NP9" Click="NP9_Click" />
+                <Button Grid.Row="9" Content="NP10" x:Name="NP10" Click="NP10_Click" />
+                <Button Grid.Row="10" Content="NP11" x:Name="NP11" Click="NP11_Click" />
+                <Button Grid.Row="11" Content="NP12" x:Name="NP12" Click="NP12_Click" />
+                <Button Grid.Row="12" Content="NP13" x:Name="NP13" Click="NP13_Click" />
+                <Button Grid.Row="13" Content="NP14" x:Name="NP14" Click="NP14_Click" />
+                <Button Grid.Row="14" Content="NP15" x:Name="NP15" Click="NP15_Click" />
+                <Button Grid.Row="15" Content="NP16" x:Name="NP16" Click="NP16_Click" />
+            </Grid>
+            <Grid Grid.Column="1" x:Name="WorkMainPage">
+                <Frame x:Name="WorkMainPage_Frame" NavigationUIVisibility="Hidden" Padding="0"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
