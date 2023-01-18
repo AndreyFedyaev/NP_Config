@@ -7,57 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="520" Width="1000" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
     <Grid>
-        <!--<Border BorderThickness="1" BorderBrush="#FF5C606B">-->
+        <Border BorderThickness="1" BorderBrush="#FF5C606B">
+            <Grid Style="{DynamicResource GridStyle_Type2}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-                    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0" Style="{DynamicResource GridStyle_Type1}">
+                <Grid Grid.Column="0"  Margin="0,0,1,0" Style="{DynamicResource GridStyle_Type1}">
                     <StackPanel Name="StackPanelMenu">
                         <Grid x:Name="Menu_Add_Delete_Button">
-                            <Button x:Name="Menu_Up" HorizontalAlignment="Left" Margin="10,5,0,0" Content="UP" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Up_Click"></Button>
-                            <Button x:Name="Menu_Down" HorizontalAlignment="Right" Margin="0,5,10,0" Content="D" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Down_Click"></Button>
+                            <Button x:Name="Menu_Up" HorizontalAlignment="Left" Margin="5,5,0,0" Content="UP" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Up_Click"></Button>
+                            <Button x:Name="Menu_Down" HorizontalAlignment="Right" Margin="0,5,5,0" Content="D" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Down_Click"></Button>
                         </Grid>
                     </StackPanel>
                 </Grid>
 
-            <Grid Grid.Column="1" x:Name="WorkMainPage"  MouseDown="Grid_MouseDown" Style="{DynamicResource GridStyle_Type2}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="25"></RowDefinition>
-                </Grid.RowDefinitions>
+                <Grid Grid.Column="1" x:Name="WorkMainPage"  MouseDown="Grid_MouseDown" Style="{DynamicResource GridStyle_Type2}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" >
-                            <Button Style="{DynamicResource ButtonStyle_Window_Minimizate}" Click="Window_Minimizate_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,53,0"/>
-                            <Button Style="{DynamicResource ButtonStyle_Window_All_Size}" Click="Window_All_Size_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,30,0"/>
-                            <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="Window_Close_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,8,0"/>
+                    <Grid Grid.Row="0" >
+                        <Button Style="{DynamicResource ButtonStyle_Window_Minimizate}" Click="Window_Minimizate_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,53,0"/>
+                        <Button Style="{DynamicResource ButtonStyle_Window_All_Size}" Click="Window_All_Size_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,30,0"/>
+                        <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="Window_Close_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,8,0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Frame x:Name="WorkMainPage_Frame" NavigationUIVisibility="Hidden" Padding="0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+
+                    </Grid>
+
                 </Grid>
-
-                <Grid Grid.Row="1">
-                    <Frame x:Name="WorkMainPage_Frame" NavigationUIVisibility="Hidden" Padding="0"/>
-                </Grid>
-
-                <Grid Grid.Row="2">
-
-                </Grid>
-
-
-
             </Grid>
-        </Grid>
-
-    </Grid>
-
-        <!--</Border>-->
+        </Border>
     </Grid>
 </Window>

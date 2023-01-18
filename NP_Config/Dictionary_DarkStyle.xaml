@@ -1,25 +1,27 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="Color_1" Color="#FF1E2024"/>
-    <SolidColorBrush x:Key="Color_2" Color="#FF24262B"/>
-    <SolidColorBrush x:Key="Color_3" Color="#FF5C606B"/>
-    <SolidColorBrush x:Key="Color_4" Color="#FFEBEEF5"/>
+    <SolidColorBrush x:Key="Color_1" Color="#FF17191D"/>
+    <SolidColorBrush x:Key="Color_2" Color="#FF212328"/>
+    <SolidColorBrush x:Key="Color_3" Color="#FF2D3238"/>
+    <SolidColorBrush x:Key="Color_4" Color="#FF9A9C9D"/>
 
     <SolidColorBrush x:Key="Color_5" Color="#FF507348"/>
 
 
     <!-- BUTTON -->
     <Style x:Key="ButtonStyle_Menu1" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource Color_1}" />
-        <Setter Property="Foreground" Value="{StaticResource Color_3}"/>
+        <Setter Property="Background" Value="{StaticResource Color_3}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}" >
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="5" ShadowDepth="1" />
+                        </Border.Effect>
                         <Grid>
                             <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
                         </Grid>
@@ -38,10 +40,9 @@
 
     <Style x:Key="ButtonStyle_Menu2" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource Color_2}" />
-        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="Foreground" Value="{StaticResource Color_5}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -57,14 +58,17 @@
 
     <Style x:Key="ButtonStyle_Menu3" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource Color_3}" />
-        <Setter Property="Foreground" Value="{StaticResource Color_1}"/>
-        <Setter Property="Width" Value="25"/>
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="Width" Value="40"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Height" Value="25"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" >
+                    <Border Background="{TemplateBinding Background}" CornerRadius="3" >
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="5" ShadowDepth="1" />
+                        </Border.Effect>
                         <Grid>
                             <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
                         </Grid>
