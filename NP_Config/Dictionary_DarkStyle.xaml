@@ -222,6 +222,13 @@
         <Setter Property="Background" Value="{StaticResource Color_2}"/>
     </Style>
 
+    <!-- BORDER -->
+    <Style x:Key="BorderStyle_Type1" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource Color_2}"/>
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
+
+
     <!-- TEXTBLOCK -->
     <Style x:Key="TextBlockStyle_Type1" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource Color_4}"/>

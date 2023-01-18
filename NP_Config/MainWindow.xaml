@@ -23,24 +23,24 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Column="1" x:Name="WorkMainPage"  MouseDown="Grid_MouseDown" Style="{DynamicResource GridStyle_Type2}">
+                <Grid Grid.Column="1" x:Name="WorkMainPage"  MouseDown="Grid_MouseDown" Style="{DynamicResource GridStyle_Type1}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" >
+                    <Grid Grid.Row="0" Style="{DynamicResource GridStyle_Type2}">
                         <Button Style="{DynamicResource ButtonStyle_Window_Minimizate}" Click="Window_Minimizate_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,53,0"/>
                         <Button Style="{DynamicResource ButtonStyle_Window_All_Size}" Click="Window_All_Size_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,30,0"/>
                         <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="Window_Close_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,8,0"/>
                     </Grid>
 
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Style="{DynamicResource GridStyle_Type2}">
                         <Frame x:Name="WorkMainPage_Frame" NavigationUIVisibility="Hidden" Padding="0"/>
                     </Grid>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="2" Style="{DynamicResource GridStyle_Type2}" Margin="0,1,0,0">
 
                     </Grid>
 
