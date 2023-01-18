@@ -33,7 +33,8 @@ namespace NP_Config
         Menu_Struct[] menu_struct = new Menu_Struct[16];
         Pages_Struct[] page_struct = new Pages_Struct[16];
 
-        private int Menu_Button_Count = 1;
+        private int Menu_Button_Count = 0;  //количество добавленных кнопок
+        private int Menu_Button_IsActive = 0; //активная (нажатая) кнопка в текущий момент
 
         public MainWindow()
         {
@@ -53,23 +54,14 @@ namespace NP_Config
                 menu_struct[index].Menu_Button.Style = (Style)menu_struct[index].Menu_Button.FindResource("ButtonStyle_Menu1");
             }
 
-            //убираем кнопки "добавить" и "удалить"
-            StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
-            //добавляем первую кнопку при запуске
-            StackPanelMenu.Children.Add(menu_struct[0].Menu_Button);
-            //добавляем кнопки "добавить" и "удалить"
-            StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
-
-            //инициализируем страницу для первой кнопки
-            page_struct[0].WP = new WorkPage();
-
-            Menu_Visibility();
+            Menu_Buttons_Add(); //добавляем первую (стартовую) кнопку
+            Page_Display(0);    //делаем первую кнопку нажатой
         }
         private void NP_Click(object sender, RoutedEventArgs e)
         {
             int ButtonIndex = 0; //индекс нажатой кнопки меню
 
-            //определяем индекс нажатой кнопки (написано через жопу, ну что поделать)
+            //определяем индекс нажатой кнопки (написано немного криво)
             try
             {
                 string ButtonName = ((System.Windows.FrameworkElement)sender).Name;
@@ -77,6 +69,13 @@ namespace NP_Config
                 ButtonIndex = Convert.ToInt32(spl[1]);
             }
             catch { }
+
+            Page_Display(ButtonIndex);
+        }
+
+        private void Page_Display(int ButtonIndex)
+        {
+            Menu_Button_IsActive = ButtonIndex + 1;
 
             //настройка стилей кнопок меню
             for (int index = 0; index < menu_struct.Length; index++)
@@ -123,6 +122,16 @@ namespace NP_Config
 
         private void Menu_Up_Click(object sender, RoutedEventArgs e)
         {
+            Menu_Buttons_Remove();
+        }
+
+        private void Menu_Down_Click(object sender, RoutedEventArgs e)
+        {
+            Menu_Buttons_Add();
+        }
+
+        private void Menu_Buttons_Remove()
+        {
             if (Menu_Button_Count > 1)
             {
                 //убираем кнопки "добавить" и "удалить"
@@ -134,12 +143,24 @@ namespace NP_Config
 
                 page_struct[Menu_Button_Count - 1].WP = null;
 
+                if (Menu_Button_IsActive == Menu_Button_Count)  
+                {
+                    menu_struct[Menu_Button_Count - 1].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 1].Menu_Button.FindResource("ButtonStyle_Menu1");
+                    menu_struct[Menu_Button_Count - 2].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 2].Menu_Button.FindResource("ButtonStyle_Menu2");
+                    
+                    //отображение станицы
+                    WorkMainPage_Frame.NavigationService.Navigate(page_struct[Menu_Button_Count - 2].WP);
+                    WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+
+                    Menu_Button_IsActive--;
+                }
+
+
                 Menu_Button_Count--;
             }
             Menu_Visibility();
         }
-
-        private void Menu_Down_Click(object sender, RoutedEventArgs e)
+        private void Menu_Buttons_Add()
         {
             if (Menu_Button_Count < menu_struct.Length)
             {

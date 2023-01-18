@@ -79,8 +79,9 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource Color_2}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+                <!--<Setter Property="Background" Value="{StaticResource Color_2}"/>-->
+                <Setter Property="Width" Value="42"/>
+                <Setter Property="Height" Value="22"/>
                 <Setter Property="FontSize" Value="14"/>
             </Trigger>
         </Style.Triggers>
