@@ -7,6 +7,7 @@
     <SolidColorBrush x:Key="Color_4" Color="#FF9A9C9D"/>
 
     <SolidColorBrush x:Key="Color_5" Color="#FF507348"/>
+    <SolidColorBrush x:Key="Color_6" Color="#FFD4D7D8"/>
 
 
     <!-- BUTTON -->
@@ -40,7 +41,7 @@
 
     <Style x:Key="ButtonStyle_Menu2" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource Color_2}" />
-        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Template">
@@ -67,7 +68,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" CornerRadius="3" >
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="5" ShadowDepth="1" />
+                            <DropShadowEffect BlurRadius="5" ShadowDepth="1" Opacity="0.7"/>
                         </Border.Effect>
                         <Grid>
                             <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
@@ -79,10 +80,64 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <!--<Setter Property="Background" Value="{StaticResource Color_2}"/>-->
                 <Setter Property="Width" Value="42"/>
                 <Setter Property="Height" Value="22"/>
                 <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ButtonStyle_Type1" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Color_3}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2" RenderOptions.BitmapScalingMode="NearestNeighbor" >
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5"/>
+                        </Border.Effect>
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ButtonStyle_Type2" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Color_3}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2" >
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5"/>
+                        </Border.Effect>
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -235,5 +290,24 @@
     </Style>
     <Style x:Key="TextBlockStyle_Type2" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource Color_5}"/>
+    </Style>
+
+    <Style x:Key="TextBlockStyle_Type3" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style x:Key="TextBoxStyle_Type1" TargetType="TextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Border>
+                            <TextBlock Style="{DynamicResource TextBlockStyle_Type3}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
