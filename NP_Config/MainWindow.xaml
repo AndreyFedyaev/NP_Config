@@ -17,8 +17,8 @@
                 <Grid Grid.Column="0"  Margin="0,0,1,0" Style="{DynamicResource GridStyle_Type1}">
                     <StackPanel Name="StackPanelMenu">
                         <Grid x:Name="Menu_Add_Delete_Button">
-                            <Button x:Name="Menu_Up" HorizontalAlignment="Left" Margin="5,5,0,0" Content="UP" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Up_Click"></Button>
-                            <Button x:Name="Menu_Down" HorizontalAlignment="Right" Margin="0,5,5,0" Content="D" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Down_Click"></Button>
+                            <Button x:Name="Menu_Up" HorizontalAlignment="Left" Margin="5,5,0,0" Content="&#10134;" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Up_Click"></Button>
+                            <Button x:Name="Menu_Down" HorizontalAlignment="Right" Margin="0,5,5,0" Content="&#10133;" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Down_Click"></Button>
                         </Grid>
                     </StackPanel>
                 </Grid>
