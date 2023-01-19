@@ -285,17 +285,18 @@
 
     <Style x:Key="TextBlockStyle_Type3" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <!-- TEXTBOX -->
     <Style x:Key="TextBoxStyle_Type1" TargetType="TextBox">
         <Setter Property="Foreground" Value="{StaticResource Color_1}" />
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                    <Border Name="Border" CornerRadius="2" Padding="2">
+                    <Border Name="Border" CornerRadius="2" Padding="1,0,1,0">
                         <Border.Background>
                             <SolidColorBrush Color="{StaticResource Color_textbox_4}" />
                         </Border.Background>
