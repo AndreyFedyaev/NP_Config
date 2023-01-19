@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         
         <Grid Grid.Column="0" Margin="8">
-            <Border Style="{DynamicResource BorderStyle_Type1}">
+            <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
                 </Border.Effect>
@@ -26,7 +26,7 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1" Margin="8">
-            <Border Style="{DynamicResource BorderStyle_Type1}">
+            <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
                 </Border.Effect>
@@ -36,18 +36,18 @@
             </Border>
         </Grid>
         <Grid Grid.Column="2" Margin="8">
-            <Border Style="{DynamicResource BorderStyle_Type1}">
+            <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
                 </Border.Effect>
                 <Grid>
                     <Button Width="50" Height="20" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Style="{DynamicResource ButtonStyle_Type1}"/>
-                    <Button Width="50" Height="20" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,30,0,0" Style="{DynamicResource ButtonStyle_Type2}"/>
 
 
                     <TextBlock Text="DDDDDD" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,70,0,0" Style="{DynamicResource TextBlockStyle_Type3}"/>
 
-                    <TextBox Text="HHHH" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,100,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                    <TextBox PreviewTextInput="Cheking_for_numbers" Width="100" Height="63" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,100,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
+
                 </Grid>
             </Border>
         </Grid>

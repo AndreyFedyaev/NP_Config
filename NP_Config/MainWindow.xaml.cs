@@ -40,6 +40,7 @@ namespace NP_Config
         {
             InitializeComponent();
 
+
             InitializeButtonMenu(); //инициализируем кнопки меню
         }
         private void InitializeButtonMenu ()    //инициализируем кнопки меню
