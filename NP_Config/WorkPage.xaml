@@ -42,7 +42,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"></RowDefinition>
-                        <RowDefinition Height="140"></RowDefinition>
+                        <RowDefinition Height="190"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     
@@ -51,13 +51,15 @@
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         
                         <Grid Grid.Column="0">
                             <TextBlock Text="Датчики слева" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox PreviewTextInput="Cheking_for_numbers" Width="50" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
+                            <TextBox x:Name="UCH_CountZR_Left" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Left_TextChanged"/>
+                            <Button x:Name="UCH_RemoveZR_Left" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Left_Click"/>
+                            <Button x:Name="UCH_AddZR_Left" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,24,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Left_Click"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="Название участка" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
@@ -65,7 +67,9 @@
                         </Grid>
                         <Grid Grid.Column="2">
                             <TextBlock Text="Датчики справа" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox PreviewTextInput="Cheking_for_numbers" Width="50" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
+                            <TextBox x:Name="UCH_CountZR_Right" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Right_TextChanged"/>
+                            <Button x:Name="UCH_RemoveZR_Right" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Right_Click"/>
+                            <Button x:Name="UCH_AddZR_Right" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,24,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Right_Click"/>
                         </Grid>
                     </Grid>
 
@@ -78,11 +82,7 @@
 
                         <Grid Grid.Column="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
@@ -91,40 +91,13 @@
                                 <TextBlock Text="Канал"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="2">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="4">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="5">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
+                                <StackPanel x:Name="UCH_Left_StPanel"/>
                             </Grid>
                         </Grid>
 
-
                         <Grid Grid.Column="2">
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
@@ -133,29 +106,7 @@
                                 <TextBlock Text="Канал"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="2">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="3">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="4">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                            </Grid>
-                            <Grid Grid.Row="5">
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,100,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
-                                <TextBox PreviewTextInput="Cheking_for_numbers" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center"/>
+                                <StackPanel x:Name="UCH_Right_StPanel"/>
                             </Grid>
                         </Grid>
                     </Grid>

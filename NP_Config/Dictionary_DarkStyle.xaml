@@ -130,6 +130,40 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="ButtonStyle_Type2" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Color_3}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="FontSize" Value="12"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.5"/>
+                        </Border.Effect>
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_5}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="ButtonStyle_Window_Minimizate" TargetType="Button">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
