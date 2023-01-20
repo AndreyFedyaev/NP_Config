@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace NP_Config
 {
-    /// <summary>
-    /// Логика взаимодействия для WorkPage.xaml
-    /// </summary>
     public partial class WorkPage : Page
     {
         public WorkPage()
@@ -28,29 +25,23 @@ namespace NP_Config
             Initialize_UCH_ZR_set();     //Создаем динамические текстовые боксы для настройки датчиков на участке
             InitializeComponent();
         }
-        struct UCH_ZR_setting_left
+        struct UCH_ZR_setting
         {
             public Grid G;
             public TextBox UCH_ZR_Set_Address;
             public TextBox UCH_ZR_Set_NP;
             public TextBox UCH_ZR_Set_Channel;
         }
-        struct UCH_ZR_setting_right
-        {
-            public Grid G;
-            public TextBox UCH_ZR_Set_Address;
-            public TextBox UCH_ZR_Set_NP;
-            public TextBox UCH_ZR_Set_Channel;
-        }
-        struct NP_ZR_Channel1
+        struct NP_ZR_Channel
         {
             public Grid G;
             public TextBox NP_ZR_Address;
         }
 
-        UCH_ZR_setting_left[] UCH_ZR_set_left = new UCH_ZR_setting_left[7];
-        UCH_ZR_setting_right[] UCH_ZR_set_right = new UCH_ZR_setting_right[7];
-        NP_ZR_Channel1[] NP_ZR_channel1 = new NP_ZR_Channel1[10];
+        UCH_ZR_setting[] UCH_ZR_set_left = new UCH_ZR_setting[7];
+        UCH_ZR_setting[] UCH_ZR_set_right = new UCH_ZR_setting[7];
+        NP_ZR_Channel[] NP_ZR_channel1 = new NP_ZR_Channel[10];
+        NP_ZR_Channel[] NP_ZR_channel2 = new NP_ZR_Channel[10];
 
         private void Initialize_NP_ZR()    //Создаем динамические текстовые боксы для настройки датчиков NP
         {
@@ -73,6 +64,23 @@ namespace NP_Config
                 NP_ZR_channel1[index].G.Children.Add(NP_ZR_channel1[index].NP_ZR_Address);
             }
             // 2 канал
+            for (int index = 0; index < NP_ZR_channel2.Length; index++)
+            {
+                NP_ZR_channel2[index].G = new Grid();
+
+                NP_ZR_channel2[index].NP_ZR_Address = new TextBox();
+                NP_ZR_channel2[index].NP_ZR_Address.Text = "";
+                NP_ZR_channel2[index].NP_ZR_Address.HorizontalAlignment = HorizontalAlignment.Center;
+                NP_ZR_channel2[index].NP_ZR_Address.VerticalAlignment = VerticalAlignment.Center;
+                NP_ZR_channel2[index].NP_ZR_Address.Name = "NP_ZR_Channel1_Address_Index_" + index.ToString();
+                NP_ZR_channel2[index].NP_ZR_Address.Margin = new Thickness(0, 0, 0, 5);
+                NP_ZR_channel2[index].NP_ZR_Address.Width = 40;
+                NP_ZR_channel2[index].NP_ZR_Address.Height = 18;
+                NP_ZR_channel2[index].NP_ZR_Address.Style = (Style)NP_ZR_channel2[index].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
+                NP_ZR_channel2[index].NP_ZR_Address.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+
+                NP_ZR_channel2[index].G.Children.Add(NP_ZR_channel2[index].NP_ZR_Address);
+            }
         }
             private void Initialize_UCH_ZR_set()    //Создаем динамические текстовые боксы для настройки датчиков на участке
         {
@@ -344,6 +352,60 @@ namespace NP_Config
             if (NP_ZR_RangeNumbers.IsMatch(TB_Value.ToString()))
             {
                 NP_Channel1_count.Text = TB_Value.ToString();
+            }
+        }
+
+        private void NP_Channel2_count_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NP_Channel2_StPanel != null) NP_Channel2_StPanel.Children.Clear();
+
+            if (NP_Channel2_count.Text != "")
+            {
+                //делаем ограничение не больше 10
+                if (Convert.ToInt32(NP_Channel2_count.Text) > 10)
+                {
+                    NP_Channel2_count.Text = "10";
+                }
+                else
+                {
+                    //отображаем поля
+                    for (int i = 0; i < Convert.ToInt32(NP_Channel2_count.Text); i++)
+                    {
+                        NP_Channel2_StPanel.Children.Add(NP_ZR_channel2[i].G);
+                    }
+                    //очищаем неактуальные (удаленные) поля
+                    for (int i = Convert.ToInt32(NP_Channel2_count.Text); i < NP_ZR_channel2.Length; i++)
+                    {
+                        NP_ZR_channel2[i].NP_ZR_Address.Text = "";
+                    }
+                }
+            }
+        }
+
+        private void NP_Channel2_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            int TB_Value = 0;
+
+            if (NP_Channel2_count.Text != "") TB_Value = Convert.ToInt32(NP_Channel2_count.Text);
+
+            if (TB_Value > 0)
+            {
+                TB_Value--;
+                NP_Channel2_count.Text = TB_Value.ToString();
+            }
+        }
+
+        private void NP_Channel2_Add_Click(object sender, RoutedEventArgs e)
+        {
+            int TB_Value = 0;
+
+            if (NP_Channel2_count.Text != "") TB_Value = Convert.ToInt32(NP_Channel2_count.Text);
+
+            TB_Value++;
+
+            if (NP_ZR_RangeNumbers.IsMatch(TB_Value.ToString()))
+            {
+                NP_Channel2_count.Text = TB_Value.ToString();
             }
         }
     }

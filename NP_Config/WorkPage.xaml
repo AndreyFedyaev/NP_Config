@@ -52,9 +52,9 @@
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="2 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox x:Name="NP_Channel2_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel1_count_TextChanged" />
-                            <Button x:Name="NP_Channel2_Remove" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" />
-                            <Button x:Name="NP_Channel2_Add" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" />
+                            <TextBox x:Name="NP_Channel2_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel2_count_TextChanged" />
+                            <Button x:Name="NP_Channel2_Remove" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="NP_Channel2_Remove_Click" />
+                            <Button x:Name="NP_Channel2_Add" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="NP_Channel2_Add_Click" />
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="2">
@@ -114,7 +114,7 @@
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
@@ -150,15 +150,9 @@
                     </Grid>
 
 
-                    <Grid Grid.Row="2">
-                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="top" Width="40" Height="18" Margin="50,50,0,0">
-                            <TextBlock>16</TextBlock>
-                            <TextBlock>essefsef</TextBlock>
-                            <TextBlock>45243523</TextBlock>
-                        </ComboBox>
-                    </Grid>
-                    
-                    
+                    <Grid Grid.Row="2"/>
+
+
 
                 </Grid>
             </Border>
