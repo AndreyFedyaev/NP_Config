@@ -9,9 +9,9 @@
 
     <Grid Style="{DynamicResource GridStyle_Type2}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+            <ColumnDefinition Width="500"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Margin="8">
@@ -30,7 +30,45 @@
                     <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
                 </Border.Effect>
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Адреса датчиков модуля NP" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="1 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                            <TextBox x:Name="NP_Channel1_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel1_count_TextChanged" />
+                            <Button x:Name="NP_Channel1_Remove" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="NP_Channel1_Remove_Click" />
+                            <Button x:Name="NP_Channel1_Add" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="NP_Channel1_Add_Click" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Text="2 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                            <TextBox x:Name="NP_Channel2_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel1_count_TextChanged" />
+                            <Button x:Name="NP_Channel2_Remove" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" />
+                            <Button x:Name="NP_Channel2_Add" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" />
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <StackPanel x:Name="NP_Channel1_StPanel"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel x:Name="NP_Channel2_StPanel"/>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>
@@ -57,19 +95,19 @@
                         
                         <Grid Grid.Column="0">
                             <TextBlock Text="Датчики слева" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox x:Name="UCH_CountZR_Left" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Left_TextChanged"/>
-                            <Button x:Name="UCH_RemoveZR_Left" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Left_Click"/>
-                            <Button x:Name="UCH_AddZR_Left" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,24,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Left_Click"/>
+                            <TextBox x:Name="UCH_CountZR_Left" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Left_TextChanged"/>
+                            <Button x:Name="UCH_RemoveZR_Left" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Left_Click"/>
+                            <Button x:Name="UCH_AddZR_Left" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Left_Click"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBlock Text="Название участка" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox Width="130" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Width="130" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
                         </Grid>
                         <Grid Grid.Column="2">
                             <TextBlock Text="Датчики справа" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                            <TextBox x:Name="UCH_CountZR_Right" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,25,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Right_TextChanged"/>
-                            <Button x:Name="UCH_RemoveZR_Right" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Right_Click"/>
-                            <Button x:Name="UCH_AddZR_Right" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,24,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Right_Click"/>
+                            <TextBox x:Name="UCH_CountZR_Right" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Right_TextChanged"/>
+                            <Button x:Name="UCH_RemoveZR_Right" Width="20" Height="20" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_RemoveZR_Right_Click"/>
+                            <Button x:Name="UCH_AddZR_Right" Width="20" Height="20" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_AddZR_Right_Click"/>
                         </Grid>
                     </Grid>
 
@@ -109,6 +147,15 @@
                                 <StackPanel x:Name="UCH_Right_StPanel"/>
                             </Grid>
                         </Grid>
+                    </Grid>
+
+
+                    <Grid Grid.Row="2">
+                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="top" Width="40" Height="18" Margin="50,50,0,0">
+                            <TextBlock>16</TextBlock>
+                            <TextBlock>essefsef</TextBlock>
+                            <TextBlock>45243523</TextBlock>
+                        </ComboBox>
                     </Grid>
                     
                     
