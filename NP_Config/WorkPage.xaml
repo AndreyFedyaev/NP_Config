@@ -181,36 +181,14 @@
                             <Grid Grid.Column="1">
                                 <TextBlock Text="Добавлено участков: 0"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                                 <WrapPanel HorizontalAlignment="Center" Margin="0,25,0,0">
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
-                                    <Button Height="18" Width="100" Content="102a-114bСП" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,3,3" Style="{DynamicResource ButtonStyle_Type2}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+
                                 </WrapPanel>
                             </Grid>
                         </Grid>

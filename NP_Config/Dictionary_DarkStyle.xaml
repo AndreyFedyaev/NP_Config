@@ -9,6 +9,7 @@
     <Color x:Key="Color_type_5">#FF508A43</Color>
     <Color x:Key="Color_type_6">#F3F6F7</Color>
     <Color x:Key="Color_type_7">#51777B</Color>
+    <Color x:Key="Color_type_8">#9C6D6D</Color>
 
     <SolidColorBrush x:Key="Color_1" Color="{DynamicResource Color_type_1}"/>
     <SolidColorBrush x:Key="Color_2" Color="{DynamicResource Color_type_2}"/>
@@ -167,6 +168,45 @@
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="Foreground" Value="{StaticResource Color_5}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ButtonStyle_UCH_Name" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Color_3}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="0,0,3,3"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="2">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Opacity="1" Color="{StaticResource Color_type_1}"/>
+                        </Border.Effect>
+                        <Grid>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Color_7}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_1}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource Color_7}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -353,44 +393,22 @@
         </Setter>
     </Style>
 
-
     <Style x:Key="TextBoxStyle_Type2" TargetType="TextBox">
-        <Setter Property="Foreground" Value="#CC000000" />
+        <Setter Property="Foreground" Value="{StaticResource Color_1}" />
         <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
                     <Border Name="Border" CornerRadius="2" Padding="1,0,1,0">
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource Color_type_4}" />
+                            <SolidColorBrush Color="{StaticResource Color_type_8}" />
                         </Border.Background>
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <!--<Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <Grid>
-                                <Border>
-                                    <Grid>
-                                        <TextBlock Text="✕" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
-                                            <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
-                                            </TextBlock.Effect>
-                                        </TextBlock>
-                                    </Grid>
-                                </Border>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>-->
-            </Trigger>
-        </Style.Triggers>
     </Style>
+
 </ResourceDictionary>

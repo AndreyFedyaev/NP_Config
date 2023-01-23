@@ -21,6 +21,8 @@ namespace NP_Config
     /// </summary>
     public partial class MainWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer timer1 = new System.Windows.Threading.DispatcherTimer();
+
         struct Menu_Struct
         {
             public Button Menu_Button;
@@ -29,9 +31,15 @@ namespace NP_Config
         {
             public WorkPage WP;
         }
+        struct NP_ZR_List   //перечень датчиков во всех NP
+        {
+            public List<int> channel_1;
+            public List<int> channel_2;
+        }
 
         Menu_Struct[] menu_struct = new Menu_Struct[16];
         Pages_Struct[] page_struct = new Pages_Struct[16];
+        NP_ZR_List[] ZR_List = new NP_ZR_List[16];
 
         private int Menu_Button_Count = 0;  //количество добавленных кнопок
         private int Menu_Button_IsActive = 0; //активная (нажатая) кнопка в текущий момент
@@ -39,10 +47,61 @@ namespace NP_Config
         public MainWindow()
         {
             InitializeComponent();
-
-
             InitializeButtonMenu(); //инициализируем кнопки меню
+            Initialize_ZR_List();
+
+            timer1.Tick += new EventHandler(timer_1);
+            timer1.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer1.Start();
+
+
         }
+
+        private void Initialize_ZR_List()
+        {
+            for (int i = 0; i < ZR_List.Length; i++)
+            {
+                ZR_List[i].channel_1 = new List<int>();
+                ZR_List[i].channel_2 = new List<int>();
+            }
+        }
+
+        private void timer_1(object sender, EventArgs e)
+        {
+            for (int a = 0; a < Menu_Button_Count; a++)
+            {
+                page_struct[a].WP.All_Count_NP = Menu_Button_Count;
+
+                //считываем адреса датчиков всех NP первого канала
+                ZR_List[a].channel_1.Clear();
+                for (int b = 0; b < page_struct[a].WP.NP_ZR_channel1.Length; b++)
+                {
+                    if (page_struct[a].WP.NP_ZR_channel1[b].NP_ZR_Address.Text != "")
+                    {
+                        ZR_List[a].channel_1.Add(Convert.ToInt32(page_struct[a].WP.NP_ZR_channel1[b].NP_ZR_Address.Text));
+                    }
+                }
+                //считываем адреса датчиков всех NP второго канала
+                ZR_List[a].channel_2.Clear();
+                for (int b = 0; b < page_struct[a].WP.NP_ZR_channel2.Length; b++)
+                {
+                    if (page_struct[a].WP.NP_ZR_channel2[b].NP_ZR_Address.Text != "")
+                    {
+                        ZR_List[a].channel_2.Add(Convert.ToInt32(page_struct[a].WP.NP_ZR_channel2[b].NP_ZR_Address.Text));
+                    }
+                }
+            }
+
+            for (int a = 0; a < Menu_Button_Count; a++)
+            {
+                for (int b = 0; b < page_struct[a].WP.ZR_List.Length; b++)
+                {
+                    page_struct[a].WP.ZR_List[b].channel_1 = ZR_List[b].channel_1;
+                    page_struct[a].WP.ZR_List[b].channel_2 = ZR_List[b].channel_2;
+                }
+            }
+        }
+
         private void InitializeButtonMenu ()    //инициализируем кнопки меню
         {
             //Создаем динамически кнопки
