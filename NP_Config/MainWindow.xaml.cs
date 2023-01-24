@@ -136,12 +136,17 @@ namespace NP_Config
             Page_Display(ButtonIndex);
 
             //запускаем таймер нажатой страницы, остальные выключаем
+            Page_Timer();
+        }
+
+        private void Page_Timer()
+        {
+            //запускаем таймер нажатой страницы, остальные выключаем
             for (int i = 0; i < Menu_Button_Count; i++)
             {
-                if (i == ButtonIndex) page_struct[i].WP.Timer_Start();
+                if (i == (Menu_Button_IsActive - 1)) page_struct[i].WP.Timer_Start();
                 else page_struct[i].WP.Timer_Stop();
             }
-            
         }
 
         private void Page_Display(int ButtonIndex)
@@ -194,11 +199,15 @@ namespace NP_Config
         private void Menu_Up_Click(object sender, RoutedEventArgs e)
         {
             Menu_Buttons_Remove();
+            //запускаем таймер нажатой страницы, остальные выключаем
+            Page_Timer();
         }
 
         private void Menu_Down_Click(object sender, RoutedEventArgs e)
         {
             Menu_Buttons_Add();
+            //запускаем таймер нажатой страницы, остальные выключаем
+            Page_Timer();
         }
 
         private void Menu_Buttons_Remove()
