@@ -44,7 +44,7 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0">
-                                <TextBlock Text="Адреса датчиков модуля NP" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                                <TextBlock Text="Адреса датчиков модуля NP"  HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
@@ -107,30 +107,32 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="80"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <!--<Button Width="50" Height="20" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="230,63,0,0" Style="{DynamicResource ButtonStyle_Type1}"/>-->
-
                                 <Grid Grid.Row="0">
+                                    <TextBlock Text="Конфигурация участков" Style="{DynamicResource TextBlockStyle_Type3}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition></ColumnDefinition>
                                         <ColumnDefinition Width="140"></ColumnDefinition>
                                         <ColumnDefinition></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Grid Grid.Column="0" Margin="0,20,0,0">
+                                    <Grid Grid.Column="0" Margin="0,0,0,0">
                                         <TextBlock Text="Датчики слева" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                                         <TextBox x:Name="UCH_CountZR_Left" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Left_TextChanged"/>
                                         <Button x:Name="UCH_RemoveZR_Left" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type1}" Click="UCH_RemoveZR_Left_Click"/>
                                         <Button x:Name="UCH_AddZR_Left" Content="&#10133;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,26,0,0" Style="{DynamicResource ButtonStyle_Type1}" Click="UCH_AddZR_Left_Click"/>
                                     </Grid>
-                                    <Grid Grid.Column="1">
+                                    <Grid Grid.Column="1" Margin="0,0,0,0">
                                         <TextBlock Text="Название участка" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                                        <TextBox Width="130" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                        <TextBox x:Name="UCH_Name" Width="130" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}"/>
                                     </Grid>
-                                    <Grid Grid.Column="2" Margin="0,20,0,0">
+                                    <Grid Grid.Column="2" Margin="0,0,0,0">
                                         <TextBlock Text="Датчики справа" Width="110" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                                         <TextBox x:Name="UCH_CountZR_Right" Text="0" PreviewTextInput="Cheking_for_numbers_type1" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,27,0,0" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="UCH_CountZR_Right_TextChanged"/>
                                         <Button x:Name="UCH_RemoveZR_Right" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,26,70,0" Style="{DynamicResource ButtonStyle_Type1}" Click="UCH_RemoveZR_Right_Click"/>
@@ -138,7 +140,7 @@
                                     </Grid>
                                 </Grid>
 
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="2" Margin="0,10,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition></ColumnDefinition>
                                         <ColumnDefinition Width="140"></ColumnDefinition>
@@ -160,7 +162,12 @@
                                         </Grid>
                                     </Grid>
 
-                                    <Grid Grid.Column="1"/>
+                                    <Grid Grid.Column="1">
+                                        <Button Content="Добавить участок" Name="UCH_Add" Margin="0,2,0,0" Height="25" Width="110" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_Add_Click" IsEnabled="False"/>
+                                        <Button Content="Сохранить" Name="UCH_Save" Visibility="Hidden" Margin="0,2,0,0" Height="25" Width="110" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_Save_Click"/>
+                                        <Button Content="Удалить" Visibility="Hidden" Name="UCH_Delete" Margin="0,30,0,0" Height="25" Width="110" VerticalAlignment="Top" Style="{DynamicResource ButtonStyle_Type2}" Click="UCH_Delete_Click"/>
+
+                                    </Grid>
 
                                     <Grid Grid.Column="2">
                                         <Grid.RowDefinitions>
@@ -180,14 +187,7 @@
                             </Grid>
                             <Grid Grid.Column="1">
                                 <TextBlock Text="Добавлено участков: 0"  Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
-                                <WrapPanel HorizontalAlignment="Center" Margin="0,25,0,0">
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
-                                    <Button Content="102a-114bСП" Style="{DynamicResource ButtonStyle_UCH_Name}"/>
+                                <WrapPanel x:Name="WrapPanel_UCH" HorizontalAlignment="Center" Margin="0,25,0,0">
 
                                 </WrapPanel>
                             </Grid>

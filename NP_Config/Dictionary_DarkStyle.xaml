@@ -145,6 +145,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="FontSize" Value="12"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -162,12 +163,16 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="FontSize" Value="13"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
+                <Setter Property="Background" Value="{StaticResource Color_7}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_1}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="FontSize" Value="13"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_5}"/>
+                <Setter Property="Background" Value="{StaticResource Color_7}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{StaticResource Color_1}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_7}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

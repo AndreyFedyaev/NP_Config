@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UCH_ZR.cs" />
     <Compile Include="WorkPage.xaml.cs">
       <DependentUpon>WorkPage.xaml</DependentUpon>
     </Compile>
