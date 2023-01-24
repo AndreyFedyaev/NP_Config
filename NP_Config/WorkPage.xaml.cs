@@ -29,7 +29,6 @@ namespace NP_Config
 
             timer_page.Tick += new EventHandler(tm_page);
             timer_page.Interval = new TimeSpan(0, 0, 0, 0, 50);
-            timer_page.Start();
         }
         struct UCH_ZR_setting
         {
@@ -37,6 +36,8 @@ namespace NP_Config
             public TextBox UCH_ZR_Set_Address;
             public TextBox UCH_ZR_Set_NP;
             public TextBox UCH_ZR_Set_Channel;
+            public bool Address_err;
+            public bool NP_err;
         }
         public struct NP_ZR_Channel
         {
@@ -61,6 +62,14 @@ namespace NP_Config
         public NP_ZR_Channel[] NP_ZR_channel2 = new NP_ZR_Channel[10];
         public NP_ZR_List[] ZR_List = new NP_ZR_List[16];
 
+        public void Timer_Start()
+        {
+            timer_page.Start();
+        }
+        public void Timer_Stop()
+        {
+            timer_page.Stop();
+        }
         private void tm_page(object sender, EventArgs e)
         {
             //проверка адресов датчиков (добавленных в участок)
@@ -70,6 +79,7 @@ namespace NP_Config
                 if (value == "")
                 {
                     UCH_ZR_set_left[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type1");
+                    UCH_ZR_set_left[i].Address_err = false;
                 }
                 else
                 {
@@ -78,10 +88,12 @@ namespace NP_Config
                     if (result)
                     {
                         UCH_ZR_set_left[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type1");
+                        UCH_ZR_set_left[i].Address_err = false;
                     }
                     else
                     {
                         UCH_ZR_set_left[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type2");
+                        UCH_ZR_set_left[i].Address_err = true;
                     }
                 }
             }
@@ -91,6 +103,7 @@ namespace NP_Config
                 if (value == "")
                 {
                     UCH_ZR_set_right[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_right[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type1");
+                    UCH_ZR_set_right[i].Address_err = false;
                 }
                 else
                 {
@@ -99,15 +112,74 @@ namespace NP_Config
                     if (result)
                     {
                         UCH_ZR_set_right[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_right[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type1");
+                        UCH_ZR_set_right[i].Address_err = false;
                     }
                     else
                     {
                         UCH_ZR_set_right[i].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_right[i].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type2");
+                        UCH_ZR_set_right[i].Address_err = true;
                     }
                 }
             }
             //проверка принадлежности к NP датчиков (добавленных в участок)
+            for (int i = 0; i < UCH_ZR_set_left.Length; i++)
+            {
+                var value = UCH_ZR_set_left[i].UCH_ZR_Set_Address.Text;
+                if (value == "" || UCH_ZR_set_left[i].Address_err)
+                {
+                    UCH_ZR_set_left[i].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type1");
+                    UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text = "";
+                    UCH_ZR_set_left[i].NP_err = false;
+                }
+                else
+                {
+                    List<int> result = Search_ZR_numbersNP(Convert.ToInt32(value));
+                    if (result.Count == 1)
+                    {
+                        UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text = (result[0] + 1).ToString();
+                        UCH_ZR_set_left[i].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type1");
+                        UCH_ZR_set_left[i].NP_err = false;
+                    }
+                    else
+                    {
+                        if (UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text == "")
+                        {
+                            UCH_ZR_set_left[i].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type2");
+                            UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text = "";
+                            UCH_ZR_set_left[i].NP_err = true;
+                        }
+                    }
+                }
+            }
+            //проверка на соответствие введенного номера NP
+            for (int i = 0; i < UCH_ZR_set_left.Length; i++)
+            {
+                if (UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text != "")
+                {
+                    var value = UCH_ZR_set_left[i].UCH_ZR_Set_Address.Text;
+                    int number_NP = Convert.ToInt32(UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text);
+                    List<int> result = Search_ZR_numbersNP(Convert.ToInt32(value));
 
+                    bool search_result = false;
+                    //поиск
+                    for (int a = 0; a < result.Count; a++) 
+                    {
+                        if ((result[a] + 1) == number_NP) search_result = true;
+                    }
+                    //результат
+                    if (search_result)
+                    {
+                        UCH_ZR_set_left[i].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type1");
+                        UCH_ZR_set_left[i].NP_err = false;
+                    }
+                    else
+                    {
+                        UCH_ZR_set_left[i].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[i].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type2");
+                        UCH_ZR_set_left[i].NP_err = true;
+                    }
+
+                }
+            }
         }
         private void Initialize_ZR_List()
         {
@@ -164,6 +236,8 @@ namespace NP_Config
             for (int index = 0; index < UCH_ZR_set_left.Length; index++)
             {
                 UCH_ZR_set_left[index].G = new Grid();
+                UCH_ZR_set_left[index].Address_err = false;
+                UCH_ZR_set_left[index].NP_err = false;
 
                 UCH_ZR_set_left[index].UCH_ZR_Set_Address = new TextBox();
                 UCH_ZR_set_left[index].UCH_ZR_Set_Address.Text = "";
@@ -185,7 +259,7 @@ namespace NP_Config
                 UCH_ZR_set_left[index].UCH_ZR_Set_NP.Width = 40;
                 UCH_ZR_set_left[index].UCH_ZR_Set_NP.Height = 18;
                 UCH_ZR_set_left[index].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_left[index].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type1");
-                UCH_ZR_set_left[index].UCH_ZR_Set_NP.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+                UCH_ZR_set_left[index].UCH_ZR_Set_NP.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type2);
 
                 UCH_ZR_set_left[index].UCH_ZR_Set_Channel = new TextBox();
                 UCH_ZR_set_left[index].UCH_ZR_Set_Channel.Text = "";
@@ -196,7 +270,7 @@ namespace NP_Config
                 UCH_ZR_set_left[index].UCH_ZR_Set_Channel.Width = 40;
                 UCH_ZR_set_left[index].UCH_ZR_Set_Channel.Height = 18;
                 UCH_ZR_set_left[index].UCH_ZR_Set_Channel.Style = (Style)UCH_ZR_set_left[index].UCH_ZR_Set_Channel.FindResource("TextBoxStyle_Type1");
-                UCH_ZR_set_left[index].UCH_ZR_Set_Channel.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+                UCH_ZR_set_left[index].UCH_ZR_Set_Channel.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type4);
 
                 UCH_ZR_set_left[index].G.Children.Add(UCH_ZR_set_left[index].UCH_ZR_Set_Address);
                 UCH_ZR_set_left[index].G.Children.Add(UCH_ZR_set_left[index].UCH_ZR_Set_NP);
@@ -206,6 +280,8 @@ namespace NP_Config
             for (int index = 0; index < UCH_ZR_set_right.Length; index++)
             {
                 UCH_ZR_set_right[index].G = new Grid();
+                UCH_ZR_set_right[index].Address_err = false;
+                UCH_ZR_set_right[index].NP_err = false;
 
                 UCH_ZR_set_right[index].UCH_ZR_Set_Address = new TextBox();
                 UCH_ZR_set_right[index].UCH_ZR_Set_Address.Text = "";
@@ -216,7 +292,7 @@ namespace NP_Config
                 UCH_ZR_set_right[index].UCH_ZR_Set_Address.Width = 40;
                 UCH_ZR_set_right[index].UCH_ZR_Set_Address.Height = 18;
                 UCH_ZR_set_right[index].UCH_ZR_Set_Address.Style = (Style)UCH_ZR_set_right[index].UCH_ZR_Set_Address.FindResource("TextBoxStyle_Type1");
-                UCH_ZR_set_right[index].UCH_ZR_Set_Address.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+                UCH_ZR_set_right[index].UCH_ZR_Set_Address.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type3);
 
                 UCH_ZR_set_right[index].UCH_ZR_Set_NP = new TextBox();
                 UCH_ZR_set_right[index].UCH_ZR_Set_NP.Text = "";
@@ -227,7 +303,7 @@ namespace NP_Config
                 UCH_ZR_set_right[index].UCH_ZR_Set_NP.Width = 40;
                 UCH_ZR_set_right[index].UCH_ZR_Set_NP.Height = 18;
                 UCH_ZR_set_right[index].UCH_ZR_Set_NP.Style = (Style)UCH_ZR_set_right[index].UCH_ZR_Set_NP.FindResource("TextBoxStyle_Type1");
-                UCH_ZR_set_right[index].UCH_ZR_Set_NP.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+                UCH_ZR_set_right[index].UCH_ZR_Set_NP.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type2);
 
                 UCH_ZR_set_right[index].UCH_ZR_Set_Channel = new TextBox();
                 UCH_ZR_set_right[index].UCH_ZR_Set_Channel.Text = "";
@@ -238,21 +314,16 @@ namespace NP_Config
                 UCH_ZR_set_right[index].UCH_ZR_Set_Channel.Width = 40;
                 UCH_ZR_set_right[index].UCH_ZR_Set_Channel.Height = 18;
                 UCH_ZR_set_right[index].UCH_ZR_Set_Channel.Style = (Style)UCH_ZR_set_right[index].UCH_ZR_Set_Channel.FindResource("TextBoxStyle_Type1");
-                UCH_ZR_set_right[index].UCH_ZR_Set_Channel.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers);
+                UCH_ZR_set_right[index].UCH_ZR_Set_Channel.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type4);
 
                 UCH_ZR_set_right[index].G.Children.Add(UCH_ZR_set_right[index].UCH_ZR_Set_Address);
                 UCH_ZR_set_right[index].G.Children.Add(UCH_ZR_set_right[index].UCH_ZR_Set_NP);
                 UCH_ZR_set_right[index].G.Children.Add(UCH_ZR_set_right[index].UCH_ZR_Set_Channel);
             }
         }
-        private void Cheking_for_numbers(object sender, TextCompositionEventArgs e)
-        {
-        }
-
 
         private static readonly Regex UCH_ZR_RangeNumbers = new Regex("[01234567]");    //набор допустимых символов для ввода в TextBox
         private static readonly Regex NP_ZR_RangeNumbers = new Regex("[0-9]");    //набор допустимых символов для ввода в TextBox
-
         private void Cheking_for_numbers_type1(object sender, TextCompositionEventArgs e)   //ограничение 1 символ (цифры от 0 до 7)
         {
             e.Handled = !UCH_ZR_RangeNumbers.IsMatch(e.Text);
@@ -297,7 +368,24 @@ namespace NP_Config
                 }
             }
         }
+        private void Cheking_for_numbers_type4(object sender, TextCompositionEventArgs e)   //ограничение 1 символ (цифры 1 или 2)
+        {
+            bool result = true;
+            if (e.Text == "1" || e.Text == "2")
+            {
+                result  = false;
 
+                //ограничиваем ввод данных по количеству символов
+                int strlength = ((System.Windows.Controls.TextBox)sender).Text.Length + 1;
+
+                if (strlength > 1)
+                {
+                    result = true;
+                }
+            }
+
+            e.Handled = result;
+        }
 
         private void NP_Channel_TextChanged(object sender, TextChangedEventArgs e)  //ограничение адресов датчиков - 127
         {
@@ -309,7 +397,7 @@ namespace NP_Config
         }
 
 
-        private bool Search_ZR_Adress(int ZR)   //поиск датчика по всем NP
+        private bool Search_ZR_Adress(int ZR)   //поиск датчика по всем NP (возврат - результат поиска)
         {
             bool result = false;
 
@@ -325,6 +413,30 @@ namespace NP_Config
                 }
             }
 
+            return result;
+        }
+        private List<int> Search_ZR_numbersNP(int ZR)   //поиск датчика по всем NP (возврат - индексы NP в которых есть этот датчик)
+        {
+            List<int> NP_Index = new List<int>();
+
+            for (int a = 0; a < ZR_List.Length; a++)
+            {
+                for (int b = 0; b < ZR_List[a].channel_1.Count; b++)
+                {
+                    if (ZR == ZR_List[a].channel_1[b]) NP_Index.Add(a);
+                }
+                for (int b = 0; b < ZR_List[a].channel_2.Count; b++)
+                {
+                    if (ZR == ZR_List[a].channel_2[b]) NP_Index.Add(a);
+                }
+            }
+            var List_Distinct = NP_Index.Distinct();
+
+            List<int> result= new List<int>();
+            foreach (var item in List_Distinct)
+            {
+                result.Add(item);
+            }
             return result;
         }
 

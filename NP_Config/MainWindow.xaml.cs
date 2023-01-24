@@ -68,12 +68,16 @@ namespace NP_Config
 
         private void timer_1(object sender, EventArgs e)
         {
+            for (int i = 0; i < ZR_List.Length; i++)
+            {
+                ZR_List[i].channel_1.Clear();
+                ZR_List[i].channel_2.Clear();
+            }
             for (int a = 0; a < Menu_Button_Count; a++)
             {
                 page_struct[a].WP.All_Count_NP = Menu_Button_Count;
 
                 //считываем адреса датчиков всех NP первого канала
-                ZR_List[a].channel_1.Clear();
                 for (int b = 0; b < page_struct[a].WP.NP_ZR_channel1.Length; b++)
                 {
                     if (page_struct[a].WP.NP_ZR_channel1[b].NP_ZR_Address.Text != "")
@@ -82,7 +86,6 @@ namespace NP_Config
                     }
                 }
                 //считываем адреса датчиков всех NP второго канала
-                ZR_List[a].channel_2.Clear();
                 for (int b = 0; b < page_struct[a].WP.NP_ZR_channel2.Length; b++)
                 {
                     if (page_struct[a].WP.NP_ZR_channel2[b].NP_ZR_Address.Text != "")
@@ -131,6 +134,14 @@ namespace NP_Config
             catch { }
 
             Page_Display(ButtonIndex);
+
+            //запускаем таймер нажатой страницы, остальные выключаем
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                if (i == ButtonIndex) page_struct[i].WP.Timer_Start();
+                else page_struct[i].WP.Timer_Stop();
+            }
+            
         }
 
         private void Page_Display(int ButtonIndex)
@@ -233,6 +244,9 @@ namespace NP_Config
 
                 //инициализируем страницу для добавленной кнопки
                 page_struct[Menu_Button_Count].WP = new WorkPage();
+
+                
+                page_struct[0].WP.Timer_Start();
 
                 Menu_Button_Count++;
             }
