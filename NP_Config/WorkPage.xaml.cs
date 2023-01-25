@@ -33,6 +33,9 @@ namespace NP_Config
             timer_page.Interval = new TimeSpan(0, 0, 0, 0, 50);
 
             UCH_Button_Visibility(true, false, false);
+
+            UCH_ZR_Left_Title.Visibility = Visibility.Hidden;
+            UCH_ZR_Right_Title.Visibility = Visibility.Hidden;
         }
         struct UCH_ZR_setting
         {
@@ -436,6 +439,13 @@ namespace NP_Config
                 UCH_Add.IsEnabled = false;
                 if (UCH_Save.Visibility == Visibility.Visible) UCH_Save.IsEnabled = false;
             }
+            //отображаем информацию о количестве участков
+            UCH_All_Count.Text = "Добавлено участков: " + UCH_Count;
+            //отображаем видимость полей
+            if (Convert.ToInt32(UCH_CountZR_Left.Text) > 0) UCH_ZR_Left_Title.Visibility = Visibility.Visible;
+            else UCH_ZR_Left_Title.Visibility = Visibility.Hidden;
+            if (Convert.ToInt32(UCH_CountZR_Right.Text) > 0) UCH_ZR_Right_Title.Visibility = Visibility.Visible;
+            else UCH_ZR_Right_Title.Visibility = Visibility.Hidden;
         }
         private void Initialize_ZR_List()
         {
@@ -966,36 +976,39 @@ namespace NP_Config
 
         private void UCH_Add_Click(object sender, RoutedEventArgs e)
         {
-            //добавляем участок
-            UCH_list[UCH_Count].UCH_Name = UCH_Name.Text;
-
-            for (int i = 0; i < Convert.ToInt32(UCH_CountZR_Left.Text); i++)
+            if (UCH_list[UCH_Count].UCH_Name == "")
             {
-                UCH_list[UCH_Count].ZR_Left.Add(new UCH_ZR
-                {
-                    ZR_Address = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_Address.Text),
-                    ZR_NP = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text),
-                    ZR_Channel = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_Channel.Text)
-                });
-            }
-            for (int i = 0; i < Convert.ToInt32(UCH_CountZR_Right.Text); i++)
-            {
-                UCH_list[UCH_Count].ZR_Right.Add(new UCH_ZR
-                {
-                    ZR_Address = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_Address.Text),
-                    ZR_NP = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_NP.Text),
-                    ZR_Channel = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_Channel.Text)
-                });
-            }
+                //добавляем участок
+                UCH_list[UCH_Count].UCH_Name = UCH_Name.Text;
 
-            UCH_list[UCH_Count].UCH_Button.Content = UCH_Name.Text;
-            WrapPanel_UCH.Children.Add(UCH_list[UCH_Count].UCH_Button);
+                for (int i = 0; i < Convert.ToInt32(UCH_CountZR_Left.Text); i++)
+                {
+                    UCH_list[UCH_Count].ZR_Left.Add(new UCH_ZR
+                    {
+                        ZR_Address = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_Address.Text),
+                        ZR_NP = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_NP.Text),
+                        ZR_Channel = Convert.ToInt16(UCH_ZR_set_left[i].UCH_ZR_Set_Channel.Text)
+                    });
+                }
+                for (int i = 0; i < Convert.ToInt32(UCH_CountZR_Right.Text); i++)
+                {
+                    UCH_list[UCH_Count].ZR_Right.Add(new UCH_ZR
+                    {
+                        ZR_Address = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_Address.Text),
+                        ZR_NP = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_NP.Text),
+                        ZR_Channel = Convert.ToInt16(UCH_ZR_set_right[i].UCH_ZR_Set_Channel.Text)
+                    });
+                }
 
-            UCH_Count++;
-            //очищаем поля
-            UCH_CountZR_Left.Text = "0";
-            UCH_CountZR_Right.Text = "0";
-            UCH_Name.Text = "";
+                UCH_list[UCH_Count].UCH_Button.Content = UCH_Name.Text;
+                WrapPanel_UCH.Children.Add(UCH_list[UCH_Count].UCH_Button);
+
+                UCH_Count++;
+                //очищаем поля
+                UCH_CountZR_Left.Text = "0";
+                UCH_CountZR_Right.Text = "0";
+                UCH_Name.Text = "";
+            }
         }
         private void UCH_list_Click(object sender, RoutedEventArgs e)
         {
@@ -1098,29 +1111,44 @@ namespace NP_Config
             UCH_list[UCH_Open_Index].UCH_Button.Content = "";
             WrapPanel_UCH.Children.RemoveAt(UCH_Open_Index);
 
-            //перестраиваем массив участков
-            //var selectedmassive = from p in UCH_list // передаем каждый элемент из people в переменную p
-            //                     where p.UCH_Name != "" //фильтрация по критерию
-            //                     select p; // выбираем объект в создаваемую коллекцию
 
-            //for (int i = 0; i < UCH_list.Length; i++)
-            //{
-            //    UCH_list[i].UCH_Name = "";
-            //    UCH_list[i].UCH_Button.Content = "";
-            //    UCH_list[i].ZR_Left.Clear();
-            //    UCH_list[i].ZR_Right.Clear();
-            //}
-            //for (int i = 0; i < selectedmassive.; i++)
-            //{
+            ///////////////////////
+            UCH[] UCH_list_virtual = new UCH[30];
+            for (int i = 0; i < UCH_list_virtual.Length; i++)
+            {
+                UCH_list_virtual[i].UCH_Name = "";
+                UCH_list_virtual[i].ZR_Left = new List<UCH_ZR>();
+                UCH_list_virtual[i].ZR_Right = new List<UCH_ZR>();
 
-            //}
+                UCH_list_virtual[i].UCH_Button = new Button();
+                UCH_list_virtual[i].UCH_Button.Content = "";
+                UCH_list_virtual[i].UCH_Button.Style = (Style)UCH_list[i].UCH_Button.FindResource("ButtonStyle_UCH_Name");
+                UCH_list_virtual[i].UCH_Button.Click += new RoutedEventHandler(UCH_list_Click);
+            }
 
+            for (int i = 0; i < UCH_Open_Index; i++)
+            {
+                UCH_list_virtual[i].UCH_Name = UCH_list[i].UCH_Name;
+                UCH_list_virtual[i].ZR_Left = UCH_list[i].ZR_Left;
+                UCH_list_virtual[i].ZR_Right = UCH_list[i].ZR_Right;
+                UCH_list_virtual[i].UCH_Button = UCH_list[i].UCH_Button;
+            }
+            for (int i = UCH_Open_Index + 1; i < UCH_list.Length; i++)
+            {
+                UCH_list_virtual[i - 1].UCH_Name = UCH_list[i].UCH_Name;
+                UCH_list_virtual[i - 1].ZR_Left = UCH_list[i].ZR_Left;
+                UCH_list_virtual[i - 1].ZR_Right = UCH_list[i].ZR_Right;
+                UCH_list_virtual[i - 1].UCH_Button = UCH_list[i].UCH_Button;
+            }
+            UCH_list = UCH_list_virtual;
+            ///////////////////////////
 
             //очищаем поля
             UCH_CountZR_Left.Text = "0";
             UCH_CountZR_Right.Text = "0";
             UCH_Name.Text = "";
 
+            UCH_Count--;
             UCH_Button_Visibility(true, false, false);
         }
     }
