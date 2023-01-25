@@ -9,17 +9,98 @@
 
     <Grid UseLayoutRounding="True" Style="{DynamicResource GridStyle_Type2}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="125"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Margin="5">
                 <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                     <Border.Effect>
                         <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7"  Color="{DynamicResource Color_type_1}"/>
                     </Border.Effect>
                     <Grid>
-                        
+                        <TextBlock Text="IP адрес разъема Т2 первого канала" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,5,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox Text="192" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="168"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="0"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="254"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <TextBlock Text="IP адрес разъема Т2 второго канала" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox Text="192"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="168"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="0" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox Text="254"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <Button x:Name="IP_Help_1" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_1_Click"/>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1" Margin="5">
+                <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7"  Color="{DynamicResource Color_type_1}"/>
+                    </Border.Effect>
+                    <Grid>
+                        <TextBlock Text="IP адрес, UDP порт разъема T1" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,5,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <TextBlock Text="IP адрес, UDP порт разъема T2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <Button x:Name="IP_Help_2" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_2_Click"/>
+
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="2" Margin="5">
+                <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7"  Color="{DynamicResource Color_type_1}"/>
+                    </Border.Effect>
+                    <Grid>
+                        <TextBlock Text="IP адрес контроллера ЖАТ разъема Т1" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,5,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <TextBlock Text="IP адрес контроллера ЖАТ разъема Т2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                        <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                            <TextBox  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                        </StackPanel>
+                        <Button x:Name="IP_Help_3" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_3_Click"/>
+
                     </Grid>
                 </Border>
             </Grid>
@@ -202,6 +283,7 @@
                     </Border>
                 </Grid>
             </Grid>
+            <Frame x:Name="Help_Page" NavigationUIVisibility="Hidden" Padding="0"/>
         </Grid>
     </Grid>
 </Page>

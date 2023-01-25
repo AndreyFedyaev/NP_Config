@@ -56,6 +56,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Help_Type_1.xaml.cs">
+      <DependentUpon>Help_Type_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help_Type_2.xaml.cs">
+      <DependentUpon>Help_Type_2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help_Type_3.xaml.cs">
+      <DependentUpon>Help_Type_3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UCH_ZR.cs" />
     <Compile Include="WorkPage.xaml.cs">
       <DependentUpon>WorkPage.xaml</DependentUpon>
@@ -65,6 +74,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dictionary_WhiteStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help_Type_1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help_Type_2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help_Type_3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

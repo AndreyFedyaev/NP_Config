@@ -39,3 +39,9 @@ D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.csproj.CoreCompileInputs.c
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.exe
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.pdb
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Dictionary_WhiteStyle.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_1.g.cs
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_1.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_2.g.cs
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_2.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_3.g.cs
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_3.baml

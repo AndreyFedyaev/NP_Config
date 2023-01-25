@@ -186,6 +186,7 @@ namespace NP_Config
         {
             //закрываем основное окно
             this.Close();
+            
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

@@ -10,6 +10,7 @@
     <Color x:Key="Color_type_6">#66738F</Color>
     <Color x:Key="Color_type_7">#C3C9D5</Color>
     <Color x:Key="Color_type_8">#9C6D6D</Color>
+    <Color x:Key="Color_type_9">#B59292</Color>
 
     <SolidColorBrush x:Key="Color_1" Color="{DynamicResource Color_type_1}"/>
     <SolidColorBrush x:Key="Color_2" Color="{DynamicResource Color_type_2}"/>
@@ -18,6 +19,8 @@
     <SolidColorBrush x:Key="Color_5" Color="{DynamicResource Color_type_5}"/>
     <SolidColorBrush x:Key="Color_6" Color="{DynamicResource Color_type_6}"/>
     <SolidColorBrush x:Key="Color_7" Color="{DynamicResource Color_type_7}"/>
+    <SolidColorBrush x:Key="Color_8" Color="{DynamicResource Color_type_8}"/>
+    <SolidColorBrush x:Key="Color_9" Color="{DynamicResource Color_type_9}"/>
 
     <!-- BUTTON -->
     <Style x:Key="ButtonStyle_Menu1" TargetType="Button">

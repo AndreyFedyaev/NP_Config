@@ -1151,5 +1151,77 @@ namespace NP_Config
             UCH_Count--;
             UCH_Button_Visibility(true, false, false);
         }
+
+        Help_Type_1 help_type1 = new Help_Type_1();
+        Help_Type_2 help_type2 = new Help_Type_2();
+        Help_Type_3 help_type3 = new Help_Type_3();
+        private void IP_Help_1_Click(object sender, RoutedEventArgs e)
+        {
+            if (IP_Help_1.Content.ToString() == "Справка")
+            {
+                Help_Page.Visibility = Visibility.Visible;
+                Help_Page.NavigationService.Navigate(help_type1);
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_1.Content = "Закрыть справку";
+                IP_Help_1.Width = 100;
+            }
+            else
+            {
+                Help_Page.Visibility = Visibility.Hidden;
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_1.Content = "Справка";
+                IP_Help_1.Width = 60;
+            }
+            IP_Help_2.Content = "Справка";
+            IP_Help_2.Width = 60;
+            IP_Help_3.Content = "Справка";
+            IP_Help_3.Width = 60;
+        }
+
+        private void IP_Help_2_Click(object sender, RoutedEventArgs e)
+        {
+            if (IP_Help_2.Content.ToString() == "Справка")
+            {
+                Help_Page.Visibility = Visibility.Visible;
+                Help_Page.NavigationService.Navigate(help_type2);
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_2.Content = "Закрыть справку";
+                IP_Help_2.Width = 100;
+            }
+            else
+            {
+                Help_Page.Visibility = Visibility.Hidden;
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_2.Content = "Справка";
+                IP_Help_2.Width = 60;
+            }
+            IP_Help_1.Content = "Справка";
+            IP_Help_1.Width = 60;
+            IP_Help_3.Content = "Справка";
+            IP_Help_3.Width = 60;
+        }
+
+        private void IP_Help_3_Click(object sender, RoutedEventArgs e)
+        {
+            if (IP_Help_3.Content.ToString() == "Справка")
+            {
+                Help_Page.Visibility = Visibility.Visible;
+                Help_Page.NavigationService.Navigate(help_type3);
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_3.Content = "Закрыть справку";
+                IP_Help_3.Width = 100;
+            }
+            else
+            {
+                Help_Page.Visibility = Visibility.Hidden;
+                Help_Page.NavigationService.RemoveBackEntry();
+                IP_Help_3.Content = "Справка";
+                IP_Help_3.Width = 60;
+            }
+            IP_Help_1.Content = "Справка";
+            IP_Help_1.Width = 60;
+            IP_Help_2.Content = "Справка";
+            IP_Help_2.Width = 60;
+        }
     }
 }
