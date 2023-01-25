@@ -271,5 +271,49 @@ namespace NP_Config
             else Menu_Down.Visibility = Visibility.Visible;
         }
 
+        private void Chenging_Theme_Click(object sender, RoutedEventArgs e)
+        {
+            if (Chenging_Theme.Content.ToString() == "Тёмная тема")
+            {
+                var uri = new Uri(@"Dictionary_DarkStyle.xaml", UriKind.Relative);
+                ResourceDictionary ResourseDict1 = Application.LoadComponent(uri) as ResourceDictionary;
+                Application.Current.Resources.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(ResourseDict1);
+                Style_Setting();
+            }
+            if (Chenging_Theme.Content.ToString() == "Светлая тема")
+            {
+                var uri2 = new Uri(@"Dictionary_WhiteStyle.xaml", UriKind.Relative);
+                ResourceDictionary ResourseDict2 = Application.LoadComponent(uri2) as ResourceDictionary;
+                Application.Current.Resources.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(ResourseDict2);
+                Style_Setting();
+            }
+
+            if (Chenging_Theme.Content.ToString() == "Тёмная тема") Chenging_Theme.Content = "Светлая тема";
+            else Chenging_Theme.Content = "Тёмная тема";
+        }
+
+        private void Style_Setting()
+        {
+            for (int a = 0; a < page_struct.Length; a++)
+            {
+                if (page_struct[a].WP != null)
+                {
+                    for (int b = 0; b < page_struct[a].WP.NP_ZR_channel1.Length; b++)
+                    {
+                        page_struct[a].WP.NP_ZR_channel1[b].NP_ZR_Address.Style = (Style)page_struct[a].WP.NP_ZR_channel1[b].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
+                    }
+                    for (int b = 0; b < page_struct[a].WP.NP_ZR_channel2.Length; b++)
+                    {
+                        page_struct[a].WP.NP_ZR_channel2[b].NP_ZR_Address.Style = (Style)page_struct[a].WP.NP_ZR_channel2[b].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
+                    }
+                    for (int b = 0; b < page_struct[a].WP.UCH_list.Length; b++)
+                    {
+                        page_struct[a].WP.UCH_list[b].UCH_Button.Style = (Style)page_struct[a].WP.UCH_list[b].UCH_Button.FindResource("ButtonStyle_UCH_Name");
+                    }
+                }
+            }
+        }
     }
 }

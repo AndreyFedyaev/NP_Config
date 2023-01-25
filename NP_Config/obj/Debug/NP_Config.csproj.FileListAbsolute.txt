@@ -38,3 +38,4 @@ D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.csproj.GenerateResource.ca
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.csproj.CoreCompileInputs.cache
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.exe
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\NP_Config.pdb
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Dictionary_WhiteStyle.baml

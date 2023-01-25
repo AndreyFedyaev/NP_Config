@@ -2,13 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 
-    <Color x:Key="Color_type_1">#202F31</Color>
-    <Color x:Key="Color_type_2">#293A3D</Color>
-    <Color x:Key="Color_type_3">#395156</Color>
-    <Color x:Key="Color_type_4">#B4CCCF</Color>
+    <Color x:Key="Color_type_1">#B7BFCC</Color>
+    <Color x:Key="Color_type_2">#E7EAEE</Color>
+    <Color x:Key="Color_type_3">#CFD4DE</Color>
+    <Color x:Key="Color_type_4">#333A48</Color>
     <Color x:Key="Color_type_5">#FF508A43</Color>
-    <Color x:Key="Color_type_6">#F3F6F7</Color>
-    <Color x:Key="Color_type_7">#51777B</Color>
+    <Color x:Key="Color_type_6">#66738F</Color>
+    <Color x:Key="Color_type_7">#C3C9D5</Color>
     <Color x:Key="Color_type_8">#9C6D6D</Color>
 
     <SolidColorBrush x:Key="Color_1" Color="{DynamicResource Color_type_1}"/>
@@ -52,7 +52,7 @@
 
     <Style x:Key="ButtonStyle_Menu2" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource Color_2}" />
-        <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="Panel.ZIndex" Value="0"/>
@@ -96,12 +96,11 @@
                 <Setter Property="Width" Value="42"/>
                 <Setter Property="Height" Value="22"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ButtonStyle_Type1" TargetType="{x:Type Button}">  
+    <Style x:Key="ButtonStyle_Type1" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource Color_3}" />
         <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -128,12 +127,11 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_2}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="FontSize" Value="13"/>
                 <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -145,13 +143,13 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
         <Setter Property="FontSize" Value="12"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}" CornerRadius="2">
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Opacity="1" Color="{StaticResource Color_type_1}"/>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="2" Opacity="1" Color="{StaticResource Color_type_1}"/>
                         </Border.Effect>
                         <Grid>
                             <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ContentSource="{TemplateBinding Content}"/>
@@ -164,15 +162,13 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_1}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+                <Setter Property="Background" Value="{StaticResource Color_1}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Background" Value="{StaticResource Color_1}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_7}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -207,11 +203,10 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_1}"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="{StaticResource Color_7}"/>
-                <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+                <Setter Property="Background" Value="{StaticResource Color_1}"/>
+                <Setter Property="Foreground" Value="{StaticResource Color_6}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -227,7 +222,7 @@
                             <Grid>
                                 <TextBlock Text="―" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
                                     <TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                     </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
@@ -246,7 +241,7 @@
                                     <Grid>
                                         <TextBlock Text="―" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
                                             <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                             </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
@@ -270,7 +265,7 @@
                             <Grid>
                                 <TextBlock Text="▢" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
                                     <TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                     </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
@@ -289,7 +284,7 @@
                                     <Grid>
                                         <TextBlock Text="▢" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
                                             <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                             </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
@@ -313,7 +308,7 @@
                             <Grid>
                                 <TextBlock Text="✕" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
                                     <TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                     </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
@@ -332,7 +327,7 @@
                                     <Grid>
                                         <TextBlock Text="✕" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
                                             <TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="3" Color="Black"/>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
                                             </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
@@ -386,7 +381,7 @@
 
     <!-- TEXTBOX -->
     <Style x:Key="TextBoxStyle_Type1" TargetType="{x:Type TextBox}">
-        <Setter Property="Foreground" Value="{StaticResource Color_1}" />
+        <Setter Property="Foreground" Value="{StaticResource Color_4}" />
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Template">
@@ -394,7 +389,7 @@
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
                     <Border Name="Border" CornerRadius="2" Padding="1,0,1,0">
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource Color_type_4}" />
+                            <SolidColorBrush Color="{StaticResource Color_type_1}" />
                         </Border.Background>
                         <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
                     </Border>
@@ -404,7 +399,7 @@
     </Style>
 
     <Style x:Key="TextBoxStyle_Type2" TargetType="TextBox">
-        <Setter Property="Foreground" Value="{DynamicResource Color_1}" />
+        <Setter Property="Foreground" Value="{DynamicResource Color_4}" />
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Template">

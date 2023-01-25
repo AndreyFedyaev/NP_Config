@@ -16,7 +16,7 @@
             <Grid Grid.Column="0" Margin="5">
                 <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                     <Border.Effect>
-                        <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
+                        <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7"  Color="{DynamicResource Color_type_1}"/>
                     </Border.Effect>
                     <Grid>
                         
@@ -34,7 +34,7 @@
                 <Grid Grid.Column="0" Margin="5">
                     <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                         <Border.Effect>
-                            <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
+                            <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7"  Color="{DynamicResource Color_type_1}"/>
                         </Border.Effect>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -99,7 +99,7 @@
 
                     <Border Style="{DynamicResource BorderStyle_Type1}" UseLayoutRounding="True">
                         <Border.Effect >
-                            <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
+                            <DropShadowEffect ShadowDepth="3" BlurRadius="15" Opacity="0.7" Color="{DynamicResource Color_type_1}"/>
                         </Border.Effect>
                         <Grid>
                             <Grid.ColumnDefinitions>

@@ -74,7 +74,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <Button Content="Светлая тема" Height="20" Margin="5,0,0,0" Style="{DynamicResource ButtonStyle_Type2}"/>
+                            <Button x:Name="Chenging_Theme" Content="Тёмная тема" Height="20" Margin="5,0,2,0" Style="{DynamicResource ButtonStyle_Type2}" Click="Chenging_Theme_Click"/>
                         </Grid>
                     </Grid>
                 </Grid>
