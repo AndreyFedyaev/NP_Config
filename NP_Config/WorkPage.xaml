@@ -4,12 +4,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1000"
+      d:DesignHeight="460" d:DesignWidth="1000"
       Title="WorkPage">
 
     <Grid UseLayoutRounding="True" Style="{DynamicResource GridStyle_Type2}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -19,6 +19,7 @@
                         <DropShadowEffect ShadowDepth="3" BlurRadius="20" Opacity="0.7"/>
                     </Border.Effect>
                     <Grid>
+                        
                     </Grid>
                 </Border>
             </Grid>
