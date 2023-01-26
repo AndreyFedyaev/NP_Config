@@ -1310,5 +1310,6 @@ namespace NP_Config
             TB65.Text = help_type3.TB65.Text;
             TB66.Text = help_type3.TB66.Text;
         }
+
     }
 }
