@@ -223,10 +223,10 @@
                     <Grid>
                         <Border>
                             <Grid>
-                                <TextBlock Text="―" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
-                                    <!--<TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                    </TextBlock.Effect>-->
+                                <TextBlock Text="―" FontSize="14" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                    </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
                         </Border>
@@ -242,10 +242,10 @@
                             <Grid>
                                 <Border>
                                     <Grid>
-                                        <TextBlock Text="―" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
-                                            <!--<TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                            </TextBlock.Effect>-->
+                                        <TextBlock Text="―" FontSize="16" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                            </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
                                 </Border>
@@ -266,10 +266,10 @@
                     <Grid>
                         <Border>
                             <Grid>
-                                <TextBlock Text="▢" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
-                                    <!--<TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                    </TextBlock.Effect>-->
+                                <TextBlock Text="▢" FontSize="14" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                    </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
                         </Border>
@@ -285,10 +285,10 @@
                             <Grid>
                                 <Border>
                                     <Grid>
-                                        <TextBlock Text="▢" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
-                                            <!--<TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                            </TextBlock.Effect>-->
+                                        <TextBlock Text="▢" FontSize="16" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                            </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
                                 </Border>
@@ -309,10 +309,10 @@
                     <Grid>
                         <Border>
                             <Grid>
-                                <TextBlock Text="✕" FontSize="20" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
-                                    <!--<TextBlock.Effect>
-                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                    </TextBlock.Effect>-->
+                                <TextBlock Text="✕" FontSize="14" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type1}" HorizontalAlignment="Center" >
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                    </TextBlock.Effect>
                                 </TextBlock>
                             </Grid>
                         </Border>
@@ -328,10 +328,10 @@
                             <Grid>
                                 <Border>
                                     <Grid>
-                                        <TextBlock Text="✕" FontSize="23" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
-                                            <!--<TextBlock.Effect>
-                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_1}"/>
-                                            </TextBlock.Effect>-->
+                                        <TextBlock Text="✕" FontSize="16" VerticalAlignment="Center" FontFamily="Arial Black" Style="{DynamicResource TextBlockStyle_Type2}" HorizontalAlignment="Center" >
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect ShadowDepth="1" BlurRadius="1" Color="{DynamicResource Color_type_3}"/>
+                                            </TextBlock.Effect>
                                         </TextBlock>
                                     </Grid>
                                 </Border>
