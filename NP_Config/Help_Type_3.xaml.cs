@@ -24,5 +24,23 @@ namespace NP_Config
         {
             InitializeComponent();
         }
+        public void TB_5_Write(string TB51, string TB52, string TB53, string TB54, string TB55, string TB56)
+        {
+            this.TB51.Text = TB51;
+            this.TB52.Text = TB52;
+            this.TB53.Text = TB53;
+            this.TB54.Text = TB54;
+            this.TB55.Text = TB55;
+            this.TB56.Text = TB56;
+        }
+        public void TB_6_Write(string TB61, string TB62, string TB63, string TB64, string TB65, string TB66)
+        {
+            this.TB61.Text = TB61;
+            this.TB62.Text = TB62;
+            this.TB63.Text = TB63;
+            this.TB64.Text = TB64;
+            this.TB65.Text = TB65;
+            this.TB66.Text = TB66;
+        }
     }
 }

@@ -1164,6 +1164,9 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_1.Content = "Закрыть справку";
                 IP_Help_1.Width = 100;
+
+                help_type1.TB_1_Write(TB11.Text, TB12.Text, TB13.Text, TB14.Text, TB15.Text, TB16.Text);
+                help_type1.TB_2_Write(TB21.Text, TB22.Text, TB23.Text, TB24.Text, TB25.Text, TB26.Text);
             }
             else
             {
@@ -1187,6 +1190,9 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_2.Content = "Закрыть справку";
                 IP_Help_2.Width = 100;
+
+                help_type2.TB_3_Write(TB31.Text, TB32.Text, TB33.Text, TB34.Text, TB35.Text, TB36.Text);
+                help_type2.TB_4_Write(TB41.Text, TB42.Text, TB43.Text, TB44.Text, TB45.Text, TB46.Text);
             }
             else
             {
@@ -1210,6 +1216,9 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_3.Content = "Закрыть справку";
                 IP_Help_3.Width = 100;
+
+                help_type3.TB_5_Write(TB51.Text, TB52.Text, TB53.Text, TB54.Text, TB55.Text, TB56.Text);
+                help_type3.TB_6_Write(TB61.Text, TB62.Text, TB63.Text, TB64.Text, TB65.Text, TB66.Text);
             }
             else
             {

@@ -38,20 +38,20 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB11" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB12" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB13" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB14" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox x:Name="TB11" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB12" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB13" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB14" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB15" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox Name="TB15" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB16" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox Name="TB16" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -75,8 +75,50 @@
                             <TextBlock Grid.Column="1" Text="2" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource TextBlockStyle_Type5}"/>
                             <TextBlock Grid.Column="2" Text="3" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource TextBlockStyle_Type5}"/>
                         </Grid>
-                        <Grid Grid.Row="4">
-                            
+                        <Grid Grid.Row="4" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="1 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="3" Text="2 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="7" Text="3 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="11" Text="IP адрес разъема Т2 первого канала, в двухканальном режиме." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="1" FontSize="11" Text="В одноканальном режиме данные не используются." Style="{DynamicResource TextBlockStyle_Type1}"/>
+
+                                <TextBlock Grid.Row="3" FontSize="11" Text="Выдержка времени на ожидание следующей посылки в режиме ModbusTCP." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="4" FontSize="11" Text="Значение записано кратно 10мс (например, значение 33 = 330мс)." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="5" FontSize="11" Text="Если значение меньше 10, оно игнорируется и заменяется на значение 10 (100 мс)." Style="{DynamicResource TextBlockStyle_Type1}"/>
+
+                                <TextBlock Grid.Row="7" FontSize="11" Text="Определяет режим работы модуля NP (1 - работа по ModbusTCP)." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                     
@@ -99,20 +141,20 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB22" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB23" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
-                                    <TextBox Name="TB24" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox Name="TB21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB22" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB23" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB24" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB25" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox Name="TB25" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB26" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}"/>
+                                    <TextBox Name="TB26" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -136,8 +178,51 @@
                             <TextBlock Grid.Column="1" Text="2" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource TextBlockStyle_Type5}"/>
                             <TextBlock Grid.Column="2" Text="3" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{DynamicResource TextBlockStyle_Type5}"/>
                         </Grid>
-                        <Grid Grid.Row="4">
+                        <Grid Grid.Row="4" Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="1 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="3" Text="2 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="7" Text="3 - " HorizontalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="11" Text="IP адрес разъема Т2 второго канала, в двухканальном режиме." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="1" FontSize="11" Text="В одноканальном режиме данные не используются." Style="{DynamicResource TextBlockStyle_Type1}"/>
 
+                                <TextBlock Grid.Row="3" FontSize="11" Text="Выдержка времени на потерю связи с датчиками счета осей." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="4" FontSize="11" Text="Значение записано кратно 100мс (например, значение 20 = 2с)." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="5" FontSize="11" Text="Если значение меньше 10, оно игнорируется и заменяется на значение 10 (1с)." Style="{DynamicResource TextBlockStyle_Type1}"/>
+
+                                <TextBlock Grid.Row="7" FontSize="11" Text="Определяет режим работы модуля NP. Где 0 – двухканальный режим работы," Style="{DynamicResource TextBlockStyle_Type1}"/>
+                                <TextBlock Grid.Row="8" FontSize="11" Text="любое другое значение – одноканальный режим работы." Style="{DynamicResource TextBlockStyle_Type1}"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
