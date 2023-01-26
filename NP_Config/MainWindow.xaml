@@ -41,7 +41,7 @@
                             <ColumnDefinition Width="150"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
-                            <Button Content="Просмотр" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>
+                            <Button Content="Просмотр" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}" Click="Button_Click"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <Button Content="Открыть" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>

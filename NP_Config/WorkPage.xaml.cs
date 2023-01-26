@@ -77,11 +77,8 @@ namespace NP_Config
             public Button UCH_Button;
         }
 
-        //количество датчиков в первом и втором каналах NP
-        private int NP_Channel1_CountZR = 0;
-        private int NP_Channel2_CountZR = 0;
-
         public int All_Count_NP = 1;
+        public int This_NP_number = 0;
         public int UCH_Count { get; set; }
 
         UCH_ZR_setting[] UCH_ZR_set_left = new UCH_ZR_setting[7];
@@ -906,7 +903,7 @@ namespace NP_Config
                         NP_ZR_channel1[i].NP_ZR_Address.Text = "";
                     }
                 }
-                NP_Channel1_CountZR = Convert.ToInt32(NP_Channel1_count.Text);
+                //NP_Channel1_CountZR = Convert.ToInt32(NP_Channel1_count.Text);
             }
         }
 
@@ -961,7 +958,7 @@ namespace NP_Config
                         NP_ZR_channel2[i].NP_ZR_Address.Text = "";
                     }
                 }
-                NP_Channel2_CountZR = Convert.ToInt32(NP_Channel2_count.Text);
+                //NP_Channel2_CountZR = Convert.ToInt32(NP_Channel2_count.Text);
             }
         }
 

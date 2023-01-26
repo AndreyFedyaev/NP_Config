@@ -69,6 +69,7 @@
     <Compile Include="WorkPage.xaml.cs">
       <DependentUpon>WorkPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkPage_FormingResult.cs" />
     <Compile Include="WorkPage_Partial.cs" />
     <Page Include="Dictionary_DarkStyle.xaml">
       <SubType>Designer</SubType>

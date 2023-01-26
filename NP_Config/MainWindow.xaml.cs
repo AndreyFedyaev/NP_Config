@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -102,6 +104,7 @@ namespace NP_Config
                     page_struct[a].WP.ZR_List[b].channel_1 = ZR_List[b].channel_1;
                     page_struct[a].WP.ZR_List[b].channel_2 = ZR_List[b].channel_2;
                 }
+                page_struct[a].WP.This_NP_number = a + 1;
             }
         }
 
@@ -315,6 +318,36 @@ namespace NP_Config
                     }
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            page_struct[Menu_Button_IsActive - 1].WP.Write_data();
+
+            //string STR1 = page_struct[Menu_Button_IsActive - 1].WP.Str_1();
+            //string STR2 = page_struct[Menu_Button_IsActive - 1].WP.Str_2();
+            //string STR3 = page_struct[Menu_Button_IsActive - 1].WP.Str_3();
+            //string STR4 = page_struct[Menu_Button_IsActive - 1].WP.Str_4();
+            //string STR5 = page_struct[Menu_Button_IsActive - 1].WP.Str_5();
+            //string STR6 = page_struct[Menu_Button_IsActive - 1].WP.Str_6();
+            //string STR7 = page_struct[Menu_Button_IsActive - 1].WP.Str_7();
+
+
+            //string STR_ZR_NP_Input = page_struct[Menu_Button_IsActive - 1].WP.NP_InputZR_STR();
+
+            //string result = STR1 + STR2 + STR3 + STR4 + STR5 + STR6 + STR7 + STR_ZR_NP_Input;
+
+
+            ////Создаем файл++++
+            //StreamWriter TEXT = new StreamWriter("ViewingConfig.ini", false, System.Text.Encoding.UTF8, 512);
+            //TEXT.WriteLine(result);
+            //TEXT.Close();
+
+            ////Открываем файл
+            //if (File.Exists("ViewingConfig.ini"))       //проверяем существует ли заданный файл
+            //{
+            //    Process.Start("ViewingConfig.ini");     // если да, то открываем его
+            //}
         }
     }
 }
