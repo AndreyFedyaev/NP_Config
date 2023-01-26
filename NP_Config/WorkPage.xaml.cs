@@ -21,6 +21,9 @@ namespace NP_Config
     public partial class WorkPage : Page
     {
         System.Windows.Threading.DispatcherTimer timer_page = new System.Windows.Threading.DispatcherTimer();
+        System.Windows.Threading.DispatcherTimer timer_help_1 = new System.Windows.Threading.DispatcherTimer();
+        System.Windows.Threading.DispatcherTimer timer_help_2 = new System.Windows.Threading.DispatcherTimer();
+        System.Windows.Threading.DispatcherTimer timer_help_3 = new System.Windows.Threading.DispatcherTimer();
         public WorkPage()
         {
             Initialize_NP_ZR();         //Создаем динамические текстовые боксы для настройки датчиков NP
@@ -31,6 +34,15 @@ namespace NP_Config
 
             timer_page.Tick += new EventHandler(tm_page);
             timer_page.Interval = new TimeSpan(0, 0, 0, 0, 50);
+
+            timer_help_1.Tick += new EventHandler(tm_help1);
+            timer_help_1.Interval = new TimeSpan(0, 0, 0, 0, 100);
+
+            timer_help_2.Tick += new EventHandler(tm_help2);
+            timer_help_2.Interval = new TimeSpan(0, 0, 0, 0, 100);
+
+            timer_help_3.Tick += new EventHandler(tm_help3);
+            timer_help_3.Interval = new TimeSpan(0, 0, 0, 0, 100);
 
             UCH_Button_Visibility(true, false, false);
 
@@ -209,7 +221,7 @@ namespace NP_Config
 
                     bool search_result = false;
                     //поиск
-                    for (int a = 0; a < result.Count; a++) 
+                    for (int a = 0; a < result.Count; a++)
                     {
                         if ((result[a] + 1) == number_NP) search_result = true;
                     }
@@ -432,10 +444,10 @@ namespace NP_Config
             if (name_result && ZR_left_result && ZR_right_result)   //если ошибок нет
             {
                 UCH_Add.IsEnabled = true;
-                if(UCH_Save.Visibility == Visibility.Visible) UCH_Save.IsEnabled= true;
+                if (UCH_Save.Visibility == Visibility.Visible) UCH_Save.IsEnabled = true;
             }
-            else 
-            { 
+            else
+            {
                 UCH_Add.IsEnabled = false;
                 if (UCH_Save.Visibility == Visibility.Visible) UCH_Save.IsEnabled = false;
             }
@@ -606,6 +618,7 @@ namespace NP_Config
 
         private static readonly Regex UCH_ZR_RangeNumbers = new Regex("[01234567]");    //набор допустимых символов для ввода в TextBox
         private static readonly Regex NP_ZR_RangeNumbers = new Regex("[0-9]");    //набор допустимых символов для ввода в TextBox
+        private static readonly Regex IP_Setting_RangeNumbers = new Regex("[0-9]");    //набор допустимых символов для ввода в TextBox
         private void Cheking_for_numbers_type1(object sender, TextCompositionEventArgs e)   //ограничение 1 символ (цифры от 0 до 7)
         {
             e.Handled = !UCH_ZR_RangeNumbers.IsMatch(e.Text);
@@ -628,7 +641,7 @@ namespace NP_Config
             {
                 //ограничиваем ввод данных по количеству символов
                 int strlength = ((System.Windows.Controls.TextBox)sender).Text.Length + 1;
-                
+
                 if (strlength > 2)
                 {
                     e.Handled = true;
@@ -655,7 +668,7 @@ namespace NP_Config
             bool result = true;
             if (e.Text == "1" || e.Text == "2")
             {
-                result  = false;
+                result = false;
 
                 //ограничиваем ввод данных по количеству символов
                 int strlength = ((System.Windows.Controls.TextBox)sender).Text.Length + 1;
@@ -667,6 +680,11 @@ namespace NP_Config
             }
 
             e.Handled = result;
+        }
+        private void Cheking_for_numbers_type5(object sender, TextCompositionEventArgs e)   //без ограничений по количеству символов (весь перечень цифр)
+        {
+            e.Handled = !IP_Setting_RangeNumbers.IsMatch(e.Text);
+
         }
 
         private void NP_Channel_TextChanged(object sender, TextChangedEventArgs e)  //ограничение адресов датчиков - 127
@@ -714,7 +732,7 @@ namespace NP_Config
             }
             var List_Distinct = NP_Index.Distinct();
 
-            List<int> result= new List<int>();
+            List<int> result = new List<int>();
             foreach (var item in List_Distinct)
             {
                 result.Add(item);
@@ -724,7 +742,7 @@ namespace NP_Config
         private int Search_NP_count_channel(int ZR, int NP) //поиск датчика в NP на соответствие каналу NP (возврат 1 - датчик в первом канале, 2 - во втором, 0 - не определено)
         {
             int result = 0;
-            bool channel_1 = false; 
+            bool channel_1 = false;
             bool channel_2 = false;
 
             //проверка первого канала
@@ -1167,6 +1185,8 @@ namespace NP_Config
 
                 help_type1.TB_1_Write(TB11.Text, TB12.Text, TB13.Text, TB14.Text, TB15.Text, TB16.Text);
                 help_type1.TB_2_Write(TB21.Text, TB22.Text, TB23.Text, TB24.Text, TB25.Text, TB26.Text);
+
+                timer_help_1.Start();
             }
             else
             {
@@ -1174,6 +1194,8 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_1.Content = "Справка";
                 IP_Help_1.Width = 60;
+
+                timer_help_1.Stop();
             }
             IP_Help_2.Content = "Справка";
             IP_Help_2.Width = 60;
@@ -1193,6 +1215,8 @@ namespace NP_Config
 
                 help_type2.TB_3_Write(TB31.Text, TB32.Text, TB33.Text, TB34.Text, TB35.Text, TB36.Text);
                 help_type2.TB_4_Write(TB41.Text, TB42.Text, TB43.Text, TB44.Text, TB45.Text, TB46.Text);
+
+                timer_help_2.Start();
             }
             else
             {
@@ -1200,6 +1224,8 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_2.Content = "Справка";
                 IP_Help_2.Width = 60;
+
+                timer_help_2.Stop();
             }
             IP_Help_1.Content = "Справка";
             IP_Help_1.Width = 60;
@@ -1219,6 +1245,8 @@ namespace NP_Config
 
                 help_type3.TB_5_Write(TB51.Text, TB52.Text, TB53.Text, TB54.Text, TB55.Text, TB56.Text);
                 help_type3.TB_6_Write(TB61.Text, TB62.Text, TB63.Text, TB64.Text, TB65.Text, TB66.Text);
+
+                timer_help_3.Start();
             }
             else
             {
@@ -1226,11 +1254,61 @@ namespace NP_Config
                 Help_Page.NavigationService.RemoveBackEntry();
                 IP_Help_3.Content = "Справка";
                 IP_Help_3.Width = 60;
+
+                timer_help_3.Stop();
             }
             IP_Help_1.Content = "Справка";
             IP_Help_1.Width = 60;
             IP_Help_2.Content = "Справка";
             IP_Help_2.Width = 60;
+        }
+        private void tm_help1(object sender, EventArgs e)
+        {
+            TB11.Text = help_type1.TB11.Text;
+            TB12.Text = help_type1.TB12.Text;
+            TB13.Text = help_type1.TB13.Text;
+            TB14.Text = help_type1.TB14.Text;
+            TB15.Text = help_type1.TB15.Text;
+            TB16.Text = help_type1.TB16.Text;
+
+            TB21.Text = help_type1.TB21.Text;
+            TB22.Text = help_type1.TB22.Text;
+            TB23.Text = help_type1.TB23.Text;
+            TB24.Text = help_type1.TB24.Text;
+            TB25.Text = help_type1.TB25.Text;
+            TB26.Text = help_type1.TB26.Text;
+        }
+        private void tm_help2(object sender, EventArgs e)
+        {
+            TB31.Text = help_type2.TB31.Text;
+            TB32.Text = help_type2.TB32.Text;
+            TB33.Text = help_type2.TB33.Text;
+            TB34.Text = help_type2.TB34.Text;
+            TB35.Text = help_type2.TB35.Text;
+            TB36.Text = help_type2.TB36.Text;
+
+            TB41.Text = help_type2.TB41.Text;
+            TB42.Text = help_type2.TB42.Text;
+            TB43.Text = help_type2.TB43.Text;
+            TB44.Text = help_type2.TB44.Text;
+            TB45.Text = help_type2.TB45.Text;
+            TB46.Text = help_type2.TB46.Text;
+        }
+        private void tm_help3(object sender, EventArgs e)
+        {
+            TB51.Text = help_type3.TB51.Text;
+            TB52.Text = help_type3.TB52.Text;
+            TB53.Text = help_type3.TB53.Text;
+            TB54.Text = help_type3.TB54.Text;
+            TB55.Text = help_type3.TB55.Text;
+            TB56.Text = help_type3.TB56.Text;
+
+            TB61.Text = help_type3.TB61.Text;
+            TB62.Text = help_type3.TB62.Text;
+            TB63.Text = help_type3.TB63.Text;
+            TB64.Text = help_type3.TB64.Text;
+            TB65.Text = help_type3.TB65.Text;
+            TB66.Text = help_type3.TB66.Text;
         }
     }
 }

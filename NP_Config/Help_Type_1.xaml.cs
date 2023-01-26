@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,7 @@ namespace NP_Config
         {
             InitializeComponent();
         }
-
+        private static readonly Regex IP_Setting_RangeNumbers = new Regex("[0-9]");    //набор допустимых символов для ввода в TextBox
         public void TB_1_Write(string TB11, string TB12, string TB13, string TB14, string TB15, string TB16)
         {
             this.TB11.Text = TB11;
@@ -42,6 +43,10 @@ namespace NP_Config
             this.TB24.Text = TB24;
             this.TB25.Text = TB25;
             this.TB26.Text = TB26;
+        }
+        private void Cheking_for_numbers(object sender, TextCompositionEventArgs e)   //без ограничений по количеству символов (весь перечень цифр)
+        {
+            e.Handled = !IP_Setting_RangeNumbers.IsMatch(e.Text);
         }
     }
 }

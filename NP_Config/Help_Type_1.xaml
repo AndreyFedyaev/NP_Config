@@ -38,20 +38,20 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox x:Name="TB11" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB12" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB13" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB14" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox x:Name="TB11" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB12" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB13" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB14" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB15" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB15" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB16" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB16" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -141,20 +141,20 @@
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB22" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB23" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
-                                    <TextBox Name="TB24" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB22" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB23" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
+                                    <TextBox Name="TB24" Width="35" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB25" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB25" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="2">
                                 <StackPanel Orientation="Horizontal" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <TextBox Name="TB26" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" IsReadOnly="True"/>
+                                    <TextBox Name="TB26" Width="45" Margin="5,2,5,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
