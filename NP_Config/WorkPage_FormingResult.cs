@@ -28,7 +28,15 @@ namespace NP_Config
         List<string> ZR_Address_Channel2_HEX = new List<string>();
         //для хранения конфигурации внешних датчиков (шестнадцатиричное представление)
         List<int> External_ZR_ = new List<int>();
-
+        public struct External_ZR
+        {
+            public int Index;           //от 21 до 28
+            public string Result_hex;    
+            public int Address;      
+            public int NP;             
+            public int Chanel;
+        }
+        private External_ZR[] Ext_ZR= new External_ZR[8];
         public struct UCH_IndexZR
         {
             public string UCH_Name;
@@ -81,6 +89,7 @@ namespace NP_Config
             IP_Setting_6[5] = Convert.ToInt32(TB66.Text);
 
             //адреса датчиков в десятичном формате
+            ZR_Address_Channel1_DEC.Clear();
             for (int i = 0; i < NP_ZR_channel1.Length; i++)
             {
                 if (NP_ZR_channel1[i].NP_ZR_Address.Text != "")
@@ -88,6 +97,7 @@ namespace NP_Config
                     ZR_Address_Channel1_DEC.Add(Convert.ToInt32(NP_ZR_channel1[i].NP_ZR_Address.Text));
                 }
             }
+            ZR_Address_Channel2_DEC.Clear();
             for (int i = 0; i < NP_ZR_channel2.Length; i++)
             {
                 if (NP_ZR_channel2[i].NP_ZR_Address.Text != "")
@@ -96,10 +106,12 @@ namespace NP_Config
                 }
             }
             //адреса датчиков в шестнадцатиричном формате
+            ZR_Address_Channel1_HEX.Clear();
             for (int i = 0; i < ZR_Address_Channel1_DEC.Count; i++)
             {
                 ZR_Address_Channel1_HEX.Add(ZR_Address_Channel1_DEC[i].ToString("X2"));
             }
+            ZR_Address_Channel2_HEX.Clear();
             for (int i = 0; i < ZR_Address_Channel2_DEC.Count; i++)
             {
                 ZR_Address_Channel2_HEX.Add(ZR_Address_Channel2_DEC[i].ToString("X2"));
@@ -108,8 +120,18 @@ namespace NP_Config
             //инициализируем поля структуры участков
             for (int i = 0; i < UCH_list_index.Length; i++)
             {
+                UCH_list_index[i].UCH_Name = "";
                 UCH_list_index[i].ZR_Left = new List<int>();
                 UCH_list_index[i].ZR_Right = new List<int>();
+            }
+            //инициализируем поля структуры внешних датчиков
+            for (int i = 0; i < Ext_ZR.Length; i++)
+            {
+                Ext_ZR[i].Index = 21 + i;
+                Ext_ZR[i].Result_hex = "00";
+                Ext_ZR[i].Address = 0;
+                Ext_ZR[i].NP = 0;
+                Ext_ZR[i].Chanel = 0;
             }
             //записываем информацию по индексам датчиков в участках
             for (int a = 0; a < UCH_list_index.Length; a++)
@@ -130,7 +152,8 @@ namespace NP_Config
                     }
                     else //датчик во внешнем NP
                     {
-
+                        int index_zr = Search_IndexZR_ExternalNP(Addres, NP, Channel);
+                        UCH_list_index[a].ZR_Left.Add(index_zr);
                     }
                 }
 
@@ -148,7 +171,8 @@ namespace NP_Config
                     }
                     else //датчик во внешнем NP
                     {
-
+                        int index_zr = Search_IndexZR_ExternalNP(Addres, NP, Channel);
+                        UCH_list_index[a].ZR_Right.Add(index_zr);
                     }
                 }
             }
@@ -170,27 +194,88 @@ namespace NP_Config
         private int Search_IndexZR_ExternalNP(int ZR, int NP, int Channel)   //определяем индекс датчика во внешнем NP
         {
             int result = 0;
-            //добавляем NP в список внешних NP, если его там нет
-            int Index_External_NP = 0;
-            bool Search_External_NP = false;
-            for (int i = 0; i < External_NP.Count; i++)
+
+            //смотрим список внешних датчиков и ищем текущий датчик
+            for (int i = 0; i < Ext_ZR.Length; i++)
             {
-                if (External_NP[i] == NP)
+                if (Ext_ZR[i].Address == ZR && Ext_ZR[i].NP == NP && Ext_ZR[i].Chanel == Channel)
                 {
-                    Index_External_NP = i;
-                    Search_External_NP = true;
+                    result = Ext_ZR[i].Index; 
                     break;
                 }
             }
-            //если не нашли - добавляем
-            if (Search_External_NP == false)
+            //если такого датчика еще в списке нет - добавляем
+            if (result == 0)   
             {
-                External_NP.Add(NP);
-                Index_External_NP = External_NP.Count - 1;
+                int Index_External_NP = 0;  //индекс внешнего NP
+                int IndexZR_in_ExternalNP = 0;  //индекс датчика во внешнем NP
+
+                // 1 - Определяем индекс внешнего NP
+                {
+                    //добавляем NP в список внешних NP, если его там нет
+                    bool Search_External_NP = false;
+                    for (int i = 0; i < External_NP.Count; i++)
+                    {
+                        if (External_NP[i] == NP)
+                        {
+                            Index_External_NP = i;
+                            Search_External_NP = true;
+                            break;
+                        }
+                    }
+                    //если не нашли - добавляем
+                    if (Search_External_NP == false)
+                    {
+                        External_NP.Add(NP);
+                        Index_External_NP = External_NP.Count - 1;
+                    }
+                }
+                // 2 - определяем индекс датчика во внешнем NP
+                {
+                    if (Channel == 1)
+                    {
+                        for (int i = 0; i < ZR_List[NP - 1].channel_1.Count; i++)
+                        {
+                            if (ZR_List[NP - 1].channel_1[i] == ZR)
+                            {
+                                IndexZR_in_ExternalNP = i + 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (Channel == 2)
+                    {
+                        for (int i = 0; i < ZR_List[NP - 1].channel_2.Count; i++)
+                        {
+                            if (ZR_List[NP - 1].channel_2[i] == ZR)
+                            {
+                                IndexZR_in_ExternalNP = ZR_List[NP - 1].channel_1.Count + i + 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                // 3 - формируем результат
+                {
+                    //определяем индекс в массиве внешних датчиков для записи
+                    int index_external_zr = 0;
+                    for (int i = 0; i < Ext_ZR.Length; i++)
+                    {
+                        if (Ext_ZR[i].Result_hex == "00")
+                        {
+                            index_external_zr = i;
+                            break;
+                        }
+                    }
+                    //записываем
+                    Ext_ZR[index_external_zr].Result_hex = ((Index_External_NP << 5) | IndexZR_in_ExternalNP).ToString("X2");
+                    Ext_ZR[index_external_zr].Address = ZR;
+                    Ext_ZR[index_external_zr].NP = NP;
+                    Ext_ZR[index_external_zr].Chanel = Channel;
+
+                    result = Ext_ZR[index_external_zr].Index;
+                }
             }
-
-
-
 
             return result;
         }
