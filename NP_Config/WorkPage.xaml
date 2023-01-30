@@ -197,6 +197,7 @@
                                     <RowDefinition Height="30"></RowDefinition>
                                     <RowDefinition Height="50"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="25"></RowDefinition>
                                 </Grid.RowDefinitions>
 
                                 <Grid Grid.Row="0">
@@ -270,6 +271,9 @@
                                             <StackPanel x:Name="UCH_Right_StPanel"/>
                                         </Grid>
                                     </Grid>
+                                </Grid>
+                                <Grid Grid.Row="3">
+                                    <TextBlock x:Name="ExternalZR_Count_Txt" Text="Использовано внешних датчиков - 0 из 8" Margin="10,0,0,0" Style="{DynamicResource TextBlockStyle_Type5}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Column="1">

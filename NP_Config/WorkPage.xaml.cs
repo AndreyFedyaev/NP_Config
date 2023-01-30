@@ -1293,14 +1293,24 @@ namespace NP_Config
                 });
             }
 
-            UCH_list[UCH_Open_Index].UCH_Button.Content = UCH_Name.Text;
+            //анализируем данные участков и заполняем массивы
+            bool UCH_Save_result = Write_UCH_data();
+            if (UCH_Save_result == true)
+            {
+                UCH_list[UCH_Open_Index].UCH_Button.Content = UCH_Name.Text;
 
-            //очищаем поля
-            UCH_CountZR_Left.Text = "0";
-            UCH_CountZR_Right.Text = "0";
-            UCH_Name.Text = "";
-
-            UCH_Button_Visibility(true, false, false);
+                //очищаем поля
+                UCH_CountZR_Left.Text = "0";
+                UCH_CountZR_Right.Text = "0";
+                UCH_Name.Text = "";
+                UCH_Button_Visibility(true, false, false);
+            }
+            else
+            {
+                UCH_list[UCH_Count].UCH_Name = "";
+                UCH_list[UCH_Count].ZR_Left.Clear();
+                UCH_list[UCH_Count].ZR_Right.Clear();
+            }
         }
 
         private void UCH_Delete_Click(object sender, RoutedEventArgs e)
@@ -1312,8 +1322,6 @@ namespace NP_Config
             UCH_list[UCH_Open_Index].UCH_Button.Content = "";
             WrapPanel_UCH.Children.RemoveAt(UCH_Open_Index);
 
-
-            ///////////////////////
             UCH[] UCH_list_virtual = new UCH[30];
             for (int i = 0; i < UCH_list_virtual.Length; i++)
             {
@@ -1342,7 +1350,6 @@ namespace NP_Config
                 UCH_list_virtual[i - 1].UCH_Button = UCH_list[i].UCH_Button;
             }
             UCH_list = UCH_list_virtual;
-            ///////////////////////////
 
             //очищаем поля
             UCH_CountZR_Left.Text = "0";
@@ -1351,6 +1358,10 @@ namespace NP_Config
 
             UCH_Count--;
             UCH_Button_Visibility(true, false, false);
+
+
+            //анализируем данные участков и заполняем массивы
+            Write_UCH_data();
         }
 
         Help_Type_1 help_type1 = new Help_Type_1();

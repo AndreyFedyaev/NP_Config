@@ -152,6 +152,16 @@ namespace NP_Config
                     }
                 }
             }
+            if (result)
+            {
+                //определяем количество использованных внешних датчиков
+                int count = 0;
+                for (int i = 0; i < Ext_ZR.Length; i++)
+                {
+                    if (Ext_ZR[i].Result_hex != "00") count++;
+                }
+                ExternalZR_Count_Txt.Text = string.Format("Использовано внешних датчиков - {0} из 8", count);
+            }
             return result;
         }
         
