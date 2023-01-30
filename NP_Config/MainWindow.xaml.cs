@@ -322,7 +322,7 @@ namespace NP_Config
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool result = page_struct[Menu_Button_IsActive - 1].WP.Write_data();
+            //bool result = page_struct[Menu_Button_IsActive - 1].WP.Write_data();
 
             //string STR1 = page_struct[Menu_Button_IsActive - 1].WP.Str_1();
             //string STR2 = page_struct[Menu_Button_IsActive - 1].WP.Str_2();

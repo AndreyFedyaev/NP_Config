@@ -138,7 +138,7 @@
                                         <RowDefinition Height="22"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <TextBlock x:Name="TEST1" Grid.Row="0" Text="1 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Text="1 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                                     <Grid Grid.Row="1">
                                         <TextBox x:Name="NP_Channel1_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel1_count_TextChanged" />
                                         <Button x:Name="NP_Channel1_Remove" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,70,0" Style="{DynamicResource ButtonStyle_Type1}" Click="NP_Channel1_Remove_Click" />
@@ -151,7 +151,7 @@
                                         <RowDefinition Height="25"></RowDefinition>
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <TextBlock x:Name="TEST2" Grid.Row="0" Text="2 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
+                                    <TextBlock Grid.Row="0" Text="2 канал" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{DynamicResource TextBlockStyle_Type3}" TextAlignment="Center"/>
                                     <Grid Grid.Row="1">
                                         <TextBox x:Name="NP_Channel2_count" Text="0" PreviewTextInput="Cheking_for_numbers_type2" Width="40" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle_Type1}" TextAlignment="Center" TextChanged="NP_Channel2_count_TextChanged" />
                                         <Button x:Name="NP_Channel2_Remove" Content="&#10134;" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,70,0" Style="{DynamicResource ButtonStyle_Type1}" Click="NP_Channel2_Remove_Click" />

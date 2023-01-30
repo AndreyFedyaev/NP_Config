@@ -10,13 +10,7 @@ namespace NP_Config
 {
     public partial class WorkPage
     {
-        //для хранения значений сетевых настроек
-        int[] IP_Setting_1 = new int[6];
-        int[] IP_Setting_2 = new int[6];
-        int[] IP_Setting_3 = new int[6];
-        int[] IP_Setting_4 = new int[6];
-        int[] IP_Setting_5 = new int[6];
-        int[] IP_Setting_6 = new int[6];
+        
         //для хранения информации о номерах внешних NP
         List<int> External_NP = new List<int>();
         //для хранения значений адресов датчиков первого канала (десятичное представление)
@@ -52,10 +46,9 @@ namespace NP_Config
             warning.Warning_Text_str3.Text = Warning_Text_str3;
             warning.ShowDialog();
         }
-        int ggggg = 0;
+
         private void Write_ZP_data()
         {
-            ggggg++;
             //адреса датчиков в десятичном формате
             ZR_Address_Channel1_DEC.Clear();
             for (int i = 0; i < NP_Channel1_CountZR; i++)
@@ -79,74 +72,9 @@ namespace NP_Config
                 ZR_Address_Channel2_HEX.Add(ZR_Address_Channel2_DEC[i].ToString("X2"));
             }
         }
-        public bool Write_data()    //записываем данные в массивы
+        public bool Write_UCH_data()    //записываем данные в массивы
         {
-            try
-            {
-                IP_Setting_1[0] = Convert.ToInt32(TB11.Text);
-                IP_Setting_1[1] = Convert.ToInt32(TB12.Text);
-                IP_Setting_1[2] = Convert.ToInt32(TB13.Text);
-                IP_Setting_1[3] = Convert.ToInt32(TB14.Text);
-                IP_Setting_1[4] = Convert.ToInt32(TB15.Text);
-                IP_Setting_1[5] = Convert.ToInt32(TB16.Text);
-            } catch { Warning_Dialog_Show("IP адрес разъема Т2 первого канала", "Заполнено с ошибками!", ""); return false; }
-
-            try
-            {
-                IP_Setting_2[0] = Convert.ToInt32(TB21.Text);
-                IP_Setting_2[1] = Convert.ToInt32(TB22.Text);
-                IP_Setting_2[2] = Convert.ToInt32(TB23.Text);
-                IP_Setting_2[3] = Convert.ToInt32(TB24.Text);
-                IP_Setting_2[4] = Convert.ToInt32(TB25.Text);
-                IP_Setting_2[5] = Convert.ToInt32(TB26.Text);
-            }
-            catch { Warning_Dialog_Show("IP адрес разъема Т2 второго канала", "Заполнено с ошибками!", ""); return false; }
-
-            try
-            {
-                IP_Setting_3[0] = Convert.ToInt32(TB31.Text);
-                IP_Setting_3[1] = Convert.ToInt32(TB32.Text);
-                IP_Setting_3[2] = Convert.ToInt32(TB33.Text);
-                IP_Setting_3[3] = Convert.ToInt32(TB34.Text);
-                IP_Setting_3[4] = Convert.ToInt32(TB35.Text);
-                IP_Setting_3[5] = Convert.ToInt32(TB36.Text);
-            }
-            catch { Warning_Dialog_Show("IP адрес, UDP порт разъема T1", "Заполнено с ошибками!", ""); return false; }
-
-            try
-            {
-                IP_Setting_4[0] = Convert.ToInt32(TB41.Text);
-                IP_Setting_4[1] = Convert.ToInt32(TB42.Text);
-                IP_Setting_4[2] = Convert.ToInt32(TB43.Text);
-                IP_Setting_4[3] = Convert.ToInt32(TB44.Text);
-                IP_Setting_4[4] = Convert.ToInt32(TB45.Text);
-                IP_Setting_4[5] = Convert.ToInt32(TB46.Text);
-            }
-            catch { Warning_Dialog_Show("IP адрес, UDP порт разъема T2", "Заполнено с ошибками!", ""); return false; }
-
-            try
-            {
-                IP_Setting_5[0] = Convert.ToInt32(TB51.Text);
-                IP_Setting_5[1] = Convert.ToInt32(TB52.Text);
-                IP_Setting_5[2] = Convert.ToInt32(TB53.Text);
-                IP_Setting_5[3] = Convert.ToInt32(TB54.Text);
-                IP_Setting_5[4] = Convert.ToInt32(TB55.Text);
-                IP_Setting_5[5] = Convert.ToInt32(TB56.Text);
-            }
-            catch { Warning_Dialog_Show("IP адрес контроллера ЖАТ разъема Т1", "Заполнено с ошибками!", ""); return false; }
-
-            try
-            {
-                IP_Setting_6[0] = Convert.ToInt32(TB61.Text);
-                IP_Setting_6[1] = Convert.ToInt32(TB62.Text);
-                IP_Setting_6[2] = Convert.ToInt32(TB63.Text);
-                IP_Setting_6[3] = Convert.ToInt32(TB64.Text);
-                IP_Setting_6[4] = Convert.ToInt32(TB65.Text);
-                IP_Setting_6[5] = Convert.ToInt32(TB66.Text);
-            }
-            catch { Warning_Dialog_Show("IP адрес контроллера ЖАТ разъема Т2", "Заполнено с ошибками!", ""); return false; }
-
-
+            bool result = true;
             //инициализируем поля структуры участков
             for (int i = 0; i < UCH_list_index.Length; i++)
             {
@@ -183,7 +111,16 @@ namespace NP_Config
                     else //датчик во внешнем NP
                     {
                         int index_zr = Search_IndexZR_ExternalNP(Addres, NP, Channel);
-                        UCH_list_index[a].ZR_Left.Add(index_zr);
+                        if (index_zr != 0)
+                        {
+                            UCH_list_index[a].ZR_Left.Add(index_zr);
+                        }
+                        else
+                        {
+                            Warning_Dialog_Show("Превышено максимальное количество", "внешних датчиков для текущего NP!", "");
+                            result = false;
+                            break;
+                        }
                     }
                 }
 
@@ -202,11 +139,20 @@ namespace NP_Config
                     else //датчик во внешнем NP
                     {
                         int index_zr = Search_IndexZR_ExternalNP(Addres, NP, Channel);
-                        UCH_list_index[a].ZR_Right.Add(index_zr);
+                        if (index_zr != 0)
+                        {
+                            UCH_list_index[a].ZR_Right.Add(index_zr);
+                        }
+                        else
+                        {
+                            Warning_Dialog_Show("Превышено максимальное количество", "внешних датчиков для текущего NP!", "");
+                            result = false;
+                            break;
+                        }
                     }
                 }
             }
-            return true;
+            return result;
         }
         
         private int Search_IndexZR_ThisNP(int ZR, int channel)   //определяем индекс датчика в текущем NP
@@ -290,7 +236,7 @@ namespace NP_Config
                 // 3 - формируем результат
                 {
                     //определяем индекс в массиве внешних датчиков для записи
-                    int index_external_zr = 0;
+                    int index_external_zr = -1;
                     for (int i = 0; i < Ext_ZR.Length; i++)
                     {
                         if (Ext_ZR[i].Result_hex == "00")
@@ -298,6 +244,10 @@ namespace NP_Config
                             index_external_zr = i;
                             break;
                         }
+                    }
+                    if (index_external_zr == -1)    //если заполнен весь список внешних датчиков
+                    {
+                        return 0;
                     }
                     //записываем
                     Ext_ZR[index_external_zr].Result_hex = ((Index_External_NP << 5) | IndexZR_in_ExternalNP).ToString("X2");
