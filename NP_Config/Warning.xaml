@@ -1,0 +1,21 @@
+﻿<Window x:Class="NP_Config.Warning"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NP_Config"
+        mc:Ignorable="d"
+        Title="Warning" Height="120" Width="350" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
+    <Grid>
+        <Border BorderThickness="1" BorderBrush="{DynamicResource Color_10}" UseLayoutRounding="True">
+            <Grid Style="{DynamicResource GridStyle_Type1}" MouseDown="Grid_MouseDown">
+                <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="WarningDialog_Close_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
+                <TextBlock Margin="10,5,0,0" Text="Внимание!" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock x:Name="Warning_Text_str1" Margin="5,35,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock x:Name="Warning_Text_str2" Margin="5,60,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock x:Name="Warning_Text_str3" Margin="5,85,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

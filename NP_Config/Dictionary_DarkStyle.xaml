@@ -11,6 +11,7 @@
     <Color x:Key="Color_type_7">#51777B</Color>
     <Color x:Key="Color_type_8">#9C6D6D</Color>
     <Color x:Key="Color_type_9">#B59292</Color>
+    <Color x:Key="Color_type_10">#395156</Color>     <!-- Обводка контура -->
 
     <SolidColorBrush x:Key="Color_1" Color="{DynamicResource Color_type_1}"/>
     <SolidColorBrush x:Key="Color_2" Color="{DynamicResource Color_type_2}"/>
@@ -21,6 +22,7 @@
     <SolidColorBrush x:Key="Color_7" Color="{DynamicResource Color_type_7}"/>
     <SolidColorBrush x:Key="Color_8" Color="{DynamicResource Color_type_8}"/>
     <SolidColorBrush x:Key="Color_9" Color="{DynamicResource Color_type_9}"/>
+    <SolidColorBrush x:Key="Color_10" Color="{DynamicResource Color_type_10}"/>        <!-- Обводка контура -->
     
     <!-- BUTTON -->
     <Style x:Key="ButtonStyle_Menu1" TargetType="Button">
@@ -385,6 +387,11 @@
     <Style x:Key="TextBlockStyle_Type5" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
         <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style x:Key="TextBlockStyle_Type6" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource Color_4}"/>
+        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <!-- TEXTBOX -->

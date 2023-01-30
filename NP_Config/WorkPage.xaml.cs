@@ -26,8 +26,8 @@ namespace NP_Config
         System.Windows.Threading.DispatcherTimer timer_help_3 = new System.Windows.Threading.DispatcherTimer();
         public WorkPage()
         {
-            Initialize_NP_ZR();         //Создаем динамические текстовые боксы для настройки датчиков NP
-            Initialize_UCH_ZR_set();     //Создаем динамические текстовые боксы для настройки датчиков на участке
+            Initialize_NP_ZR();             //Создаем динамические текстовые боксы для настройки датчиков NP
+            Initialize_UCH_ZR_set();        //Создаем динамические текстовые боксы для настройки датчиков на участке
             InitializeComponent();
             Initialize_ZR_List();
             Initialize_UCH_List();
@@ -63,6 +63,7 @@ namespace NP_Config
         {
             public Grid G;
             public TextBox NP_ZR_Address;
+            public bool ZR_Error;
         }
         public struct NP_ZR_List   //перечень датчиков во всех NP
         {
@@ -79,6 +80,10 @@ namespace NP_Config
 
         public int All_Count_NP = 1;
         public int This_NP_number = 0;
+        private int NP_Channel1_CountZR = 0;
+        private int NP_Channel2_CountZR = 0;
+        private bool NP_Channel1_Errors = false;
+        private bool NP_Channel2_Errors = false;
         public int UCH_Count { get; set; }
 
         UCH_ZR_setting[] UCH_ZR_set_left = new UCH_ZR_setting[7];
@@ -455,6 +460,40 @@ namespace NP_Config
             else UCH_ZR_Left_Title.Visibility = Visibility.Hidden;
             if (Convert.ToInt32(UCH_CountZR_Right.Text) > 0) UCH_ZR_Right_Title.Visibility = Visibility.Visible;
             else UCH_ZR_Right_Title.Visibility = Visibility.Hidden;
+
+            //проверка ошибок заполнения датчиков NP первого канала
+            bool channel1_errors = false;
+            for (int i = 0; i < NP_Channel1_CountZR; i++)
+            {
+                NP_Channel1_Search_Errors(i); //присвоение статуса ошибки
+                if (NP_ZR_channel1[i].ZR_Error == true)
+                {
+                    NP_ZR_channel1[i].NP_ZR_Address.Style = (Style)NP_ZR_channel1[i].NP_ZR_Address.FindResource("TextBoxStyle_Type2");
+                    channel1_errors = true;
+                }
+                else NP_ZR_channel1[i].NP_ZR_Address.Style = (Style)NP_ZR_channel1[i].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
+            }
+            if (channel1_errors) NP_Channel1_Errors = true; else NP_Channel1_Errors = false;
+            //проверка ошибок заполнения датчиков NP второго канала
+            bool channel2_errors = false;
+            for (int i = 0; i < NP_Channel2_CountZR; i++)
+            {
+                NP_Channel2_Search_Errors(i); //присвоение статуса ошибки
+                if (NP_ZR_channel2[i].ZR_Error == true)
+                {
+                    NP_ZR_channel2[i].NP_ZR_Address.Style = (Style)NP_ZR_channel2[i].NP_ZR_Address.FindResource("TextBoxStyle_Type2");
+                    channel2_errors = true;
+                }
+                else NP_ZR_channel2[i].NP_ZR_Address.Style = (Style)NP_ZR_channel2[i].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
+            }
+            if (channel2_errors) NP_Channel2_Errors = true; else NP_Channel1_Errors = false;
+            //если в первом и втором канале ошибок нет - записываем данные в массивы
+            if (NP_Channel1_Errors == false && NP_Channel1_Errors == false)
+            {
+                Write_ZP_data();
+            }
+
+            TEST1.Text = ggggg.ToString();
         }
         private void Initialize_ZR_List()
         {
@@ -484,6 +523,7 @@ namespace NP_Config
             for (int index = 0; index < NP_ZR_channel1.Length; index++)
             {
                 NP_ZR_channel1[index].G = new Grid();
+                NP_ZR_channel1[index].ZR_Error = false;
 
                 NP_ZR_channel1[index].NP_ZR_Address = new TextBox();
                 NP_ZR_channel1[index].NP_ZR_Address.Text = "";
@@ -495,7 +535,7 @@ namespace NP_Config
                 NP_ZR_channel1[index].NP_ZR_Address.Height = 18;
                 NP_ZR_channel1[index].NP_ZR_Address.Style = (Style)NP_ZR_channel1[index].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
                 NP_ZR_channel1[index].NP_ZR_Address.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type3);
-                NP_ZR_channel1[index].NP_ZR_Address.TextChanged += new TextChangedEventHandler(NP_Channel_TextChanged);
+                NP_ZR_channel1[index].NP_ZR_Address.TextChanged += new TextChangedEventHandler(NP_Channel_TextChanged_channel1);
 
                 NP_ZR_channel1[index].G.Children.Add(NP_ZR_channel1[index].NP_ZR_Address);
             }
@@ -503,6 +543,7 @@ namespace NP_Config
             for (int index = 0; index < NP_ZR_channel2.Length; index++)
             {
                 NP_ZR_channel2[index].G = new Grid();
+                NP_ZR_channel2[index].ZR_Error = false;
 
                 NP_ZR_channel2[index].NP_ZR_Address = new TextBox();
                 NP_ZR_channel2[index].NP_ZR_Address.Text = "";
@@ -514,7 +555,7 @@ namespace NP_Config
                 NP_ZR_channel2[index].NP_ZR_Address.Height = 18;
                 NP_ZR_channel2[index].NP_ZR_Address.Style = (Style)NP_ZR_channel2[index].NP_ZR_Address.FindResource("TextBoxStyle_Type1");
                 NP_ZR_channel2[index].NP_ZR_Address.PreviewTextInput += new TextCompositionEventHandler(Cheking_for_numbers_type3);
-                NP_ZR_channel2[index].NP_ZR_Address.TextChanged += new TextChangedEventHandler(NP_Channel_TextChanged);
+                NP_ZR_channel2[index].NP_ZR_Address.TextChanged += new TextChangedEventHandler(NP_Channel_TextChanged_channel2);
 
                 NP_ZR_channel2[index].G.Children.Add(NP_ZR_channel2[index].NP_ZR_Address);
             }
@@ -684,14 +725,89 @@ namespace NP_Config
 
         }
 
-        private void NP_Channel_TextChanged(object sender, TextChangedEventArgs e)  //ограничение адресов датчиков - 127
+        private void NP_Channel_TextChanged_channel1(object sender, TextChangedEventArgs e)  //ограничение адресов датчиков - 127
         {
             var value = ((System.Windows.Controls.TextBox)e.OriginalSource).Text;
             if (value != "" && (Convert.ToInt32(value) > 127))
             {
                 ((System.Windows.Controls.TextBox)e.OriginalSource).Text = "127";
             }
+            //определяем индекс датчика
+            string Name = ((System.Windows.Controls.TextBox)e.OriginalSource).Name;
+            string[] Split;
+            Split = Name.Split('_');
+            if (Split.Length == 6)  //если ошибок нет
+            {
+                int index = Convert.ToInt32(Split[5]);
+                //проверка введенного адреса датчика на наличие ошибок
+                NP_Channel1_Search_Errors(index);
+            }
         }
+        private void NP_Channel_TextChanged_channel2(object sender, TextChangedEventArgs e)  //ограничение адресов датчиков - 127
+        {
+            var value = ((System.Windows.Controls.TextBox)e.OriginalSource).Text;
+            if (value != "" && (Convert.ToInt32(value) > 127))
+            {
+                ((System.Windows.Controls.TextBox)e.OriginalSource).Text = "127";
+            }
+            //определяем индекс датчика
+            string Name = ((System.Windows.Controls.TextBox)e.OriginalSource).Name;
+            string[] Split;
+            Split = Name.Split('_');
+            if (Split.Length == 6)  //если ошибок нет
+            {
+                int index = Convert.ToInt32(Split[5]);
+                //проверка введенного адреса датчика на наличие ошибок
+                NP_Channel2_Search_Errors(index);
+            }
+        }
+        private void NP_Channel1_Search_Errors(int index_zr)
+        {
+            if (NP_ZR_channel1[index_zr].NP_ZR_Address.Text != "")
+            {
+                int Count = 0;
+                for (int i = 0; i < NP_Channel1_CountZR; i++)
+                {
+                    if (NP_ZR_channel1[i].NP_ZR_Address.Text == NP_ZR_channel1[index_zr].NP_ZR_Address.Text) Count++;
+                }
+                if (Count <= 1)
+                {
+                    NP_ZR_channel1[index_zr].ZR_Error = false;
+                }
+                else
+                {
+                    NP_ZR_channel1[index_zr].ZR_Error = true;
+                }
+            }
+            else
+            {
+                NP_ZR_channel1[index_zr].ZR_Error = true;
+            }
+        }
+        private void NP_Channel2_Search_Errors(int index_zr)
+        {
+            if (NP_ZR_channel2[index_zr].NP_ZR_Address.Text != "")
+            {
+                int Count = 0;
+                for (int i = 0; i < NP_Channel2_CountZR; i++)
+                {
+                    if (NP_ZR_channel2[i].NP_ZR_Address.Text == NP_ZR_channel2[index_zr].NP_ZR_Address.Text) Count++;
+                }
+                if (Count <= 1)
+                {
+                    NP_ZR_channel2[index_zr].ZR_Error = false;
+                }
+                else
+                {
+                    NP_ZR_channel2[index_zr].ZR_Error = true;
+                }
+            }
+            else
+            {
+                NP_ZR_channel2[index_zr].ZR_Error = true;
+            }
+        }
+        
 
 
         private bool Search_ZR_Adress(int ZR)   //поиск датчика по всем NP (возврат - результат поиска)
@@ -901,9 +1017,10 @@ namespace NP_Config
                     for (int i = Convert.ToInt32(NP_Channel1_count.Text); i < NP_ZR_channel1.Length; i++)
                     {
                         NP_ZR_channel1[i].NP_ZR_Address.Text = "";
+                        NP_ZR_channel1[i].ZR_Error = false;
                     }
                 }
-                //NP_Channel1_CountZR = Convert.ToInt32(NP_Channel1_count.Text);
+                NP_Channel1_CountZR = Convert.ToInt32(NP_Channel1_count.Text);
             }
         }
 
@@ -958,7 +1075,7 @@ namespace NP_Config
                         NP_ZR_channel2[i].NP_ZR_Address.Text = "";
                     }
                 }
-                //NP_Channel2_CountZR = Convert.ToInt32(NP_Channel2_count.Text);
+                NP_Channel2_CountZR = Convert.ToInt32(NP_Channel2_count.Text);
             }
         }
 

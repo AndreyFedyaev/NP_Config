@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NP_Config"
         mc:Ignorable="d"
         Title="MainWindow" Height="555" Width="1100" Topmost="False" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
-    <Grid>
+    <Grid UseLayoutRounding="True">
         <Border BorderThickness="1" BorderBrush="{DynamicResource Color_7}" UseLayoutRounding="True">
             <Grid Style="{DynamicResource GridStyle_Type2}">
                 <Grid.ColumnDefinitions>
@@ -14,7 +14,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0"  Margin="0,0,1,0" Style="{DynamicResource GridStyle_Type1}">
+                <Grid Grid.Column="0" UseLayoutRounding="True"  Margin="0,0,1,0" Style="{DynamicResource GridStyle_Type1}">
                     <StackPanel Name="StackPanelMenu">
                         <Grid x:Name="Menu_Add_Delete_Button" Height="30">
                             <Button x:Name="Menu_Up" HorizontalAlignment="Left" Margin="5,0,0,0" Content="&#10134;" Style="{DynamicResource ButtonStyle_Menu3}" Click="Menu_Up_Click"></Button>
@@ -30,7 +30,7 @@
                         <RowDefinition Height="30"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Style="{DynamicResource GridStyle_Type2}">
+                    <Grid Grid.Row="0" Style="{DynamicResource GridStyle_Type2}" UseLayoutRounding="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
