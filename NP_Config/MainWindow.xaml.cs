@@ -103,6 +103,12 @@ namespace NP_Config
                 {
                     page_struct[a].WP.ZR_List[b].channel_1 = ZR_List[b].channel_1;
                     page_struct[a].WP.ZR_List[b].channel_2 = ZR_List[b].channel_2;
+
+                    if (page_struct[b].WP != null)
+                    {
+                        page_struct[a].WP.ZR_List[b].channel_1_Err = page_struct[b].WP.NP_Channel1_Errors;
+                        page_struct[a].WP.ZR_List[b].channel_2_Err = page_struct[b].WP.NP_Channel2_Errors;
+                    }
                 }
                 page_struct[a].WP.This_NP_number = a + 1;
             }

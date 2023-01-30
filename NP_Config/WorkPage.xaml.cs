@@ -69,6 +69,8 @@ namespace NP_Config
         {
             public List<int> channel_1;
             public List<int> channel_2;
+            public bool channel_1_Err;
+            public bool channel_2_Err;
         }
         public struct UCH
         {
@@ -85,8 +87,8 @@ namespace NP_Config
 
 
         //статусы ошибок
-        private bool NP_Channel1_Errors = false;
-        private bool NP_Channel2_Errors = false;
+        public bool NP_Channel1_Errors = false;
+        public bool NP_Channel2_Errors = false;
         public bool IP_Setting_1_Errors = false;
         public bool IP_Setting_2_Errors = false;
         public bool IP_Setting_3_Errors = false;
@@ -1166,6 +1168,17 @@ namespace NP_Config
 
         private void UCH_Add_Click(object sender, RoutedEventArgs e)
         {
+            //проверка всех NP на наличие ошибок
+            for (int i = 0; i < ZR_List.Length; i++)
+            {
+                if (ZR_List[i].channel_1_Err || ZR_List[i].channel_2_Err)
+                {
+                    string str = string.Format("Адреса датчиков модуля NP{0}", i + 1);
+                    Warning_Dialog_Show(str, "Некорректные данные!", "");
+                    return;
+                }
+            }
+            //добавляем участок
             if (UCH_list[UCH_Count].UCH_Name == "")
             {
                 //добавляем участок
@@ -1267,6 +1280,16 @@ namespace NP_Config
         private int UCH_Open_Index = 0; //индекс открытого участка
         private void UCH_Save_Click(object sender, RoutedEventArgs e)
         {
+            //проверка всех NP на наличие ошибок
+            for (int i = 0; i < ZR_List.Length; i++)
+            {
+                if (ZR_List[i].channel_1_Err || ZR_List[i].channel_2_Err)
+                {
+                    string str = string.Format("Адреса датчиков модуля NP{0}", i + 1);
+                    Warning_Dialog_Show(str, "Некорректные данные!", "");
+                    return;
+                }
+            }
             //удаляем старые данные
             UCH_list[UCH_Open_Index].UCH_Name = "";
             UCH_list[UCH_Open_Index].ZR_Left.Clear();
