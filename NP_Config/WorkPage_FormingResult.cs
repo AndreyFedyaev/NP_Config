@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using static NP_Config.WorkPage;
 
 namespace NP_Config
 {
@@ -38,7 +39,7 @@ namespace NP_Config
             public List<int> ZR_Right;
         }
         //для хранения индексов датчиков в участках
-        public UCH_IndexZR[] UCH_list_index = new UCH_IndexZR[30];  //информацию о индексах датчиков в участках
+        public UCH_IndexZR[] UCH_list_index = new UCH_IndexZR[24];  //информацию о индексах датчиков в участках
         private void Warning_Dialog_Show(string Warning_Text_str1, string Warning_Text_str2, string Warning_Text_str3)   //отображение диалогового окна
         {
             Warning warning = new Warning();
@@ -282,7 +283,9 @@ namespace NP_Config
             result += Str_7();
             result += Str_8_Str_15();
             result += NP_InputZR_STR();
-
+            result += NP_ExternalZR_STR();
+            result += Str_18();
+            result += Str_UCH();
             return result;
         }
         private string Str_1()
@@ -309,7 +312,7 @@ namespace NP_Config
         {
             string result = "";
 
-            result = string.Format("{0}.{1}.{2}.{3}.{4}.{5}'", TB31.Text, TB32.Text, TB33.Text, TB34.Text, TB35.Text, TB36.Text);
+            result = string.Format("{0}.{1}.{2}.{3}:{4}:{5}'", TB31.Text, TB32.Text, TB33.Text, TB34.Text, TB35.Text, TB36.Text);
             result = result.PadRight(50, ' ');
             result += "\tIP адрес, UDP порт разъема T1\r\n";
 
@@ -319,7 +322,7 @@ namespace NP_Config
         {
             string result = "";
 
-            result = string.Format("{0}.{1}.{2}.{3}.{4}.{5}'", TB41.Text, TB42.Text, TB43.Text, TB44.Text, TB45.Text, TB46.Text);
+            result = string.Format("{0}.{1}.{2}.{3}:{4}:{5}'", TB41.Text, TB42.Text, TB43.Text, TB44.Text, TB45.Text, TB46.Text);
             result = result.PadRight(50, ' ');
             result += "\tIP адрес, UDP порт разъема T2\r\n";
 
@@ -329,7 +332,7 @@ namespace NP_Config
         {
             string result = "";
 
-            result = string.Format("{0}.{1}.{2}.{3}.{4}.{5}'", TB51.Text, TB52.Text, TB53.Text, TB54.Text, TB55.Text, TB56.Text);
+            result = string.Format("{0}.{1}.{2}.{3}:{4}:{5}'", TB51.Text, TB52.Text, TB53.Text, TB54.Text, TB55.Text, TB56.Text);
             result = result.PadRight(50, ' ');
             result += "\tIP адрес системы ЖАТ, UDP порт разъема T1\r\n";
 
@@ -339,7 +342,7 @@ namespace NP_Config
         {
             string result = "";
 
-            result = string.Format("{0}.{1}.{2}.{3}.{4}.{5}'", TB61.Text, TB62.Text, TB63.Text, TB64.Text, TB65.Text, TB66.Text);
+            result = string.Format("{0}.{1}.{2}.{3}:{4}:{5}'", TB61.Text, TB62.Text, TB63.Text, TB64.Text, TB65.Text, TB66.Text);
             result = result.PadRight(50, ' ');
             result += "\tIP адрес системы ЖАТ, UDP порт разъема T2\r\n";
 
@@ -407,6 +410,75 @@ namespace NP_Config
             result += "'";
             result = result.PadRight(50, ' ');
             result += "\tКонфигурация датчиков нпорта \r\n";
+            return result;
+        }
+        private string NP_ExternalZR_STR()
+        {
+            string result = "";
+            for (int i = 0; i < Ext_ZR.Length; i++)
+            {
+                result += Ext_ZR[i].Result_hex + " ";
+            }
+            result = result.Trim();
+            result += "'";
+            result = result.PadRight(50, ' ');
+            result += "\tКонфигурация датчиков, не подключенных к нпорту\r\n";
+            return result;
+        }
+        private string Str_18()
+        {
+            string result = "";
+
+            result = UCH_Count.ToString("X2");
+            result += "'";
+            result = result.PadRight(60, ' ');
+            result += "\tКоличество конфигурируемых участков\r\n";
+
+            return result;
+        }
+        private string Str_UCH()
+        {
+            string result = "";
+
+            for (int i = 0; i < UCH_Count; i++)
+            {
+                result += UCH_forming_result(i);
+            }
+
+            return result;
+        }
+        private string UCH_forming_result(int UCH_Index)
+        {
+            string result = "";
+
+            int zr_count = 0;
+            string zr_left = "";
+            string zr_right = "";
+
+            for (int a = 0; a < UCH_list_index[UCH_Index].ZR_Left.Count; a++)
+            {
+                zr_count++;
+                zr_left += UCH_list_index[UCH_Index].ZR_Left[a].ToString("X2") + " ";
+            }
+            for (int b = 0; b < UCH_list_index[UCH_Index].ZR_Right.Count; b++)
+            {
+                zr_count++;
+                zr_right += ((1 << 7) | UCH_list_index[UCH_Index].ZR_Right[b]).ToString("X2") + " ";
+            }
+
+            result += zr_count.ToString("X2") + " 00";
+            if (zr_left != "")
+            {
+                result += " " + zr_left.Trim();
+            }
+            if (zr_right != "")
+            {
+                result += " " + zr_right.Trim();
+            }
+            result += "'";
+            result = result.PadRight(50, ' ');
+            result += "\tКонфигурирование участка " + UCH_list_index[UCH_Index].UCH_Name + "\r\n";
+
             return result;
         }
     }

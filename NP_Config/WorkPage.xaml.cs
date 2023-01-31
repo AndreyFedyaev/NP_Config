@@ -110,7 +110,7 @@ namespace NP_Config
         public NP_ZR_Channel[] NP_ZR_channel1 = new NP_ZR_Channel[10];
         public NP_ZR_Channel[] NP_ZR_channel2 = new NP_ZR_Channel[10];
         public NP_ZR_List[] ZR_List = new NP_ZR_List[16];
-        public UCH[] UCH_list = new UCH[30];
+        public UCH[] UCH_list = new UCH[24];
         public IP_Setting_All_Np_List[] IP_All_Np_List = new IP_Setting_All_Np_List[16];
 
         public void Timer_Start()
@@ -1186,7 +1186,7 @@ namespace NP_Config
                 }
             }
             //проверка максимального количества участков
-            if (UCH_Count >= 30)
+            if (UCH_Count >= 24)
             {
                 Warning_Dialog_Show("Уже добавлено максимально допустимое", "количество участков!", "");
                 return;
@@ -1358,7 +1358,7 @@ namespace NP_Config
             UCH_list[UCH_Open_Index].UCH_Button.Content = "";
             WrapPanel_UCH.Children.RemoveAt(UCH_Open_Index);
 
-            UCH[] UCH_list_virtual = new UCH[30];
+            UCH[] UCH_list_virtual = new UCH[24];
             for (int i = 0; i < UCH_list_virtual.Length; i++)
             {
                 UCH_list_virtual[i].UCH_Name = "";
