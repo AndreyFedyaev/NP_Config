@@ -343,35 +343,90 @@ namespace NP_Config
                 }
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Warning_Dialog_Show(string Warning_Text_str1, string Warning_Text_str2, string Warning_Text_str3)   //отображение диалогового окна
         {
-            //bool result = page_struct[Menu_Button_IsActive - 1].WP.Write_data();
+            Warning warning = new Warning();
+            warning.Warning_Text_str1.Text = Warning_Text_str1;
+            warning.Warning_Text_str2.Text = Warning_Text_str2;
+            warning.Warning_Text_str3.Text = Warning_Text_str3;
+            warning.ShowDialog();
+        }
+        private void View_button_Click(object sender, RoutedEventArgs e)
+        {
+            //выполняем проверки заполнения всех полей сетевых настроек
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                page_struct[i].WP.IP_Settings_Search_Errors();
+            }
+            //анализируем результаты
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                if (page_struct[i].WP.IP_Setting_1_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес разъема Т2 первого канала", "Заполнено с ошибками");
+                    return;
+                }
+                if (page_struct[i].WP.IP_Setting_2_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес разъема Т2 второго канала", "Заполнено с ошибками");
+                    return;
+                }
+                if (page_struct[i].WP.IP_Setting_3_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес, UDP порт разъема T1", "Заполнено с ошибками");
+                    return;
+                }
+                if (page_struct[i].WP.IP_Setting_4_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес, UDP порт разъема T2", "Заполнено с ошибками");
+                    return;
+                }
+                if (page_struct[i].WP.IP_Setting_5_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес контроллера ЖАТ разъема Т1", "Заполнено с ошибками");
+                    return;
+                }
+                if (page_struct[i].WP.IP_Setting_6_Errors)
+                {
+                    string NP_Name = "NP" + (i + 1);
+                    Warning_Dialog_Show(NP_Name, "IP адрес контроллера ЖАТ разъема Т2", "Заполнено с ошибками");
+                    return;
+                }
+            }
+            //записываем информацию необходимых сетевых настроек всех NP для формирования записи о внешних NP
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                for (int a = 0; a < page_struct[i].WP.IP_All_Np_List.Length; a++)
+                {
+                    if (page_struct[a].WP != null)
+                    {
+                        page_struct[i].WP.IP_All_Np_List[a].TB34 = Convert.ToInt32(page_struct[a].WP.TB34.Text);
+                        page_struct[i].WP.IP_All_Np_List[a].TB44 = Convert.ToInt32(page_struct[a].WP.TB44.Text);
+                        page_struct[i].WP.IP_All_Np_List[a].TB56 = Convert.ToInt32(page_struct[a].WP.TB56.Text);
+                        page_struct[i].WP.IP_All_Np_List[a].TB66 = Convert.ToInt32(page_struct[a].WP.TB66.Text);
+                    }
+                }
+            }
 
-            //string STR1 = page_struct[Menu_Button_IsActive - 1].WP.Str_1();
-            //string STR2 = page_struct[Menu_Button_IsActive - 1].WP.Str_2();
-            //string STR3 = page_struct[Menu_Button_IsActive - 1].WP.Str_3();
-            //string STR4 = page_struct[Menu_Button_IsActive - 1].WP.Str_4();
-            //string STR5 = page_struct[Menu_Button_IsActive - 1].WP.Str_5();
-            //string STR6 = page_struct[Menu_Button_IsActive - 1].WP.Str_6();
-            //string STR7 = page_struct[Menu_Button_IsActive - 1].WP.Str_7();
 
 
-            //string STR_ZR_NP_Input = page_struct[Menu_Button_IsActive - 1].WP.NP_InputZR_STR();
+            string result = page_struct[Menu_Button_IsActive - 1].WP.Forming_Result();
 
-            //string result = STR1 + STR2 + STR3 + STR4 + STR5 + STR6 + STR7 + STR_ZR_NP_Input;
+            //Создаем файл++++
+            StreamWriter TEXT = new StreamWriter("ViewingConfig.ini", false, System.Text.Encoding.UTF8, 512);
+            TEXT.WriteLine(result);
+            TEXT.Close();
 
-
-            ////Создаем файл++++
-            //StreamWriter TEXT = new StreamWriter("ViewingConfig.ini", false, System.Text.Encoding.UTF8, 512);
-            //TEXT.WriteLine(result);
-            //TEXT.Close();
-
-            ////Открываем файл
-            //if (File.Exists("ViewingConfig.ini"))       //проверяем существует ли заданный файл
-            //{
-            //    Process.Start("ViewingConfig.ini");     // если да, то открываем его
-            //}
+            //Открываем файл
+            if (File.Exists("ViewingConfig.ini"))       //проверяем существует ли заданный файл
+            {
+                Process.Start("ViewingConfig.ini");     // если да, то открываем его
+            }
         }
     }
 }

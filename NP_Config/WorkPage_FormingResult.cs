@@ -47,7 +47,6 @@ namespace NP_Config
             warning.Warning_Text_str3.Text = Warning_Text_str3;
             warning.ShowDialog();
         }
-
         private void Write_ZP_data()
         {
             //адреса датчиков в десятичном формате
@@ -165,7 +164,6 @@ namespace NP_Config
             }
             return result;
         }
-        
         private int Search_IndexZR_ThisNP(int ZR, int channel)   //определяем индекс датчика в текущем NP
         {
             int result = 0;
@@ -272,7 +270,22 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_1()
+        public string Forming_Result()
+        {
+            string result = "";
+            result += Str_1();
+            result += Str_2();
+            result += Str_3();
+            result += Str_4();
+            result += Str_5();
+            result += Str_6();
+            result += Str_7();
+            result += Str_8_Str_15();
+            result += NP_InputZR_STR();
+
+            return result;
+        }
+        private string Str_1()
         {
             string result = "";
 
@@ -282,7 +295,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_2()
+        private string Str_2()
         {
             string result = "";
 
@@ -292,7 +305,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_3()
+        private string Str_3()
         {
             string result = "";
 
@@ -302,7 +315,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_4()
+        private string Str_4()
         {
             string result = "";
 
@@ -312,7 +325,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_5()
+        private string Str_5()
         {
             string result = "";
 
@@ -322,7 +335,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_6()
+        private string Str_6()
         {
             string result = "";
 
@@ -332,7 +345,7 @@ namespace NP_Config
 
             return result;
         }
-        public string Str_7()
+        private string Str_7()
         {
             string result = "";
 
@@ -342,7 +355,36 @@ namespace NP_Config
 
             return result;
         }
-        public string NP_InputZR_STR()
+        private string Str_8_Str_15()
+        {
+            string result = "";
+            string[] str = new string[8];
+            for (int i = 0; i < 8; i++) //максимум 8 внешних NP
+            {
+                if (External_NP.Count > i)
+                {
+                    string st1 = IP_All_Np_List[External_NP[i] - 1].TB34.ToString();
+                    string st2 = IP_All_Np_List[External_NP[i] - 1].TB56.ToString();
+                    string st3 = IP_All_Np_List[External_NP[i] - 1].TB44.ToString();
+                    string st4 = IP_All_Np_List[External_NP[i] - 1].TB66.ToString();
+                    str[i] = string.Format("{0}:{1}.{2}:{3}'", st1, st2, st3, st4);
+                    str[i] = str[i].PadRight(50, ' ');
+                    str[i] += "\tКонфигурация внешнего нпорта с индексом " + i + "\r\n";
+                }
+                else
+                {
+                    str[i] = "0'";
+                    str[i] = str[i].PadRight(60, ' ');
+                    str[i] += "\tКонфигурация внешнего нпорта с индексом " + i + "\r\n";
+                }
+            }
+            for (int i = 0; i < str.Length; i++)
+            {
+                result = result + str[i];
+            }
+            return result;
+        }
+        private string NP_InputZR_STR()
         {
             string result = "";
             int CountZR_Channel1 = Convert.ToInt32(NP_Channel1_count.Text);

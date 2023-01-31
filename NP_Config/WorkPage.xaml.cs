@@ -72,6 +72,13 @@ namespace NP_Config
             public bool channel_1_Err;
             public bool channel_2_Err;
         }
+        public struct IP_Setting_All_Np_List   //перечень сетевых настроек во всех NP
+        {
+            public int TB34;
+            public int TB44;
+            public int TB56;
+            public int TB66;
+        }
         public struct UCH
         {
             public string UCH_Name;
@@ -104,6 +111,7 @@ namespace NP_Config
         public NP_ZR_Channel[] NP_ZR_channel2 = new NP_ZR_Channel[10];
         public NP_ZR_List[] ZR_List = new NP_ZR_List[16];
         public UCH[] UCH_list = new UCH[30];
+        public IP_Setting_All_Np_List[] IP_All_Np_List = new IP_Setting_All_Np_List[16];
 
         public void Timer_Start()
         {
@@ -830,7 +838,7 @@ namespace NP_Config
             if (channel2_errors) NP_Channel2_Errors = true; else NP_Channel2_Errors = false;
         }
 
-        private void IP_Settings_Search_Errors()
+        public void IP_Settings_Search_Errors()
         {
             if (TB11.Text != "" && TB12.Text != "" && TB13.Text != "" && TB14.Text != "" && TB15.Text != "" && TB16.Text != "") IP_Setting_1_Errors = false;
             else IP_Setting_1_Errors = true;
@@ -849,7 +857,6 @@ namespace NP_Config
 
             if (TB61.Text != "" && TB62.Text != "" && TB63.Text != "" && TB64.Text != "" && TB65.Text != "" && TB66.Text != "") IP_Setting_6_Errors = false;
             else IP_Setting_6_Errors = true;
-
         }
 
         private bool Search_ZR_Adress(int ZR)   //поиск датчика по всем NP (возврат - результат поиска)
