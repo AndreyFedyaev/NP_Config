@@ -10,7 +10,6 @@ namespace NP_Config
 {
     public partial class WorkPage
     {
-        
         //для хранения информации о номерах внешних NP
         List<int> External_NP = new List<int>();
         //для хранения значений адресов датчиков первого канала (десятичное представление)
@@ -30,6 +29,7 @@ namespace NP_Config
             public int NP;             
             public int Chanel;
         }
+        //для хранения списка внешних датчиков
         private External_ZR[] Ext_ZR= new External_ZR[8];
         public struct UCH_IndexZR
         {
@@ -37,6 +37,7 @@ namespace NP_Config
             public List<int> ZR_Left;
             public List<int> ZR_Right;
         }
+        //для хранения индексов датчиков в участках
         public UCH_IndexZR[] UCH_list_index = new UCH_IndexZR[30];  //информацию о индексах датчиков в участках
         private void Warning_Dialog_Show(string Warning_Text_str1, string Warning_Text_str2, string Warning_Text_str3)   //отображение диалогового окна
         {
@@ -71,8 +72,8 @@ namespace NP_Config
             {
                 ZR_Address_Channel2_HEX.Add(ZR_Address_Channel2_DEC[i].ToString("X2"));
             }
-        }
-        public bool Write_UCH_data()    //записываем данные в массивы
+        }   //записываем данные датчиков в массивы
+        public bool Write_UCH_data()    //записываем данные участков в массивы
         {
             bool result = true;
             //инициализируем поля структуры участков

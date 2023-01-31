@@ -1178,6 +1178,12 @@ namespace NP_Config
                     return;
                 }
             }
+            //проверка максимального количества участков
+            if (UCH_Count >= 30)
+            {
+                Warning_Dialog_Show("Уже добавлено максимально допустимое", "количество участков!", "");
+                return;
+            }
             //добавляем участок
             if (UCH_list[UCH_Count].UCH_Name == "")
             {

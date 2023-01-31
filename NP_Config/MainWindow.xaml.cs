@@ -112,6 +112,24 @@ namespace NP_Config
                 }
                 page_struct[a].WP.This_NP_number = a + 1;
             }
+
+            //количество NP
+            All_NP_txt.Text = string.Format("Добавлено модулей NP: {0}", Menu_Button_Count);
+            //количество датчиков
+            int ZR_Count_txt = 0;
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                ZR_Count_txt += ZR_List[i].channel_1.Count;
+                ZR_Count_txt += ZR_List[i].channel_2.Count;
+            }
+            All_ZR_txt.Text = string.Format("Добавлено датчиков: {0}", ZR_Count_txt);
+            //количество участков
+            int UCH_Count_txt = 0;
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                UCH_Count_txt += page_struct[i].WP.UCH_Count;
+            }
+            All_UCH_txt.Text = string.Format("Добавлено участков: {0}", UCH_Count_txt);
         }
 
         private void InitializeButtonMenu ()    //инициализируем кнопки меню
