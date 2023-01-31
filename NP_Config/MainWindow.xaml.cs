@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static NP_Config.WorkPage;
 
 namespace NP_Config
 {
@@ -270,6 +272,10 @@ namespace NP_Config
         }
         private void Menu_Buttons_Add()
         {
+            NP_Add();
+        }
+        private void NP_Add()
+        {
             if (Menu_Button_Count < menu_struct.Length)
             {
                 //убираем кнопки "добавить" и "удалить"
@@ -282,7 +288,7 @@ namespace NP_Config
                 //инициализируем страницу для добавленной кнопки
                 page_struct[Menu_Button_Count].WP = new WorkPage();
 
-                
+
                 page_struct[0].WP.Timer_Start();
 
                 Menu_Button_Count++;
@@ -440,6 +446,155 @@ namespace NP_Config
                 Clear_All_Page();
 
                 //открываем конфигурационные файлы
+                Open_Configs();
+            }
+        }
+        private void Open_Configs()
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
+            openFileDialog1.Filter = "Config Files|*.ini";
+            openFileDialog1.Multiselect = true;
+
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                string[] result = openFileDialog1.FileNames;
+
+                //создаем нужное количество NP
+                for (int i = 1; i < result.Length; i++)
+                {
+                    NP_Add();
+                }
+                //перебираем все открытые файлы по порядку и заполняем поля IP и адресов датчиков
+                for (int i = 0; i < result.Length; i++)
+                {
+                    StreamReader sr = new StreamReader(result[i], System.Text.Encoding.Default);
+
+                    try
+                    {
+                        string[] str1;
+                        str1 = sr.ReadLine().Split('\'');
+                        str1 = str1[0].Split('.');
+                        page_struct[i].WP.TB11.Text = str1[0];
+                        page_struct[i].WP.TB12.Text = str1[1];
+                        page_struct[i].WP.TB13.Text = str1[2];
+                        page_struct[i].WP.TB14.Text = str1[3];
+                        page_struct[i].WP.TB15.Text = str1[4];
+                        page_struct[i].WP.TB16.Text = str1[5];
+                    }
+                    catch { }
+
+                    try
+                    {
+                        string[] str2;
+                        str2 = sr.ReadLine().Split('\'');
+                        str2 = str2[0].Split('.');
+                        page_struct[i].WP.TB21.Text = str2[0];
+                        page_struct[i].WP.TB22.Text = str2[1];
+                        page_struct[i].WP.TB23.Text = str2[2];
+                        page_struct[i].WP.TB24.Text = str2[3];
+                        page_struct[i].WP.TB25.Text = str2[4];
+                        page_struct[i].WP.TB26.Text = str2[5];
+                    }
+                    catch { }
+
+                    try
+                    {
+                        char[] delimiterChars = { '.', ':' };
+                        string[] str3;
+                        str3 = sr.ReadLine().Split('\'');
+                        str3 = str3[0].Split(delimiterChars);
+                        page_struct[i].WP.TB31.Text = str3[0];
+                        page_struct[i].WP.TB32.Text = str3[1];
+                        page_struct[i].WP.TB33.Text = str3[2];
+                        page_struct[i].WP.TB34.Text = str3[3];
+                        page_struct[i].WP.TB35.Text = str3[4];
+                        page_struct[i].WP.TB36.Text = str3[5];
+                    }
+                    catch { }
+
+                    try
+                    {
+                        char[] delimiterChars = { '.', ':' };
+                        string[] str4;
+                        str4 = sr.ReadLine().Split('\'');
+                        str4 = str4[0].Split(delimiterChars);
+                        page_struct[i].WP.TB41.Text = str4[0];
+                        page_struct[i].WP.TB42.Text = str4[1];
+                        page_struct[i].WP.TB43.Text = str4[2];
+                        page_struct[i].WP.TB44.Text = str4[3];
+                        page_struct[i].WP.TB45.Text = str4[4];
+                        page_struct[i].WP.TB46.Text = str4[5];
+                    }
+                    catch { }
+
+                    try
+                    {
+                        char[] delimiterChars = { '.', ':' };
+                        string[] str5;
+                        str5 = sr.ReadLine().Split('\'');
+                        str5 = str5[0].Split(delimiterChars);
+                        page_struct[i].WP.TB51.Text = str5[0];
+                        page_struct[i].WP.TB52.Text = str5[1];
+                        page_struct[i].WP.TB53.Text = str5[2];
+                        page_struct[i].WP.TB54.Text = str5[3];
+                        page_struct[i].WP.TB55.Text = str5[4];
+                        page_struct[i].WP.TB56.Text = str5[5];
+                    }
+                    catch { }
+
+                    try
+                    {
+                        char[] delimiterChars = { '.', ':' };
+                        string[] str6;
+                        str6 = sr.ReadLine().Split('\'');
+                        str6 = str6[0].Split(delimiterChars);
+                        page_struct[i].WP.TB61.Text = str6[0];
+                        page_struct[i].WP.TB62.Text = str6[1];
+                        page_struct[i].WP.TB63.Text = str6[2];
+                        page_struct[i].WP.TB64.Text = str6[3];
+                        page_struct[i].WP.TB65.Text = str6[4];
+                        page_struct[i].WP.TB66.Text = str6[5];
+                    }
+                    catch { }
+
+                    //прокускаем строку "Скорость обмена данными 1 и 2 канала по RS-485"
+                    sr.ReadLine();
+
+                    //пропускаем строки "Конфигурация внешнего нпорта с индексом 0-7"
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+
+                    //заполняем датчики NP
+                    try
+                    {
+                        string[] str;
+                        str = sr.ReadLine().Split('\'');
+                        str = str[0].Split(' ');
+                        //первый канал
+                        int Channel1_ZR_Count = Convert.ToInt32(str[0]);
+                        page_struct[i].WP.NP_Channel1_count.Text = Channel1_ZR_Count.ToString();
+                        for (int a = 0; a < Channel1_ZR_Count; a++)
+                        {
+                            page_struct[i].WP.NP_ZR_channel1[a].NP_ZR_Address.Text = (Int32.Parse(str[a + 4], System.Globalization.NumberStyles.HexNumber)).ToString();
+                        }
+
+                        //второй канал
+                        int Channel2_ZR_Count = Convert.ToInt32(str[1]);
+                        page_struct[i].WP.NP_Channel2_count.Text = Channel2_ZR_Count.ToString();
+                        for (int a = 0; a < Channel2_ZR_Count; a++)
+                        {
+                            page_struct[i].WP.NP_ZR_channel2[a].NP_ZR_Address.Text = (Int32.Parse(str[a + 4 + Channel1_ZR_Count], System.Globalization.NumberStyles.HexNumber)).ToString();
+                        }
+                    }
+                    catch { }
+                }
             }
         }
 
