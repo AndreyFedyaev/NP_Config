@@ -48,6 +48,9 @@ namespace NP_Config
 
             UCH_ZR_Left_Title.Visibility = Visibility.Hidden;
             UCH_ZR_Right_Title.Visibility = Visibility.Hidden;
+
+            //инициализируем поля структуры внешних датчиков
+            ExternalZR_Initializate();
         }
         struct UCH_ZR_setting
         {

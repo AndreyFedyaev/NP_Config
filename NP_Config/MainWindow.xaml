@@ -44,7 +44,7 @@
                             <Button x:Name="View_button" Content="Просмотр" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}" Click="View_button_Click"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <Button x:Name="Open_button" Content="Открыть" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>
+                            <Button x:Name="Open_button" Content="Открыть" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}" Click="Open_button_Click"/>
                         </Grid>
                         <Grid Grid.Column="2">
                             <Button x:Name="Save_Button" Content="Сохранить" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>
@@ -53,7 +53,7 @@
                             <Button x:Name="Save_all_button" Content="Сохранить всё" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>
                         </Grid>
                         <Grid Grid.Column="4">
-                            <Button x:Name="Clear_page_Button" Content="Очистить страницу" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}"/>
+                            <Button x:Name="Clear_page_Button" Content="Очистить страницу" Height="30" Width="120" Style="{DynamicResource ButtonStyle_Type2}" Click="Clear_page_Button_Click"/>
                         </Grid>
                         <Grid Grid.Column="6">
                             <Button Style="{DynamicResource ButtonStyle_Window_Minimizate}" Click="Window_Minimizate_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,3,53,0"/>
@@ -87,7 +87,7 @@
                             <TextBlock x:Name="All_UCH_txt" Text="Добавлено участков: 0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         </Grid>
                         <Grid Grid.Column="4">
-                            <TextBlock Text="NP Config v2.4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
+                            <TextBlock Text="NP Config v2.5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         </Grid>
                     </Grid>
                 </Grid>

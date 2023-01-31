@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Alarm.xaml.cs">
+      <DependentUpon>Alarm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Help_Type_1.xaml.cs">
       <DependentUpon>Help_Type_1.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,10 @@
     </Compile>
     <Compile Include="WorkPage_FormingResult.cs" />
     <Compile Include="WorkPage_Partial.cs" />
+    <Page Include="Alarm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dictionary_DarkStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

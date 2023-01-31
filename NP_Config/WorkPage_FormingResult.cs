@@ -48,6 +48,18 @@ namespace NP_Config
             warning.Warning_Text_str3.Text = Warning_Text_str3;
             warning.ShowDialog();
         }
+        private void ExternalZR_Initializate()
+        {
+            //инициализируем поля структуры внешних датчиков
+            for (int i = 0; i < Ext_ZR.Length; i++)
+            {
+                Ext_ZR[i].Index = 21 + i;
+                Ext_ZR[i].Result_hex = "00";
+                Ext_ZR[i].Address = 0;
+                Ext_ZR[i].NP = 0;
+                Ext_ZR[i].Chanel = 0;
+            }
+        }
         private void Write_ZP_data()
         {
             //адреса датчиков в десятичном формате
@@ -84,14 +96,7 @@ namespace NP_Config
                 UCH_list_index[i].ZR_Right = new List<int>();
             }
             //инициализируем поля структуры внешних датчиков
-            for (int i = 0; i < Ext_ZR.Length; i++)
-            {
-                Ext_ZR[i].Index = 21 + i;
-                Ext_ZR[i].Result_hex = "00";
-                Ext_ZR[i].Address = 0;
-                Ext_ZR[i].NP = 0;
-                Ext_ZR[i].Chanel = 0;
-            }
+            ExternalZR_Initializate();
             //записываем информацию по индексам датчиков в участках
             for (int a = 0; a < UCH_list_index.Length; a++)
             {

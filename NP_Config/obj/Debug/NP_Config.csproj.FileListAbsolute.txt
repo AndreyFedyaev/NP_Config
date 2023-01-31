@@ -47,3 +47,5 @@ D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_3.g.cs
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Help_Type_3.baml
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Warning.g.cs
 D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Warning.baml
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Alarm.g.cs
+D:\С#\GitHub\NP_Config\NP_Config\obj\Debug\Alarm.baml

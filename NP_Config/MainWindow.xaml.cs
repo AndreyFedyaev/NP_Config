@@ -428,5 +428,79 @@ namespace NP_Config
                 Process.Start("ViewingConfig.ini");     // если да, то открываем его
             }
         }
+
+        private void Open_button_Click(object sender, RoutedEventArgs e)
+        {
+            Alarm alarm = new Alarm();
+            string alarm_text = "Перед открытием все поля будут очищены!";
+            alarm.Alarm_Show(alarm_text);
+            if (alarm.Alarm_Result)
+            {
+                //очищаем все поля
+                Clear_All_Page();
+
+                //открываем конфигурационные файлы
+            }
+        }
+
+        private void Clear_page_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Alarm alarm = new Alarm();
+            string alarm_text = string.Format("Все данные NP{0} будут удалены!", Menu_Button_IsActive);
+            alarm.Alarm_Show(alarm_text);
+            if (alarm.Alarm_Result)
+            {
+                Clear_One_Page(Menu_Button_IsActive - 1);
+            }
+        }
+
+        private void Clear_One_Page(int Page_Index)
+        {
+            page_struct[Page_Index].WP = null;
+            page_struct[Page_Index].WP = new WorkPage();
+
+            WorkMainPage_Frame.NavigationService.Navigate(page_struct[Page_Index].WP);
+            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+
+            Page_Timer();
+        }
+        private void Clear_All_Page()
+        {
+            timer1.Stop();
+
+            //убираем кнопки "добавить" и "удалить"
+            StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
+
+            //удаляем все NP кроме первого
+            for (int i = Menu_Button_Count - 1; i > 0; i--)
+            {
+                page_struct[i].WP = null;
+                StackPanelMenu.Children.Remove(menu_struct[i].Menu_Button);
+
+                menu_struct[i].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 1].Menu_Button.FindResource("ButtonStyle_Menu1");
+
+                Menu_Button_Count--;
+            }
+            //добавляем кнопки "добавить" и "удалить"
+            StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
+            Menu_Visibility();
+
+            //делаем активным первый NP
+            Menu_Button_IsActive = 1;
+            menu_struct[0].Menu_Button.Style = (Style)menu_struct[0].Menu_Button.FindResource("ButtonStyle_Menu2");
+
+            //очищаем первый NP
+            page_struct[0].WP = null;
+            page_struct[0].WP = new WorkPage();
+
+            //отображаем первый NP
+            WorkMainPage_Frame.NavigationService.Navigate(page_struct[0].WP);
+            WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+
+            //запускаем таймер нажатой страницы, остальные выключаем
+            Page_Timer();
+
+            timer1.Start();
+        }
     }
 }
