@@ -665,7 +665,7 @@ namespace NP_Config
                             page_struct[i].WP.Ext_ZR[b].NP = Number_NP;
 
                             int channel1_count = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC.Count;
-                            if (index_External_ZR < channel1_count)
+                            if (index_External_ZR <= channel1_count)
                             {
                                 page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC[index_External_ZR - 1];
                                 page_struct[i].WP.Ext_ZR[b].Chanel = 1;
@@ -732,7 +732,74 @@ namespace NP_Config
                                 int NP = 0;
                                 int Channel = 0;
 
+                                if (zr_index < 21)
+                                {
+                                    if (zr_index <= page_struct[i].WP.ZR_Address_Channel1_DEC.Count)
+                                    {
+                                        Address = page_struct[i].WP.ZR_Address_Channel1_DEC[zr_index - 1];
+                                        Channel = 1;
+                                    }
+                                    else
+                                    {
+                                        Address = page_struct[i].WP.ZR_Address_Channel2_DEC[zr_index - page_struct[i].WP.ZR_Address_Channel1_DEC.Count - 1];
+                                        Channel = 2;
+                                    }
+                                    NP = i + 1;
+                                }
+                                else
+                                {
+                                    for (int c = 0; c < page_struct[i].WP.Ext_ZR.Length; c++)
+                                    {
+                                        if (page_struct[i].WP.Ext_ZR[c].Index == zr_index)
+                                        {
+                                            Address = page_struct[i].WP.Ext_ZR[c].Address;
+                                            NP = page_struct[i].WP.Ext_ZR[c].NP;
+                                            Channel = page_struct[i].WP.Ext_ZR[c].Chanel;
+                                        }
+                                    }
+                                }
 
+                                //добавляем участок
+                                if (page_struct[i].WP.UCH_list[UCH_Count].UCH_Name == "")
+                                {
+                                    //добавляем участок
+                                    page_struct[i].WP.UCH_list[UCH_Count].UCH_Name = UCH_Name;
+
+                                    if (left)
+                                    {
+                                        page_struct[i].WP.UCH_list[UCH_Count].ZR_Left.Add(new UCH_ZR
+                                        {
+                                            ZR_Address = Address,
+                                            ZR_NP = NP,
+                                            ZR_Channel = Channel
+                                        });
+                                    }
+
+                                    if (right)
+                                    {
+                                        page_struct[i].WP.UCH_list[UCH_Count].ZR_Right.Add(new UCH_ZR
+                                        {
+                                            ZR_Address = Address,
+                                            ZR_NP = NP,
+                                            ZR_Channel = Channel
+                                        });
+                                    }
+                                }
+                            }
+                            //анализируем данные участков и заполняем массивы
+                            bool UCH_Add_result = page_struct[i].WP.Write_UCH_data();
+                            if (UCH_Add_result == true)
+                            {
+                                page_struct[i].WP.UCH_list[UCH_Count].UCH_Button.Content = UCH_Name;
+                                page_struct[i].WP.WrapPanel_UCH.Children.Add(page_struct[i].WP.UCH_list[UCH_Count].UCH_Button);
+
+                                UCH_Count++;
+                            }
+                            else
+                            {
+                                page_struct[i].WP.UCH_list[UCH_Count].UCH_Name = "";
+                                page_struct[i].WP.UCH_list[UCH_Count].ZR_Left.Clear();
+                                page_struct[i].WP.UCH_list[UCH_Count].ZR_Right.Clear();
                             }
                         }
                     }
