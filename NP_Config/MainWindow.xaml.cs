@@ -595,6 +595,149 @@ namespace NP_Config
                     }
                     catch { }
                 }
+                //перебираем все файлы по порядку и заполняем список внешних NP
+                for (int i = 0; i < result.Length; i++)
+                {
+                    StreamReader sr = new StreamReader(result[i], System.Text.Encoding.Default);
+
+                    //пропускаем 7 строк
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+                    sr.ReadLine();
+
+                    try
+                    {
+                        for (int a = 0; a < 8; a++) //перебираем список внешних NP
+                        {
+                            string[] str1;
+                            str1 = sr.ReadLine().Split('\'');
+                            str1 = str1[0].Split(':');
+
+                            int External_NP = 0;
+                            if (str1[0] != "0")
+                            {
+                                for (int b = 0; b < Menu_Button_Count; b++)
+                                {
+                                    if (page_struct[b].WP.TB34.Text == str1[0])
+                                    {
+                                        External_NP = b + 1;
+                                        page_struct[i].WP.External_NP.Add(External_NP);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch { }
+                }
+                //перебираем все файлы по порядку и заполняем список внешних датчиков
+                for (int i = 0; i < result.Length; i++)
+                {
+                    StreamReader sr = new StreamReader(result[i], System.Text.Encoding.Default);
+
+                    //пропускаем 16 строк
+                    for (int a = 0; a < 16; a++)
+                    {
+                        sr.ReadLine();
+                    }
+
+                    try
+                    {
+                        string[] str1;
+                        str1 = sr.ReadLine().Split('\'');
+                        str1 = str1[0].Split(' ');
+
+                        for (int b = 0; b < str1.Length; b++)
+                        {
+                            int index_External_NP = 0;
+                            int index_External_ZR = 0;
+
+                            index_External_NP = Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) >> 5;
+                            index_External_ZR = (Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) & 31);
+
+                            page_struct[i].WP.Ext_ZR[b].Result_hex = str1[b];
+
+                            int Number_NP = page_struct[i].WP.External_NP[index_External_NP];
+                            page_struct[i].WP.Ext_ZR[b].NP = Number_NP;
+
+                            int channel1_count = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC.Count;
+                            if (index_External_ZR < channel1_count)
+                            {
+                                page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC[index_External_ZR - 1];
+                                page_struct[i].WP.Ext_ZR[b].Chanel = 1;
+                            }
+                            else
+                            {
+                                page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel2_DEC[index_External_ZR - channel1_count - 1];
+                                page_struct[i].WP.Ext_ZR[b].Chanel = 2;
+                            }
+                        }
+                    }
+                    catch { }
+                }
+                //перебираем все файлы по порядку и заполняем список участков
+                for (int i = 0; i < result.Length; i++)
+                {
+                    StreamReader sr = new StreamReader(result[i], System.Text.Encoding.Default);
+
+                    //пропускаем 17 строк
+                    for (int a = 0; a < 17; a++)
+                    {
+                        sr.ReadLine();
+                    }
+
+                    //определяем количество участков
+                    int UCH_Count = 0;
+                    try
+                    {
+                        string[] str;
+                        str = sr.ReadLine().Split('\'');
+                        UCH_Count = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
+                    }
+                    catch { }
+
+                    //перебираем участки
+                    try
+                    {
+                        for (int a = 0; a < UCH_Count; a++)
+                        {
+                            string[] str1;
+                            string[] str2;
+                            str1 = sr.ReadLine().Split('\'');
+                            str2 = str1[0].Split(' ');
+
+                            //определяем название участка
+                            string UCH_Name = "";
+                            UCH_Name = str1[1].Replace("Конфигурирование участка","");
+                            UCH_Name = UCH_Name.Trim();
+
+                            //перебираем все датчики участка и заполняем массивы
+                            for (int b = 2; b < str2.Length; b++)
+                            {
+                                //определяем направление счета датчика
+                                bool left = false;      //датчик слева
+                                bool right = false;     //датчик справа
+                                if ((Int32.Parse(str2[b], System.Globalization.NumberStyles.HexNumber) >> 7) == 0) left = true;
+                                else right = true;
+
+                                //определяем индекс датчика 
+                                int zr_index = (Int32.Parse(str2[b], System.Globalization.NumberStyles.HexNumber) & 127);
+
+                                //определяем Address, NP, Channel
+                                int Address = 0;
+                                int NP = 0;
+                                int Channel = 0;
+
+
+                            }
+                        }
+                    }
+                    catch { }
+                }
             }
         }
 

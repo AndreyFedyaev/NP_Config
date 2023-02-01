@@ -12,13 +12,13 @@ namespace NP_Config
     public partial class WorkPage
     {
         //для хранения информации о номерах внешних NP
-        List<int> External_NP = new List<int>();
+        public List<int> External_NP = new List<int>();
         //для хранения значений адресов датчиков первого канала (десятичное представление)
-        List<int> ZR_Address_Channel1_DEC = new List<int>();
+        public List<int> ZR_Address_Channel1_DEC = new List<int>();
         //для хранения значений адресов датчиков первого канала (шестнадцатиричное представление)
         List<string> ZR_Address_Channel1_HEX = new List<string>();
         //для хранения значений адресов датчиков второго канала (десятичное представление)
-        List<int> ZR_Address_Channel2_DEC = new List<int>();
+        public List<int> ZR_Address_Channel2_DEC = new List<int>();
         //для хранения значений адресов датчиков второго канала (шестнадцатиричное представление)
         List<string> ZR_Address_Channel2_HEX = new List<string>();
         //для хранения конфигурации внешних датчиков (шестнадцатиричное представление)
@@ -31,7 +31,7 @@ namespace NP_Config
             public int Chanel;
         }
         //для хранения списка внешних датчиков
-        private External_ZR[] Ext_ZR= new External_ZR[8];
+        public External_ZR[] Ext_ZR= new External_ZR[8];
         public struct UCH_IndexZR
         {
             public string UCH_Name;
