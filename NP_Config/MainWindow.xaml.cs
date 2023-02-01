@@ -72,11 +72,36 @@ namespace NP_Config
 
         private void timer_1(object sender, EventArgs e)
         {
+
+            ZR_List_Write();
+
+            //количество NP
+            All_NP_txt.Text = string.Format("Добавлено модулей NP: {0}", Menu_Button_Count);
+            //количество датчиков
+            int ZR_Count_txt = 0;
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                ZR_Count_txt += ZR_List[i].channel_1.Count;
+                ZR_Count_txt += ZR_List[i].channel_2.Count;
+            }
+            All_ZR_txt.Text = string.Format("Добавлено датчиков: {0}", ZR_Count_txt);
+            //количество участков
+            int UCH_Count_txt = 0;
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                UCH_Count_txt += page_struct[i].WP.UCH_Count;
+            }
+            All_UCH_txt.Text = string.Format("Добавлено участков: {0}", UCH_Count_txt);
+        }
+
+        private void ZR_List_Write()
+        {
             for (int i = 0; i < ZR_List.Length; i++)
             {
                 ZR_List[i].channel_1.Clear();
                 ZR_List[i].channel_2.Clear();
             }
+
             for (int a = 0; a < Menu_Button_Count; a++)
             {
                 page_struct[a].WP.All_Count_NP = Menu_Button_Count;
@@ -114,24 +139,6 @@ namespace NP_Config
                 }
                 page_struct[a].WP.This_NP_number = a + 1;
             }
-
-            //количество NP
-            All_NP_txt.Text = string.Format("Добавлено модулей NP: {0}", Menu_Button_Count);
-            //количество датчиков
-            int ZR_Count_txt = 0;
-            for (int i = 0; i < Menu_Button_Count; i++)
-            {
-                ZR_Count_txt += ZR_List[i].channel_1.Count;
-                ZR_Count_txt += ZR_List[i].channel_2.Count;
-            }
-            All_ZR_txt.Text = string.Format("Добавлено датчиков: {0}", ZR_Count_txt);
-            //количество участков
-            int UCH_Count_txt = 0;
-            for (int i = 0; i < Menu_Button_Count; i++)
-            {
-                UCH_Count_txt += page_struct[i].WP.UCH_Count;
-            }
-            All_UCH_txt.Text = string.Format("Добавлено участков: {0}", UCH_Count_txt);
         }
 
         private void InitializeButtonMenu ()    //инициализируем кнопки меню
@@ -451,6 +458,8 @@ namespace NP_Config
         }
         private void Open_Configs()
         {
+            timer1.Stop();
+
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = Environment.CurrentDirectory;
             openFileDialog1.Filter = "Config Files|*.ini";
@@ -595,6 +604,10 @@ namespace NP_Config
                     }
                     catch { }
                 }
+
+                //Заполняем ZR_List
+                ZR_List_Write();
+
                 //перебираем все файлы по порядку и заполняем список внешних NP
                 for (int i = 0; i < result.Length; i++)
                 {
@@ -618,7 +631,12 @@ namespace NP_Config
                             str1 = str1[0].Split(':');
 
                             int External_NP = 0;
-                            if (str1[0] != "0")
+
+                            if (str1[0] == "0")
+                            {
+                                page_struct[i].WP.External_NP.Add(0);
+                            }
+                            else
                             {
                                 for (int b = 0; b < Menu_Button_Count; b++)
                                 {
@@ -630,6 +648,15 @@ namespace NP_Config
                                     }
                                 }
                             }
+                        }
+
+                        for (int a = page_struct[i].WP.External_NP.Count - 1; a >= 0; a--)
+                        {
+                            if (page_struct[i].WP.External_NP[a] == 0)
+                            {
+                                page_struct[i].WP.External_NP.RemoveAt(a);
+                            }
+                            else break;
                         }
                     }
                     catch { }
@@ -691,19 +718,19 @@ namespace NP_Config
                     }
 
                     //определяем количество участков
-                    int UCH_Count = 0;
+                    int UCH_Count_read = 0;
                     try
                     {
                         string[] str;
                         str = sr.ReadLine().Split('\'');
-                        UCH_Count = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
+                        UCH_Count_read = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
                     }
                     catch { }
 
                     //перебираем участки
                     try
                     {
-                        for (int a = 0; a < UCH_Count; a++)
+                        for (int a = 0; a < UCH_Count_read; a++)
                         {
                             string[] str1;
                             string[] str2;
@@ -759,53 +786,48 @@ namespace NP_Config
                                     }
                                 }
 
-                                //добавляем участок
-                                if (page_struct[i].WP.UCH_list[UCH_Count].UCH_Name == "")
+                                //добавляем датчик в участок
+                                if (left)
                                 {
-                                    //добавляем участок
-                                    page_struct[i].WP.UCH_list[UCH_Count].UCH_Name = UCH_Name;
-
-                                    if (left)
+                                    page_struct[i].WP.UCH_list[page_struct[i].WP.UCH_Count].ZR_Left.Add(new UCH_ZR
                                     {
-                                        page_struct[i].WP.UCH_list[UCH_Count].ZR_Left.Add(new UCH_ZR
-                                        {
-                                            ZR_Address = Address,
-                                            ZR_NP = NP,
-                                            ZR_Channel = Channel
-                                        });
-                                    }
-
-                                    if (right)
+                                        ZR_Address = Address,
+                                        ZR_NP = NP,
+                                        ZR_Channel = Channel
+                                    });
+                                }
+                                if (right)
+                                {
+                                    page_struct[i].WP.UCH_list[page_struct[i].WP.UCH_Count].ZR_Right.Add(new UCH_ZR
                                     {
-                                        page_struct[i].WP.UCH_list[UCH_Count].ZR_Right.Add(new UCH_ZR
-                                        {
-                                            ZR_Address = Address,
-                                            ZR_NP = NP,
-                                            ZR_Channel = Channel
-                                        });
-                                    }
+                                        ZR_Address = Address,
+                                        ZR_NP = NP,
+                                        ZR_Channel = Channel
+                                    });
                                 }
                             }
-                            //анализируем данные участков и заполняем массивы
-                            bool UCH_Add_result = page_struct[i].WP.Write_UCH_data();
-                            if (UCH_Add_result == true)
-                            {
-                                page_struct[i].WP.UCH_list[UCH_Count].UCH_Button.Content = UCH_Name;
-                                page_struct[i].WP.WrapPanel_UCH.Children.Add(page_struct[i].WP.UCH_list[UCH_Count].UCH_Button);
+                            //добавляем имя участока
+                            page_struct[i].WP.UCH_list[page_struct[i].WP.UCH_Count].UCH_Name = UCH_Name;
 
-                                UCH_Count++;
-                            }
-                            else
-                            {
-                                page_struct[i].WP.UCH_list[UCH_Count].UCH_Name = "";
-                                page_struct[i].WP.UCH_list[UCH_Count].ZR_Left.Clear();
-                                page_struct[i].WP.UCH_list[UCH_Count].ZR_Right.Clear();
-                            }
+
+                            page_struct[i].WP.UCH_list[page_struct[i].WP.UCH_Count].UCH_Button.Content = UCH_Name;
+                            page_struct[i].WP.WrapPanel_UCH.Children.Add(page_struct[i].WP.UCH_list[page_struct[i].WP.UCH_Count].UCH_Button);
+
+                            page_struct[i].WP.UCH_Count++;
                         }
+                        
                     }
                     catch { }
+                    
                 }
             }
+
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                page_struct[i].WP.Write_UCH_data();
+            }
+
+            timer1.Start(); 
         }
 
         private void Clear_page_Button_Click(object sender, RoutedEventArgs e)
