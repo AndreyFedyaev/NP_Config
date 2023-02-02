@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NP_Config"
         mc:Ignorable="d"
-        Title="Warning" Height="120" Width="350" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
-    <Grid>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource Color_10}" UseLayoutRounding="True">
-            <Grid Style="{DynamicResource GridStyle_Type1}" MouseDown="Grid_MouseDown">
-                <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="WarningDialog_Close_Click" Width="22" Height="24" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
-                <TextBlock Margin="10,5,0,0" Text="Внимание!" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        Title="Warning" Height="170" Width="400" Topmost="True" Background="Transparent" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
+    <Grid UseLayoutRounding="True">
+        <Border Height="120" Width="350" CornerRadius="15" Style="{DynamicResource BorderStyle_Type1}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Color="{DynamicResource Color_type_6}"/>
+            </Border.Effect>
+            <Grid Background="Transparent" MouseDown="Grid_MouseDown">
+                <Button Style="{DynamicResource ButtonStyle_Window_Close}" Click="WarningDialog_Close_Click" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,10,0"/>
+                <TextBlock Margin="0,5,0,0" Text="Внимание!" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                 <TextBlock x:Name="Warning_Text_str1" Margin="5,35,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <TextBlock x:Name="Warning_Text_str2" Margin="5,60,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>

@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NP_Config"
         mc:Ignorable="d"
-          Title="Alarm" Height="120" Width="350" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
-    <Grid>
-        <Border BorderThickness="1" BorderBrush="{DynamicResource Color_10}" UseLayoutRounding="True">
-            <Grid Style="{DynamicResource GridStyle_Type1}" MouseDown="Grid_MouseDown">
-                <TextBlock Margin="10,5,0,0" Text="Внимание!" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-                <TextBlock x:Name="Alarm_txt" Margin="5,40,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+          Title="Alarm" Height="170" Width="400" Topmost="True" Background="Transparent" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
+    <Grid UseLayoutRounding="True">
+        <Border Height="120" Width="350" CornerRadius="15" Style="{DynamicResource BorderStyle_Type1}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" ShadowDepth="0" Color="{DynamicResource Color_type_6}"/>
+            </Border.Effect>
+            <Grid Background="Transparent" MouseDown="Grid_MouseDown" UseLayoutRounding="True">
+                <TextBlock Margin="0,5,0,0" Text="Внимание!" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock x:Name="Alarm_txt" Margin="5,45,5,10" Text="Текст ошибки" Style="{DynamicResource TextBlockStyle_Type6}" AllowDrop="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Button x:Name="OK" Content="Подтвердить" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,15" Style="{DynamicResource ButtonStyle_Type2}" Click="OK_Click"/>
                 <Button x:Name="Cancel" Content="Отменить" Width="100" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,25,15" Style="{DynamicResource ButtonStyle_Type2}" Click="Cancel_Click"/>
             </Grid>
