@@ -491,7 +491,9 @@ namespace NP_Config
                         page_struct[i].WP.TB15.Text = str1[4];
                         page_struct[i].WP.TB16.Text = str1[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     try
                     {
@@ -505,7 +507,9 @@ namespace NP_Config
                         page_struct[i].WP.TB25.Text = str2[4];
                         page_struct[i].WP.TB26.Text = str2[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     try
                     {
@@ -520,7 +524,9 @@ namespace NP_Config
                         page_struct[i].WP.TB35.Text = str3[4];
                         page_struct[i].WP.TB36.Text = str3[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     try
                     {
@@ -535,7 +541,9 @@ namespace NP_Config
                         page_struct[i].WP.TB45.Text = str4[4];
                         page_struct[i].WP.TB46.Text = str4[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     try
                     {
@@ -550,7 +558,9 @@ namespace NP_Config
                         page_struct[i].WP.TB55.Text = str5[4];
                         page_struct[i].WP.TB56.Text = str5[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     try
                     {
@@ -565,7 +575,9 @@ namespace NP_Config
                         page_struct[i].WP.TB65.Text = str6[4];
                         page_struct[i].WP.TB66.Text = str6[5];
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     //прокускаем строку "Скорость обмена данными 1 и 2 канала по RS-485"
                     sr.ReadLine();
@@ -602,7 +614,9 @@ namespace NP_Config
                             page_struct[i].WP.NP_ZR_channel2[a].NP_ZR_Address.Text = (Int32.Parse(str[a + 4 + Channel1_ZR_Count], System.Globalization.NumberStyles.HexNumber)).ToString();
                         }
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
                 }
 
                 //Заполняем ZR_List
@@ -659,7 +673,9 @@ namespace NP_Config
                             else break;
                         }
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
                 }
                 //перебираем все файлы по порядку и заполняем список внешних датчиков
                 for (int i = 0; i < result.Length; i++)
@@ -680,31 +696,36 @@ namespace NP_Config
 
                         for (int b = 0; b < str1.Length; b++)
                         {
-                            int index_External_NP = 0;
-                            int index_External_ZR = 0;
-
-                            index_External_NP = Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) >> 5;
-                            index_External_ZR = (Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) & 31);
-
-                            page_struct[i].WP.Ext_ZR[b].Result_hex = str1[b];
-
-                            int Number_NP = page_struct[i].WP.External_NP[index_External_NP];
-                            page_struct[i].WP.Ext_ZR[b].NP = Number_NP;
-
-                            int channel1_count = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC.Count;
-                            if (index_External_ZR <= channel1_count)
+                            if (str1[b] != "00")
                             {
-                                page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC[index_External_ZR - 1];
-                                page_struct[i].WP.Ext_ZR[b].Chanel = 1;
-                            }
-                            else
-                            {
-                                page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel2_DEC[index_External_ZR - channel1_count - 1];
-                                page_struct[i].WP.Ext_ZR[b].Chanel = 2;
+                                int index_External_NP = 0;
+                                int index_External_ZR = 0;
+
+                                index_External_NP = Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) >> 5;
+                                index_External_ZR = (Int32.Parse(str1[b], System.Globalization.NumberStyles.HexNumber) & 31);
+
+                                page_struct[i].WP.Ext_ZR[b].Result_hex = str1[b];
+
+                                int Number_NP = page_struct[i].WP.External_NP[index_External_NP];
+                                page_struct[i].WP.Ext_ZR[b].NP = Number_NP;
+
+                                int channel1_count = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC.Count;
+                                if (index_External_ZR <= channel1_count)
+                                {
+                                    page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel1_DEC[index_External_ZR - 1];
+                                    page_struct[i].WP.Ext_ZR[b].Chanel = 1;
+                                }
+                                else
+                                {
+                                    page_struct[i].WP.Ext_ZR[b].Address = page_struct[Number_NP - 1].WP.ZR_Address_Channel2_DEC[index_External_ZR - channel1_count - 1];
+                                    page_struct[i].WP.Ext_ZR[b].Chanel = 2;
+                                }
                             }
                         }
                     }
-                    catch { }
+                    catch (Exception Err)
+                    {
+                    }
                 }
                 //перебираем все файлы по порядку и заполняем список участков
                 for (int i = 0; i < result.Length; i++)
@@ -725,7 +746,9 @@ namespace NP_Config
                         str = sr.ReadLine().Split('\'');
                         UCH_Count_read = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
 
                     //перебираем участки
                     try
@@ -817,7 +840,9 @@ namespace NP_Config
                         }
                         
                     }
-                    catch { }
+                    catch 
+                    { 
+                    }
                     
                 }
             }

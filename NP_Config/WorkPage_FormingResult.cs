@@ -369,7 +369,7 @@ namespace NP_Config
             string[] str = new string[8];
             for (int i = 0; i < 8; i++) //максимум 8 внешних NP
             {
-                if (External_NP.Count > i)
+                if (External_NP.Count > i && External_NP[i] != 0)
                 {
                     string st1 = IP_All_Np_List[External_NP[i] - 1].TB34.ToString();
                     string st2 = IP_All_Np_List[External_NP[i] - 1].TB56.ToString();
