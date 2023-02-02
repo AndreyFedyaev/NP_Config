@@ -464,9 +464,9 @@ namespace NP_Config
                 Open_Configs();
             }
         }
-        private void Open_Error_Show_DialogWindow(string File_Name, int Number_Errror)
+        private void Open_Error_Show_DialogWindow(string File_Name, string Error)
         {
-            Warning_Dialog_Show(File_Name, "Файл был открыт с ошибками", "Номер ошибки - " + Number_Errror);
+            Warning_Dialog_Show(File_Name, "Файл был открыт с ошибками", Error);
         }
         private void Open_Configs()
         {
@@ -511,7 +511,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 1);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 1");
                     }
 
                     try
@@ -528,7 +528,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 2);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 2");
                     }
 
                     try
@@ -546,7 +546,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 3);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 3");
                     }
 
                     try
@@ -564,7 +564,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 4);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 4");
                     }
 
                     try
@@ -582,7 +582,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 5);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 5");
                     }
 
                     try
@@ -600,7 +600,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 6);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в строке 6");
                     }
 
                     //прокускаем строку "Скорость обмена данными 1 и 2 канала по RS-485"
@@ -640,7 +640,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 7);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в считывании датчиков NP");
                     }
                 }
 
@@ -700,7 +700,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 8);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в считывании внешних NP");
                     }
                 }
                 //перебираем все файлы по порядку и заполняем список внешних датчиков
@@ -751,7 +751,7 @@ namespace NP_Config
                     }
                     catch
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 9);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в считывании внешних датчиков");
                     }
                 }
                 //перебираем все файлы по порядку и заполняем список участков
@@ -775,7 +775,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 10);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в считывании количества участков");
                     }
 
                     //перебираем участки
@@ -870,7 +870,7 @@ namespace NP_Config
                     }
                     catch 
                     {
-                        Open_Error_Show_DialogWindow(FileName[i], 11);
+                        Open_Error_Show_DialogWindow(FileName[i], "Ошибка в считывании участков");
                     }
                     
                 }
