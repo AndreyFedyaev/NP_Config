@@ -178,11 +178,17 @@ namespace NP_Config
 
             if (channel == 1)
             {
-                result = ZR_Address_Channel1_DEC.BinarySearch(ZR) + 1;
+                for (int i = 0; i < ZR_Address_Channel1_DEC.Count; i++)
+                {
+                    if (ZR_Address_Channel1_DEC[i] == ZR) result = i + 1;
+                }
             }
             if (channel == 2)
             {
-                result = ZR_Address_Channel1_DEC.Count + ZR_Address_Channel2_DEC.BinarySearch(ZR) + 1;
+                for (int i = 0; i < ZR_Address_Channel2_DEC.Count; i++)
+                {
+                    if (ZR_Address_Channel2_DEC[i] == ZR) result = ZR_Address_Channel1_DEC.Count + i + 1;
+                }
             }
             return result;
         }
