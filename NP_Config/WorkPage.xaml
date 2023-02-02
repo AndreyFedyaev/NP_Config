@@ -30,8 +30,8 @@
                             <TextBox Name="TB12" Text="168"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB12_TextChanged"/>
                             <TextBox Name="TB13" Text="0"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB13_TextChanged"/>
                             <TextBox Name="TB14" Text="254"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB14_TextChanged"/>
-                            <TextBox Name="TB15" Text="0" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB15_TextChanged"/>
-                            <TextBox Name="TB16" Text="0" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB16_TextChanged"/>
+                            <TextBox Name="TB15"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB15_TextChanged"/>
+                            <TextBox Name="TB16"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB16_TextChanged"/>
                         </StackPanel>
                         <TextBlock Text="IP адрес разъема Т2 второго канала" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -39,8 +39,8 @@
                             <TextBox Name="TB22" Text="168"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB22_TextChanged"/>
                             <TextBox Name="TB23" Text="0" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB23_TextChanged"/>
                             <TextBox Name="TB24" Text="254"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB24_TextChanged"/>
-                            <TextBox Name="TB25" Text="50" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB25_TextChanged"/>
-                            <TextBox Name="TB26" Text="1" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB26_TextChanged"/>
+                            <TextBox Name="TB25"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB25_TextChanged"/>
+                            <TextBox Name="TB26"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB26_TextChanged"/>
                         </StackPanel>
                         <Button x:Name="IP_Help_1" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_1_Click"/>
                     </Grid>
@@ -54,21 +54,21 @@
                     <Grid>
                         <TextBlock Text="IP адрес, UDP порт разъема T1" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,5,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         <StackPanel Orientation="Horizontal" Height="22" Margin="10,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBox Name="TB31" Text="192" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB31_TextChanged"/>
-                            <TextBox Name="TB32" Text="168" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB32_TextChanged"/>
-                            <TextBox Name="TB33" Text="20" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB33_TextChanged"/>
-                            <TextBox Name="TB34" Text="51" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB34_TextChanged"/>
-                            <TextBox Name="TB35" Text="2051" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB35_TextChanged"/>
-                            <TextBox Name="TB36" Text="4001" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB36_TextChanged"/>
+                            <TextBox Name="TB31"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB31_TextChanged"/>
+                            <TextBox Name="TB32"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB32_TextChanged"/>
+                            <TextBox Name="TB33"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB33_TextChanged"/>
+                            <TextBox Name="TB34"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB34_TextChanged"/>
+                            <TextBox Name="TB35"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB35_TextChanged"/>
+                            <TextBox Name="TB36"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB36_TextChanged"/>
                         </StackPanel>
                         <TextBlock Text="IP адрес, UDP порт разъема T2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBox Name="TB41" Text="192" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB41_TextChanged"/>
-                            <TextBox Name="TB42" Text="168" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB42_TextChanged"/>
-                            <TextBox Name="TB43" Text="21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB43_TextChanged"/>
-                            <TextBox Name="TB44" Text="51" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB44_TextChanged"/>
-                            <TextBox Name="TB45" Text="2151" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB45_TextChanged"/>
-                            <TextBox Name="TB46" Text="4002" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB46_TextChanged"/>
+                            <TextBox Name="TB41"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB41_TextChanged"/>
+                            <TextBox Name="TB42"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB42_TextChanged"/>
+                            <TextBox Name="TB43"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB43_TextChanged"/>
+                            <TextBox Name="TB44"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB44_TextChanged"/>
+                            <TextBox Name="TB45"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB45_TextChanged"/>
+                            <TextBox Name="TB46"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB46_TextChanged"/>
                         </StackPanel>
                         <Button x:Name="IP_Help_2" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_2_Click"/>
 
@@ -83,21 +83,21 @@
                     <Grid>
                         <TextBlock Text="IP адрес контроллера ЖАТ разъема Т1" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,5,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         <StackPanel Orientation="Horizontal" Height="22" Margin="10,21,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBox Name="TB51" Text="192" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB51_TextChanged"/>
-                            <TextBox Name="TB52" Text="168" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB52_TextChanged"/>
-                            <TextBox Name="TB53" Text="20" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB53_TextChanged"/>
-                            <TextBox Name="TB54" Text="40" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB54_TextChanged"/>
-                            <TextBox Name="TB55" Text="2051" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB55_TextChanged"/>
-                            <TextBox Name="TB56" Text="2000" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB56_TextChanged"/>
+                            <TextBox Name="TB51"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB51_TextChanged"/>
+                            <TextBox Name="TB52"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB52_TextChanged"/>
+                            <TextBox Name="TB53"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB53_TextChanged"/>
+                            <TextBox Name="TB54"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB54_TextChanged"/>
+                            <TextBox Name="TB55"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB55_TextChanged"/>
+                            <TextBox Name="TB56"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB56_TextChanged"/>
                         </StackPanel>
                         <TextBlock Text="IP адрес контроллера ЖАТ разъема Т2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,45,0,0" Style="{DynamicResource TextBlockStyle_Type1}"/>
                         <StackPanel Orientation="Horizontal" Height="22" Margin="10,61,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <TextBox Name="TB61" Text="192" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB61_TextChanged"/>
-                            <TextBox Name="TB62" Text="168" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB62_TextChanged"/>
-                            <TextBox Name="TB63" Text="21" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB63_TextChanged"/>
-                            <TextBox Name="TB64" Text="40" Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB64_TextChanged"/>
-                            <TextBox Name="TB65" Text="2151" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB65_TextChanged"/>
-                            <TextBox Name="TB66" Text="2000" Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB66_TextChanged"/>
+                            <TextBox Name="TB61"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB61_TextChanged"/>
+                            <TextBox Name="TB62"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB62_TextChanged"/>
+                            <TextBox Name="TB63"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB63_TextChanged"/>
+                            <TextBox Name="TB64"  Width="35" Margin="5,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB64_TextChanged"/>
+                            <TextBox Name="TB65"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB65_TextChanged"/>
+                            <TextBox Name="TB66"  Width="45" Margin="10,2,0,2" Style="{DynamicResource TextBoxStyle_Type1}" PreviewTextInput="Cheking_for_numbers_type5" TextChanged="TB66_TextChanged"/>
                         </StackPanel>
                         <Button x:Name="IP_Help_3" Width="60" Height="20" Content="Справка" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,6" Style="{DynamicResource ButtonStyle_Type2}" Click="IP_Help_3_Click"/>
 
