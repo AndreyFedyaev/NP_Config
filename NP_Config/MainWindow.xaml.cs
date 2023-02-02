@@ -366,6 +366,27 @@ namespace NP_Config
         }
         private void View_button_Click(object sender, RoutedEventArgs e)
         {
+            bool Search_Result = IP_Setting_Search_Errors();
+
+            if (Search_Result == false)
+            {
+                string result = page_struct[Menu_Button_IsActive - 1].WP.Forming_Result();
+
+                //Создаем файл++++
+                StreamWriter TEXT = new StreamWriter("ViewingConfig.ini", false, System.Text.Encoding.UTF8, 512);
+                TEXT.WriteLine(result);
+                TEXT.Close();
+
+                //Открываем файл
+                if (File.Exists("ViewingConfig.ini"))       //проверяем существует ли заданный файл
+                {
+                    Process.Start("ViewingConfig.ini");     // если да, то открываем его
+                }
+            }
+        }
+
+        private bool IP_Setting_Search_Errors()
+        {
             //выполняем проверки заполнения всех полей сетевых настроек
             for (int i = 0; i < Menu_Button_Count; i++)
             {
@@ -378,37 +399,37 @@ namespace NP_Config
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес разъема Т2 первого канала", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
                 if (page_struct[i].WP.IP_Setting_2_Errors)
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес разъема Т2 второго канала", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
                 if (page_struct[i].WP.IP_Setting_3_Errors)
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес, UDP порт разъема T1", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
                 if (page_struct[i].WP.IP_Setting_4_Errors)
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес, UDP порт разъема T2", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
                 if (page_struct[i].WP.IP_Setting_5_Errors)
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес контроллера ЖАТ разъема Т1", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
                 if (page_struct[i].WP.IP_Setting_6_Errors)
                 {
                     string NP_Name = "NP" + (i + 1);
                     Warning_Dialog_Show(NP_Name, "IP адрес контроллера ЖАТ разъема Т2", "Заполнено с ошибками");
-                    return;
+                    return true;
                 }
             }
             //записываем информацию необходимых сетевых настроек всех NP для формирования записи о внешних NP
@@ -425,21 +446,7 @@ namespace NP_Config
                     }
                 }
             }
-
-
-
-            string result = page_struct[Menu_Button_IsActive - 1].WP.Forming_Result();
-
-            //Создаем файл++++
-            StreamWriter TEXT = new StreamWriter("ViewingConfig.ini", false, System.Text.Encoding.UTF8, 512);
-            TEXT.WriteLine(result);
-            TEXT.Close();
-
-            //Открываем файл
-            if (File.Exists("ViewingConfig.ini"))       //проверяем существует ли заданный файл
-            {
-                Process.Start("ViewingConfig.ini");     // если да, то открываем его
-            }
+            return false;
         }
 
         private void Open_button_Click(object sender, RoutedEventArgs e)
@@ -913,6 +920,65 @@ namespace NP_Config
             Page_Timer();
 
             timer1.Start();
+        }
+
+        private void Save_Button_Click(object sender, RoutedEventArgs e)
+        {
+            bool Search_Result = IP_Setting_Search_Errors();
+
+            if (Search_Result == false)
+            {
+                string result = page_struct[Menu_Button_IsActive - 1].WP.Forming_Result();
+
+                Stream myStream;
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.FileName = "Config";
+                saveFileDialog1.Filter = "txt files (*.ini)|*.ini";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == true)
+                {
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    {
+                        StreamWriter TEXT = new StreamWriter(myStream, System.Text.Encoding.UTF8, 512);
+                        TEXT.Write(result);
+                        TEXT.Close();
+                    }
+                }
+
+            }
+        }
+
+        private void Save_all_button_Click(object sender, RoutedEventArgs e)
+        {
+            bool Search_Result = IP_Setting_Search_Errors();
+
+            if (Search_Result == false)
+            {
+                for (int i = 0; i < Menu_Button_Count; i++)
+                {
+                    string result = page_struct[i].WP.Forming_Result();
+
+                    Stream mySaveStream;
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.RestoreDirectory = true;
+                    saveFileDialog1.Filter = "txt files (*.ini)|*.ini";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.FileName = "NP" + (i + 1) + "_Config";
+
+                    if (saveFileDialog1.ShowDialog() == true)
+                    {
+                        if ((mySaveStream = saveFileDialog1.OpenFile()) != null)
+                        {
+                            StreamWriter TEXT = new StreamWriter(mySaveStream, System.Text.Encoding.UTF8, 512);
+                            TEXT.Write(result);
+                            TEXT.Close();
+                        }
+                    }
+                    else return;
+                }
+            }
         }
     }
 }
