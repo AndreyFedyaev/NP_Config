@@ -273,7 +273,13 @@
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Row="3">
-                                    <TextBlock x:Name="ExternalZR_Count_Txt" Text="Использовано внешних датчиков - 0 из 8" Margin="10,0,0,0" Style="{DynamicResource TextBlockStyle_Type5}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" x:Name="ExternalNP_Count_Txt" Text="Внешние NP - 0 из 8" Margin="10,0,0,0" Style="{DynamicResource TextBlockStyle_Type5}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" x:Name="ExternalZR_Count_Txt" Text="Внешние датчики - 0 из 8" Margin="10,0,0,0" Style="{DynamicResource TextBlockStyle_Type5}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center"/>
+
                                 </Grid>
                             </Grid>
                             <Grid Grid.Column="1">

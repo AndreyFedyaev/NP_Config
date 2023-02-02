@@ -854,6 +854,12 @@ namespace NP_Config
                 }
             }
 
+            //после добавление всех данных сбрасываем список внешних NP, для их перестроения на случай если были пропуски или ошибки
+            for (int i = 0; i < Menu_Button_Count; i++)
+            {
+                page_struct[i].WP.External_NP.Clear();
+            }
+            //определяем индексы датчиков участков и перестраиваем список внешних NP
             for (int i = 0; i < Menu_Button_Count; i++)
             {
                 page_struct[i].WP.Write_UCH_data();

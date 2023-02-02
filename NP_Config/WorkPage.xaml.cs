@@ -1333,6 +1333,7 @@ namespace NP_Config
             }
 
             //анализируем данные участков и заполняем массивы
+            External_NP.Clear();
             bool UCH_Save_result = Write_UCH_data();
             if (UCH_Save_result == true)
             {
@@ -1400,6 +1401,7 @@ namespace NP_Config
 
 
             //анализируем данные участков и заполняем массивы
+            External_NP.Clear();
             Write_UCH_data();
         }
 

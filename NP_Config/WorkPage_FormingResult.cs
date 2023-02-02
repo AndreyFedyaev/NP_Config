@@ -160,13 +160,15 @@ namespace NP_Config
             }
             if (result)
             {
+                //определяем количество внешних NP
+                ExternalNP_Count_Txt.Text = string.Format("Внешние NP - {0} из 8", External_NP.Count);
                 //определяем количество использованных внешних датчиков
                 int count = 0;
                 for (int i = 0; i < Ext_ZR.Length; i++)
                 {
                     if (Ext_ZR[i].Result_hex != "00") count++;
                 }
-                ExternalZR_Count_Txt.Text = string.Format("Использовано внешних датчиков - {0} из 8", count);
+                ExternalZR_Count_Txt.Text = string.Format("Внешние датчики - {0} из 8", count);
             }
             return result;
         }
