@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -463,6 +464,10 @@ namespace NP_Config
                 Open_Configs();
             }
         }
+        private void Open_Error_Show_DialogWindow(string File_Name, int Number_Errror)
+        {
+            Warning_Dialog_Show(File_Name, "Файл был открыт с ошибками", "Номер ошибки - " + Number_Errror);
+        }
         private void Open_Configs()
         {
             timer1.Stop();
@@ -475,6 +480,12 @@ namespace NP_Config
             if (openFileDialog1.ShowDialog() == true)
             {
                 string[] result = openFileDialog1.FileNames;
+
+                string[] FileName = new string[result.Length];
+                for (int i = 0; i < result.Length; i++)
+                {
+                    FileName[i] = System.IO.Path.GetFileNameWithoutExtension(result[i]);
+                }
 
                 //создаем нужное количество NP
                 for (int i = 1; i < result.Length; i++)
@@ -499,7 +510,8 @@ namespace NP_Config
                         page_struct[i].WP.TB16.Text = str1[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 1);
                     }
 
                     try
@@ -515,7 +527,8 @@ namespace NP_Config
                         page_struct[i].WP.TB26.Text = str2[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 2);
                     }
 
                     try
@@ -532,7 +545,8 @@ namespace NP_Config
                         page_struct[i].WP.TB36.Text = str3[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 3);
                     }
 
                     try
@@ -549,7 +563,8 @@ namespace NP_Config
                         page_struct[i].WP.TB46.Text = str4[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 4);
                     }
 
                     try
@@ -566,7 +581,8 @@ namespace NP_Config
                         page_struct[i].WP.TB56.Text = str5[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 5);
                     }
 
                     try
@@ -583,7 +599,8 @@ namespace NP_Config
                         page_struct[i].WP.TB66.Text = str6[5];
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 6);
                     }
 
                     //прокускаем строку "Скорость обмена данными 1 и 2 канала по RS-485"
@@ -606,7 +623,7 @@ namespace NP_Config
                         str = sr.ReadLine().Split('\'');
                         str = str[0].Split(' ');
                         //первый канал
-                        int Channel1_ZR_Count = Convert.ToInt32(str[0]);
+                        int Channel1_ZR_Count = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
                         page_struct[i].WP.NP_Channel1_count.Text = Channel1_ZR_Count.ToString();
                         for (int a = 0; a < Channel1_ZR_Count; a++)
                         {
@@ -614,7 +631,7 @@ namespace NP_Config
                         }
 
                         //второй канал
-                        int Channel2_ZR_Count = Convert.ToInt32(str[1]);
+                        int Channel2_ZR_Count = Int32.Parse(str[1], System.Globalization.NumberStyles.HexNumber);
                         page_struct[i].WP.NP_Channel2_count.Text = Channel2_ZR_Count.ToString();
                         for (int a = 0; a < Channel2_ZR_Count; a++)
                         {
@@ -622,7 +639,8 @@ namespace NP_Config
                         }
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 7);
                     }
                 }
 
@@ -681,7 +699,8 @@ namespace NP_Config
                         }
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 8);
                     }
                 }
                 //перебираем все файлы по порядку и заполняем список внешних датчиков
@@ -730,8 +749,9 @@ namespace NP_Config
                             }
                         }
                     }
-                    catch (Exception Err)
+                    catch
                     {
+                        Open_Error_Show_DialogWindow(FileName[i], 9);
                     }
                 }
                 //перебираем все файлы по порядку и заполняем список участков
@@ -754,7 +774,8 @@ namespace NP_Config
                         UCH_Count_read = Int32.Parse(str[0], System.Globalization.NumberStyles.HexNumber);
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 10);
                     }
 
                     //перебираем участки
@@ -848,7 +869,8 @@ namespace NP_Config
                         
                     }
                     catch 
-                    { 
+                    {
+                        Open_Error_Show_DialogWindow(FileName[i], 11);
                     }
                     
                 }
