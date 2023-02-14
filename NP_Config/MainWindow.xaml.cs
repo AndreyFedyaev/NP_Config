@@ -52,6 +52,9 @@ namespace NP_Config
         public MainWindow()
         {
             InitializeComponent();
+
+            Programm_Version.Text = "NP Config v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
+
             InitializeButtonMenu(); //инициализируем кнопки меню
             Initialize_ZR_List();
 
