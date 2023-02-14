@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\GitLab_ASC\КБ4\npconfig_v2.17\NP_Config\obj\Debug\
+D:\GitLab_ASC\КБ4\npconfig\NP_Config\obj\Debug\
 NP_Config
 none
 false
 DEBUG;TRACE
-D:\GitLab_ASC\КБ4\npconfig_v2.17\NP_Config\App.xaml
+D:\GitLab_ASC\КБ4\npconfig\NP_Config\App.xaml
 91859179372
 
-15103732206
+14-2109146472
 13-1310406943
 Alarm.xaml;Dictionary_DarkStyle.xaml;Dictionary_WhiteStyle.xaml;Help_Type_1.xaml;Help_Type_2.xaml;Help_Type_3.xaml;MainWindow.xaml;Warning.xaml;WorkPage.xaml;
 

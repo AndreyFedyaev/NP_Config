@@ -255,29 +255,33 @@ namespace NP_Config
         {
             if (Menu_Button_Count > 1)
             {
-                //убираем кнопки "добавить" и "удалить"
-                StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
-                //добавляем следующую кнопку при запуске
-                StackPanelMenu.Children.Remove(menu_struct[Menu_Button_Count - 1].Menu_Button);
-                //добавляем кнопки "добавить" и "удалить"
-                StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
-
-                page_struct[Menu_Button_Count - 1].WP = null;
-
-                if (Menu_Button_IsActive == Menu_Button_Count)  
+                Alarm alarm = new Alarm();
+                string alarm_text = string.Format("Конфигурация NP{0} будет удалена!", Menu_Button_Count);
+                alarm.Alarm_Show(alarm_text);
+                if (alarm.Alarm_Result)
                 {
-                    menu_struct[Menu_Button_Count - 1].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 1].Menu_Button.FindResource("ButtonStyle_Menu1");
-                    menu_struct[Menu_Button_Count - 2].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 2].Menu_Button.FindResource("ButtonStyle_Menu2");
-                    
-                    //отображение станицы
-                    WorkMainPage_Frame.NavigationService.Navigate(page_struct[Menu_Button_Count - 2].WP);
-                    WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+                    //убираем кнопки "добавить" и "удалить"
+                    StackPanelMenu.Children.Remove(Menu_Add_Delete_Button);
+                    //добавляем следующую кнопку при запуске
+                    StackPanelMenu.Children.Remove(menu_struct[Menu_Button_Count - 1].Menu_Button);
+                    //добавляем кнопки "добавить" и "удалить"
+                    StackPanelMenu.Children.Add(Menu_Add_Delete_Button);
 
-                    Menu_Button_IsActive--;
+                    page_struct[Menu_Button_Count - 1].WP = null;
+
+                    if (Menu_Button_IsActive == Menu_Button_Count)
+                    {
+                        menu_struct[Menu_Button_Count - 1].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 1].Menu_Button.FindResource("ButtonStyle_Menu1");
+                        menu_struct[Menu_Button_Count - 2].Menu_Button.Style = (Style)menu_struct[Menu_Button_Count - 2].Menu_Button.FindResource("ButtonStyle_Menu2");
+
+                        //отображение станицы
+                        WorkMainPage_Frame.NavigationService.Navigate(page_struct[Menu_Button_Count - 2].WP);
+                        WorkMainPage_Frame.NavigationService.RemoveBackEntry();
+
+                        Menu_Button_IsActive--;
+                    }
+                    Menu_Button_Count--;
                 }
-
-
-                Menu_Button_Count--;
             }
             Menu_Visibility();
         }
